@@ -1,5 +1,4 @@
 title: Git 实战场景
-author: Tommi_Max
 tags:
   - 备忘翻阅
 categories:

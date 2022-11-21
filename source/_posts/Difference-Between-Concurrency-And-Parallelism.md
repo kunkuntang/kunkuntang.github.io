@@ -1,5 +1,4 @@
 title: 并发和并行的区别
-author: Tommi_Max
 tags:
   - 个人总结
 categories:

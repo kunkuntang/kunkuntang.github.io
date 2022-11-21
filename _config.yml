@@ -6,9 +6,9 @@
 title: CubeSuger's blog
 subtitle:
 description:
-author: CubeSuger
 language:
 timezone:
+author: CubeSuger
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -38,7 +38,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -65,7 +65,8 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 ## git clone https://github.com/litten/hexo-theme-yilia.git themes/yiliaß
 # theme: yilia
-theme: anatole
+# theme: anatole
+theme: obsidian
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

@@ -1,5 +1,4 @@
 title: Docker中镜像、容器的常用命令
-author: Tommi_Max
 tags:
   - 备忘翻阅
 categories:

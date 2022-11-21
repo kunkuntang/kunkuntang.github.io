@@ -1,5 +1,5 @@
+layout: '[post]'
 title: 自建一个node cli工具
-author: Tommi_Max
 tags:
   - 个人总结
 categories:

@@ -1,5 +1,4 @@
 title: 使用Jenkins自动化构建你的个人网站
-author: Tommi_Max
 tags:
   - 个人总结
 categories:
