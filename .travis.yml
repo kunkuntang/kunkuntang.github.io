@@ -1,0 +1,27 @@
+os: linux
+language: node_js 
+node_js:
+  - 12  # using nodejs LTS v12
+branches:
+  only:
+    - hexo # only monitor master branch
+cache:
+  directories:
+    - node_modules # cache node_modules to speed up build process
+before_script: ## According to your theme and custom configuration, update the script
+  - cd themes/obsidian
+  - npm install # install next dependencies
+  - cd ../.. # return the root folder
+  - npm install # install the dependencies
+script: 
+  - hexo clean # generate static files
+  - hexo generate # generate static files
+deploy: # reference: https://docs.travis-ci.com/user/deployment/pages/
+  provider: pages
+  skip_cleanup: true # not clean after build
+  token: $GH_TOKEN # the variable you set in last step
+  keep_history: true
+  on:
+    branch: hexo # sources files is in master branch
+  local_dir: public 
+  target_branch: master # the branch of generated files. If using `username.github.io` repo, it has to be master. Otherwise, change it to your github pages branch.
