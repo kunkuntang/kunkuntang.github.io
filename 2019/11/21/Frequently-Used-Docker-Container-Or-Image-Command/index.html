@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Docker中镜像、容器的常用命令 - CubeSuger&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="简述对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。
+要理解Docker以及Docker里关于镜像、容器的概念，这,"> 
+    <meta name="author" content="CubeSuger"> 
+    <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">CubeSuger&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://kunkuntang.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Docker中镜像、容器的常用命令</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Docker"><b>「
+                    </b>DOCKER<b> 」</b></a>
+                
+                November 21, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/11/21/Frequently-Used-Docker-Container-Or-Image-Command/" title="Docker中镜像、容器的常用命令" class="">Docker中镜像、容器的常用命令</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    9k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    8 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%87%E5%BF%98%E7%BF%BB%E9%98%85/" rel="tag">备忘翻阅</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <h2><a href="#jian-shu" class="header-anchor"></a><span id="jian-shu">简述</span></h2><p>对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。</p>
+<p>要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：<br>Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举以下有关镜像、容器的命令：</p>
+<h2><a href="#docker-jing-xiang" class="header-anchor"></a><span id="docker-jing-xiang">Docker镜像</span></h2><h3><a href="#cong-wang-luo-shang-xia-jie-jing-xiang" class="header-anchor"></a><span id="cong-wang-luo-shang-xia-jie-jing-xiang">从网络上下截镜像</span></h3><pre><code>docker pull [mirror] NAME[:TAG]
+</code></pre>
+<p>例如：</p>
+<pre><code>docker pull ubuntu
+</code></pre>
+<p>如果不显式地指定TAG，则默认会选择latest标签，即下载最新版本的镜像。</p>
+<p>想要下载指定版本的镜像，则在后面指明版本号：</p>
+<pre><code>docker pull ubuntu:14.04
+</code></pre>
+<p>也可以指明其它注册服务商的仓库地址下载对应的镜像：</p>
+<pre><code>C:\Users\kunta&gt;docker pull hub.c.163.com/public/ubuntu:16.04-tools
+16.04-tools: Pulling from public/ubuntu
+[DEPRECATION NOTICE] registry v2 schema1 support will be removed in an upcoming release. Please contact admins of the hub.c.163.com registry NOW to avoid future disruption.
+8a2df099fc1a: Pull complete
+09aa8e119200: Pull complete
+21a4b8922479: Pull complete
+a3ed95caeb02: Pull complete
+bd2a9dfe68fa: Pull complete
+f132d6d54cc2: Pull complete
+099b34b8b564: Pull complete
+23afed40f2e5: Pull complete
+6d60d1682f8c: Pull complete
+97121ecff7e5: Pull complete
+ef4015576a84: Pull complete
+94d536c3a549: Pull complete
+Digest: sha256:0fc4a48462a92b0a5a53b35540b8ca33a68606c6cd23c21df54c5f54bccbf33a
+Status: Downloaded newer image for hub.c.163.com/public/ubuntu:16.04-tools
+hub.c.163.com/public/ubuntu:16.04-tools
+</code></pre>
+<h3><a href="#cha-kan-ben-di-de-cun-zai-de-jing-xiang" class="header-anchor"></a><span id="cha-kan-ben-di-de-cun-zai-de-jing-xiang">查看本地的存在的镜像</span></h3><p>查看本地镜像可以执行<code>docker images</code>命令：</p>
+<pre><code>C:\Users\kunta&gt;docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+hub.c.163.com/kuntang/lingermarket   latest              c7a70a3810cf        23 months ago       418MB
+hub.c.163.com/public/centos          6.7-tools           b2ab0ed558bb        2 years ago         602MB
+</code></pre>
+<p>其中各字段含义如下：</p>
+<ul>
+<li>REPOSITORY：镜像来自哪一个仓库</li>
+<li>TAG：镜像的标签信息</li>
+<li>IMAGE ID：镜像的ID号(唯一)</li>
+<li>CREATED：创建时间</li>
+<li>SIZE：镜像大小</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2019/10/10/16db635dd1090a6e?w=993&h=519&f=png&s=25613"></p>
+<h3><a href="#gei-ben-di-jing-xiang-tian-jia-xin-biao-qian" class="header-anchor"></a><span id="gei-ben-di-jing-xiang-tian-jia-xin-biao-qian">给本地镜像添加新标签</span></h3><pre><code>docker tag [mirror ID] [NEW TAG]
+</code></pre>
+<p>为方便使用，我们应该用<code>docker tag</code>命令为镜像加上别名；</p>
+<pre><code>C:\Users\kunta&gt;docker tag 119 ubuntu
+
+C:\Users\kunta&gt;docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+hub.c.163.com/kuntang/lingermarket   latest              c7a70a3810cf        23 months ago       418MB
+ubuntu                               latest              1196ea15dad6        2 years ago         336MB
+hub.c.163.com/public/ubuntu          16.04-tools         1196ea15dad6        2 years ago         336MB
+hub.c.163.com/public/centos          6.7-tools           b2ab0ed558bb        2 years ago         602MB
+</code></pre>
+<p>或：</p>
+<pre><code>C:\Users\kunta&gt;docker tag hub.c.163.com/public/ubuntu:16.04-tools ubuntu2:16.04
+
+C:\Users\kunta&gt;docker images
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+hub.c.163.com/kuntang/lingermarket   latest              c7a70a3810cf        23 months ago       418MB
+ubuntu2                              16.04               1196ea15dad6        2 years ago         336MB
+ubuntu                               latest              1196ea15dad6        2 years ago         336MB
+hub.c.163.com/public/ubuntu          16.04-tools         1196ea15dad6        2 years ago         336MB
+hub.c.163.com/public/centos          6.7-tools           b2ab0ed558bb        2 years ago         602MB
+</code></pre>
+<p>实际上这个命令不会创建新的镜像，仔细比较一下新创建的镜像，它们的ID都是一样的，所以它们指向的是同一个镜像，这里的tag命令相当于给它们新建了一个快捷方式。</p>
+<h3><a href="#cha-kan-jing-xiang-xiang-xi-xin-xi" class="header-anchor"></a><span id="cha-kan-jing-xiang-xiang-xi-xin-xi">查看镜像详细信息</span></h3><pre><code>docker inspect [IMAGE ID]
+</code></pre>
+<p>这个命令将会返回一串JSON字符串，如果想要查看某一项的内容，可以使用<code>-f</code>来指定。如：</p>
+<pre><code>docker inspect -f &#123;&#123;".[字段名]"&#125;&#125; [IMAGE ID]
+</code></pre>
+<blockquote>
+<p>注意：<strong>字段名</strong>前的<code>.</code>不能少。</p>
+</blockquote>
+<p>如想要查看镜像的ID信息:</p>
+<pre><code>C:\Users\kunta&gt;docker inspect -f &#123;&#123;".Id"&#125;&#125; 119
+sha256:1196ea15dad679677c220abedb654d7e8f4402c88fc1985ef1e224b50206d729
+</code></pre>
+<h3><a href="#sou-xun-jing-xiang" class="header-anchor"></a><span id="sou-xun-jing-xiang">搜寻镜像</span></h3><pre><code>docker search TERM 
+</code></pre>
+<p>支持参数包括 <code>--automated=false</code> 仅显示自动创建的镜像 <code>--no-trunc=false</code> 输出信息不截断显示 <code>-s, --start=0</code> 仅显示评价为指定星级以上的镜像</p>
+<h3><a href="#shan-chu-jing-xiang" class="header-anchor"></a><span id="shan-chu-jing-xiang">删除镜像</span></h3><pre><code>docker rmi [IMAGES ID or TAG]
+</code></pre>
+<p>** 当一个镜像拥有多个标签的时候，执行删除命令只会删除镜像对应的标签，当镜像只剩下最后一个标签时执行删除操作，则会彻底删除镜像 **</p>
+<p>强制删除镜像</p>
+<pre><code>docker rmi -f [mirrors]
+</code></pre>
+<h3><a href="#chuang-jian-jing-xiang" class="header-anchor"></a><span id="chuang-jian-jing-xiang">创建镜像</span></h3><pre><code>docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+</code></pre>
+<h3><a href="#shang-chuan-jing-xiang" class="header-anchor"></a><span id="shang-chuan-jing-xiang">上传镜像</span></h3><pre><code>docker push NAME[:TAG]
+</code></pre>
+<h2><a href="#docker-rong-qi" class="header-anchor"></a><span id="docker-rong-qi">Docker容器</span></h2><h3><a href="#chuang-jian-rong-qi" class="header-anchor"></a><span id="chuang-jian-rong-qi">创建容器</span></h3><p>创建成功后返回容器ID</p>
+<pre><code>docker create [mirrors]
+</code></pre>
+<h3><a href="#yun-xing-rong-qi" class="header-anchor"></a><span id="yun-xing-rong-qi">运行容器</span></h3><pre><code>docker start [mirrors ID]
+</code></pre>
+<h3><a href="#chuang-jian-bing-yun-xing-rong-qi" class="header-anchor"></a><span id="chuang-jian-bing-yun-xing-rong-qi">创建并运行容器</span></h3><pre><code>docker run -i -t [mirrors ID] /bin/bash
+</code></pre>
+<p><code>-t</code>选项让Docker分配一个伪终端(pseudo-tty)并绑定到容器的标准输入上，<code>-i</code>则让容器的标准输入保持打开。</p>
+<p>在交互模式下，用户可以通过所创建的终端来输入命令，例如：</p>
+<pre><code>C:\Users\kunta&gt;docker run -i -t b2a /bin/bash
+[root@3eb81b9ab5ba /]# pwd
+/
+[root@3eb81b9ab5ba /]# ls
+bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  sbin  selinux  srv  sys  tmp  usr  var
+</code></pre>
+<p>用户可以使用<code>Ctrl+D</code>或者输入<code>exit</code>来退出交互模式。</p>
+<h3><a href="#shou-hu-tai-yun-xing" class="header-anchor"></a><span id="shou-hu-tai-yun-xing">守护态运行</span></h3><pre><code>docker run -d [mirrors ID]
+</code></pre>
+<h3><a href="#jin-ru-rong-qi" class="header-anchor"></a><span id="jin-ru-rong-qi">进入容器</span></h3><p>在使用-d参数时，容器启动后会进入后台，用户无法看到容器中的信息。某些时候如果需要进入容器操作，有多种方法，包括使用docker attach命令、docker exec命令，以及nsenter工具等。</p>
+<h4><a href="#attach-ming-ling" class="header-anchor"></a><span id="attach-ming-ling">attach命令</span></h4><pre><code>docker attach [mirrors ID]
+</code></pre>
+<p>使用attach命令有时候并不方便，当多个窗口同时attach到同一个容器时，所有窗口都会同步显示。当某个窗口因命令阻塞时，其它容器也无法执行操作了。</p>
+<h4><a href="#exec-ming-ling" class="header-anchor"></a><span id="exec-ming-ling">exec命令</span></h4><p>Docker自1.3版本起，提供了一个更加方便的工具exec，可以直接在窗口内运行命令。例如进入到刚创建的容器中，并启动一个bash：</p>
+<pre><code>docker exec -it [mirrors ID] /bin/bash
+</code></pre>
+<h3><a href="#zhong-zhi-rong-qi" class="header-anchor"></a><span id="zhong-zhi-rong-qi">终止容器</span></h3><pre><code>docker stop [mirrors ID]
+</code></pre>
+<h3><a href="#chong-qi-yi-jing-ting-zhi-de-rong-qi" class="header-anchor"></a><span id="chong-qi-yi-jing-ting-zhi-de-rong-qi">重启已经停止的容器</span></h3><p>重新启动一个容器</p>
+<pre><code>docker restart [mirrors ID]
+</code></pre>
+<h3><a href="#cha-kan-dang-qian-rong-qi-lie-biao" class="header-anchor"></a><span id="cha-kan-dang-qian-rong-qi-lie-biao">查看当前容器列表</span></h3><pre><code>列出正在运行的容器
+docker ps
+列出所有的容器
+docker ps -a
+</code></pre>
+<h3><a href="#dao-chu-rong-qi" class="header-anchor"></a><span id="dao-chu-rong-qi">导出容器</span></h3><pre><code>docker export [mirrors ID] &gt;[name].tar
+</code></pre>
+<h3><a href="#dao-ru-rong-qi" class="header-anchor"></a><span id="dao-ru-rong-qi">导入容器</span></h3><pre><code>docker import - [name]
+</code></pre>
+<hr>
+<h2><a href="#geng-duo-yue-du" class="header-anchor"></a><span id="geng-duo-yue-du">更多阅读</span></h2><p>Docker系列文章：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d8820cae51d453b1e478b91">Docker中镜像、容器的常用命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d9f53d26fb9a04e3142120c">Docker仓库常用命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d9f4f86e51d4577f3534ead">Docker中容器的网络配置常用命令</a></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+                        
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d=''
+        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    >Comments</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2019/09/19/nLtSiD.png" height=300 width=300></img>
+                    <p>CubeSuger</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                            
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">21 <p>Articles</p></a></li>
+                    <li><a href="/categories">9 <p>Categories</p></a></li>
+                    <li><a href="/tags">6 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Docker镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.1.</span> <span class="toc-text">从网络上下截镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.2.</span> <span class="toc-text">查看本地的存在的镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.3.</span> <span class="toc-text">给本地镜像添加新标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.4.</span> <span class="toc-text">查看镜像详细信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.5.</span> <span class="toc-text">搜寻镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.6.</span> <span class="toc-text">删除镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.7.</span> <span class="toc-text">创建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.8.</span> <span class="toc-text">上传镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Docker容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.1.</span> <span class="toc-text">创建容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.2.</span> <span class="toc-text">运行容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.3.</span> <span class="toc-text">创建并运行容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.4.</span> <span class="toc-text">守护态运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.5.</span> <span class="toc-text">进入容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.6.</span> <span class="toc-text">终止容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.7.</span> <span class="toc-text">重启已经停止的容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.8.</span> <span class="toc-text">查看当前容器列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.9.</span> <span class="toc-text">导出容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.10.</span> <span class="toc-text">导入容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">更多阅读</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2022
+        <span class="gradient-text">
+            CubeSuger
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.9.3" target="_blank" rel="noopener">v1.4.9.3</a></small>
+        
+        </br>
+        粤ICP备
+        <span class="gradient-text">
+            <a href="https://beian.miit.gov.cn/" title="16094784号" target="_blank" rel="noopener">16094784号</a>
+        </span>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+ 
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>

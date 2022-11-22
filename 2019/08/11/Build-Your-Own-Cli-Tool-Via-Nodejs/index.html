@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>自建一个node cli工具 - CubeSuger&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="cli——命令行界面（英语：command-line interface），我们可以通过cli提供的特定命令执行、操作对应功能。
+一个cli工具可以看作是一个工具包再外套上cli，通过cli上提供命,"> 
+    <meta name="author" content="CubeSuger"> 
+    <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">CubeSuger&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://kunkuntang.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">自建一个node cli工具</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/项目构建"><b>「
+                    </b>项目构建<b> 」</b></a>
+                
+                August 11, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/08/11/Build-Your-Own-Cli-Tool-Via-Nodejs/" title="自建一个node cli工具" class="">自建一个node cli工具</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    14k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    13 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" rel="tag">个人总结</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <p>cli——<strong>命令行界面</strong>（英语：<strong>command-line interface</strong>），我们可以通过cli提供的特定命令执行、操作对应功能。</p>
+<p>一个cli工具可以看作是一个工具包再外套上cli，通过cli上提供命令和参数在命令行界面上与人交互，然后完成命令对应的功能。所以在自建一个cli工具之前，首先应该明确它的作用是什么（解决什么问题），应该包含什么功能。还有一点最重要的是，<strong>现在网上是否已经有满足需求的现成cli 工具可以直接使用</strong>（有宝马还造什么自行车 🤪🤪🤪）。</p>
+<h3><a href="#mu-lu-jie-gou-amp-gong-zuo-liu-cheng" class="header-anchor"></a><span id="mu-lu-jie-gou-amp-gong-zuo-liu-cheng">目录结构 &amp; 工作流程</span></h3><p>首先在工程目录下新建一个文件夹，并新建<code>bin</code>目录存放命令执行的文件和<code>lib</code>目录存放命令调用的相应模块。</p>
+<pre><code>/bin  # ------ 命令执行文件
+/lib  # ------ 工具模块
+package.json
+</code></pre>
+<p><code>package.json</code>包含了对cli的相关描述，与其它普通的项目类似，但有一个地方需要特别注意的是，<code>package.json</code>下的<code>bin</code>参数，<strong>它定义了cli被调用的脚本命令名称及入口文件</strong>，比如：</p>
+<pre><code>&#123;
+    &quot;name&quot;:&#39;tmc-cli&#39;
+    ...
+    &quot;bin&quot;: &#123;
+      &quot;tmc&quot;: &quot;index.js&quot;
+    &#125;
+    ...
+&#125;
+</code></pre>
+<p>上面的<code>bin</code>字段说明了这个<code>cli</code>的命令是<code>tmc</code>，当用户在输入<code>tmc</code>时就会去当前目录下的<code>bin</code>文件夹执行<code>index.js</code>文件。</p>
+<h3><a href="#shi-jian-bu-zou" class="header-anchor"></a><span id="shi-jian-bu-zou">实践步骤</span></h3><ol>
+<li><p>设置命令</p>
+<p>在<code>bin</code>目录下新建一个<code>index.js</code>作为入口文件。然后在<code>index.js</code>里写入以下代码：</p>
+</li>
+</ol>
+<pre><code class="javascript">#!/usr/bin/env node
+
+const program = require(&#39;commander&#39;) // npm i commander -D
+
+program.version(&#39;1.0.0&#39;)
+  .usage(&#39;&lt;command&gt; [项目名称]&#39;)
+  .command(&#39;hello&#39;, &#39;hello&#39;)
+  .command(&#39;init&#39;, &#39;创建新项目&#39;)
+  .parse(process.argv)
+</code></pre>
+<p>​		上面代码设置了<code>tmc</code>命令可以执行的<code>option</code>分别是<code>hello</code>和<code>init</code>，因为没有在<code>commander</code>里设置了<code>command</code>而没有调用<code>action</code>，所以当执行了相应的命令时，在调用了<code>parse</code>方法后，<code>commander</code>会自动去找当前文件目录下对应与命令同名的js文件并执行，如果文件不存在则会报错。对应的源码如下：</p>
+<pre><code class="javascript">// node_modules/commander/index.js
+
+Command.prototype.parse = function(argv) &#123;
+  // implicit help
+  if (this.executables) this.addImplicitHelpCommand();
+
+  // store raw args
+  this.rawArgs = argv;
+
+  // guess name
+  this._name = this._name || basename(argv[1], &#39;.js&#39;);
+
+  // github-style sub-commands with no sub-command
+  if (this.executables &amp;&amp; argv.length &lt; 3 &amp;&amp; !this.defaultExecutable) &#123;
+    // this user needs help
+    argv.push(&#39;--help&#39;);
+  &#125;
+     ... 
+&#125;
+</code></pre>
+<ol start="2">
+<li><p>编写对应命令的执行逻辑</p>
+<p>这个部分就是来实现命令相应的功能的，可以像普通Node程序那样对文件进行处理等等。比如在执行<code>init</code>操作后<code>tmc</code>会去我的一个仓库拉去模板代码，然后再根据我输入的一些选项来进行更细化的操作。</p>
+<p>Tmc-init.js代码如下：</p>
+<pre><code class="javascript">#!/usr/bin/env node
+
+const program = require(&#39;commander&#39;)
+const path = require(&#39;path&#39;)
+const fs = require(&#39;fs&#39;)
+const glob = require(&#39;glob&#39;)
+const download = require(&#39;../lib/download&#39;)
+const inquirer = require(&#39;inquirer&#39;)
+const chalk = require(&#39;chalk&#39;)
+const logSymbols = require(&#39;log-symbols&#39;)
+const generator = require(&#39;../lib/generator&#39;)
+
+program.usage(&#39;&lt;project-name&gt;&#39;).parse(process.argv)
+
+// 获取新建项目名称
+let projectName = program.args[0]
+
+if (!projectName) &#123; // project-name 必填
+  // 相当于执行命令的--help选项，显示help信息，这是commander内置的一个命令选项
+  program.help()
+  return
+&#125;
+
+const rootName = path.basename(process.cwd()) // 获取当前路径
+const list = glob.sync(&#39;*&#39;) // 遍历当前目录
+
+let next = undefined
+
+const inquirerList = [&#123;
+  name: &#39;projectVersion&#39;,
+  message: &#39;项目的版本&#39;,
+  type: &#39;input&#39;,
+  default: &#39;0.1.0&#39;,
+&#125;, &#123;
+  name: &#39;projectDescription&#39;,
+  message: &#39;项目的描述&#39;,
+  type: &#39;input&#39;,
+  default: &#39;test&#39;,
+&#125;, &#123;
+  name: &#39;author&#39;,
+  message: &#39;项目的作者&#39;,
+  type: &#39;input&#39;,
+  default: &#39;kuntang&#39;,
+&#125;]
+
+if (list.length) &#123; // 如果当前目录不为空
+  if (list.filter(name =&gt; &#123;
+      const fileName = path.resolve(process.cwd(), path.join(&#39;.&#39;, name))
+      const isDir = fs.statSync(fileName).isDirectory()
+      return name.indexOf(projectName) !== -1 &amp;&amp; isDir
+    &#125;).length !== 0) &#123;
+    console.log(`项目$&#123;projectName&#125;已经存在`)
+    return
+  &#125;
+  next = inquirer.prompt(inquirerList).then(answer =&gt; &#123;
+    return Promise.resolve(&#123;
+      projectPath: projectName,
+      ...answer
+    &#125;)
+  &#125;)
+&#125; else if (rootName === projectName) &#123;
+  next = inquirer.prompt([&#123;
+    name: &#39;projectPath&#39;,
+    message: &#39;当前目录为空，且目录名称和项目名称相同，是否直接在当前目录下创建新项目？&#39;,
+    type: &#39;confirm&#39;,
+    default: true
+  &#125;, ...inquirerList]).then(answer =&gt; &#123;
+    return Promise.resolve(&#123;
+      projectPath: answer.buildInCurrent ? &#39;.&#39; : projectName,
+      ...answer
+    &#125;)
+  &#125;)
+&#125; else &#123;
+  next = inquirer.prompt(inquirerList).then(answer =&gt; &#123;
+    return Promise.resolve(&#123;
+      projectPath: projectName,
+      ...answer
+    &#125;)
+  &#125;)
+&#125;
+
+next &amp;&amp; initialization()
+
+function initialization() &#123;
+  next.then(answer =&gt; &#123;
+    const &#123;
+      projectPath,
+      projectVersion,
+      projectDescription,
+      author,
+    &#125; = answer
+    if (projectPath !== &#39;.&#39;) &#123;
+      fs.mkdirSync(projectPath)
+    &#125;
+    return download(projectPath).then(downloadTempPath =&gt; &#123;
+      return &#123;
+        projectName,
+        projectVersion,
+        projectDescription,
+        projectPath,
+        author,
+        downloadTemp: downloadTempPath,
+      &#125;
+    &#125;)
+  &#125;).then(context =&gt; &#123;
+    const src = path.join(process.cwd(), context.downloadTemp)
+    const dest = path.join(process.cwd(), context.projectPath)
+    return generator(context, src, dest)
+  &#125;).then(context =&gt; &#123;
+    // 成功用绿色显示，给出积极的反馈
+    console.log(logSymbols.success, chalk.green(&#39;创建成功:)&#39;))
+    console.log()
+    console.log(chalk.green(&#39;cd &#39; + context.root + &#39;\nnpm install\nnpm run dev&#39;))
+  &#125;).catch(error =&gt; &#123;
+    // 失败了用红色，增强提示
+    console.error(logSymbols.error, chalk.red(`创建失败：$&#123;error.message&#125;`))
+  &#125;)
+&#125;
+</code></pre>
+<p>Lib&#x2F;download.js:</p>
+<pre><code class="javascript">const download = require(&#39;download-git-repo&#39;)
+const ora = require(&#39;ora&#39;)
+const path = require(&#39;path&#39;)
+
+module.exports = function(dest) &#123;
+  dest = path.join(dest || &#39;.&#39;, &#39;.download-temp&#39;)
+  return new Promise((resolve, reject) =&gt; &#123;
+    const url = &#39;https://github.com:kunkuntang/react-typescript-scaffold#template&#39;
+    const spinner = ora(`正在下载项目模板，源地址：$&#123;url&#125;`)
+    spinner.start()
+      // 这里可以根据具体的模板地址设置下载的url，注意，如果是git，url后面的branch不能忽略
+    download(url,
+      dest, &#123; clone: true &#125;, (err) =&gt; &#123;
+        if (err) &#123;
+          spinner.fail() // wrong :(
+          reject(err)
+        &#125; else &#123;
+          spinner.succeed() // ok :)
+            // 下载的模板存放在一个临时路径中，下载完成后，可以向下通知这个临时路径，以便后续处理
+          resolve(dest)
+        &#125;
+      &#125;)
+  &#125;)
+&#125;
+</code></pre>
+<p>lib&#x2F;generator.js:</p>
+<pre><code class="javascript">const Metalsmith = require(&#39;metalsmith&#39;)
+const Handlebars = require(&#39;handlebars&#39;)
+const rm = require(&#39;rimraf&#39;).sync
+
+module.exports = function(metadata = &#123;&#125;, src, dest = &#39;.&#39;) &#123;
+  if (!src) &#123;
+    return Promise.reject(new Error(`无效的source：$&#123;src&#125;`))
+  &#125;
+
+  return new Promise((resolve, reject) =&gt; &#123;
+    Metalsmith(process.cwd())
+      .metadata(metadata)
+      .clean(false)
+      .source(src)
+      .destination(dest)
+      .use((files, metalsmith, done) =&gt; &#123;
+        const meta = metalsmith.metadata()
+        Object.keys(files).forEach(fileName =&gt; &#123;
+          if (fileName.includes(&#39;package.json&#39;)) &#123;
+            const t = files[fileName].contents.toString()
+            files[fileName].contents = new Buffer.from(Handlebars.compile(t)(meta))
+          &#125;
+        &#125;)
+        done()
+      &#125;).build(err =&gt; &#123;
+        rm(src)
+        err ? reject(err) : resolve(&#123;
+          root: dest
+        &#125;)
+      &#125;)
+  &#125;)
+&#125;
+</code></pre>
+<ol start="3">
+<li>发布到npm</li>
+</ol>
+</li>
+</ol>
+<h3><a href="#commander-shi-yong" class="header-anchor"></a><span id="commander-shi-yong">Commander 使用</span></h3><p>commander是Node 命令行交互的一个工具，使用它可以创建自己想要的Node命令。</p>
+<p>Commander有几个基本概念：</p>
+<ul>
+<li><p>version option</p>
+</li>
+<li><p>option</p>
+</li>
+<li><p>command &amp; action</p>
+</li>
+</ul>
+<h4><a href="#version" class="header-anchor"></a><span id="version">version</span></h4><p>指定<code>cli</code>的版本号。</p>
+<pre><code class="javascript">const program = require(&#39;commander&#39;)
+program
+  .version(&#39;0.0.1&#39;, &#39;-v, --version&#39;)
+</code></pre>
+<h4><a href="#option-parsing" class="header-anchor"></a><span id="option-parsing">Option parsing</span></h4><p>option是用来为commander命令添加一个选项的，用户可以不同的选项来能行特定的功能。</p>
+<pre><code class="javascript">#!/usr/bin/env node
+ 
+/**
+ * Module dependencies.
+ */
+ 
+var program = require(&#39;commander&#39;);
+ 
+program
+  .version(&#39;0.1.0&#39;)
+  .option(&#39;-p, --peppers&#39;, &#39;Add peppers&#39;)
+  .option(&#39;-P, --pineapple&#39;, &#39;Add pineapple&#39;)
+  .option(&#39;-b, --bbq-sauce&#39;, &#39;Add bbq sauce&#39;)
+  .option(&#39;-c, --cheese [type]&#39;, &#39;Add the specified type of cheese [marble]&#39;, &#39;marble&#39;)
+  .parse(process.argv);
+ 
+console.log(&#39;you ordered a pizza with:&#39;);
+if (program.peppers) console.log(&#39;  - peppers&#39;);
+if (program.pineapple) console.log(&#39;  - pineapple&#39;);
+if (program.bbqSauce) console.log(&#39;  - bbq&#39;);
+console.log(&#39;  - %s cheese&#39;, program.cheese);
+</code></pre>
+<p>在Node.js中，用户输入的参数可以通过<code>process.argv</code>得到。<code>commander</code>的<code>option</code>只定义不处理用户输入的参数，需要显式将<code>process.argv</code>传入到<code>parse</code>方法调用才能处理。</p>
+<p>连续输入参数<code>-abc</code>等同于<code>-a -b -c</code>，在<code>cli</code>输入<code>--template-engine</code>，在<code>commander</code>可以通过<code>program.templateEngine</code>驼峰命名取得。</p>
+<p>通过给选项加<code>--no</code>前缀可以给它设置为<code>false</code>，如设置<code>--no-sauce</code>后从<code>program.sauce</code>取到的是<code>false</code>。</p>
+<p>要想拿到选项后输入的值，可以设置中括号（选填）或者尖括号（必填），如<code>.option(&#39;-m --myarg [myVar]&#39;, &#39;my option var&#39;)</code>或<code>.option(&#39;-m --myarg &lt;myVar&gt;&#39;, &#39;my require var&#39;)</code>，然后可以这样来取得值<code>var myInput = program.myarg</code>。</p>
+<h4><a href="#command-zi-ming-ling" class="header-anchor"></a><span id="command-zi-ming-ling">Command 子命令</span></h4><p>**<code>Command</code>是一个特殊的<code>option</code>**，通过设置子命令可以让工具根据入参来实现的特定的小任务，并且对于子命令也可以像主命令一样设置它的<code>option</code>。</p>
+<pre><code class="javascript">#!/usr/bin/env node
+ 
+var program = require(&#39;commander&#39;);
+ 
+program
+  .command(&#39;rm &lt;dir&gt;&#39;)
+  .option(&#39;-r, --recursive&#39;, &#39;Remove recursively&#39;)
+  .action(function (dir, cmd) &#123;
+    console.log(&#39;remove &#39; + dir + (cmd.recursive ? &#39; recursively&#39; : &#39;&#39;))
+  &#125;)
+ 
+program.parse(process.argv)
+</code></pre>
+<h4><a href="#option-amp-command-option" class="header-anchor"></a><span id="option-amp-command-option">Option &amp; Command Option</span></h4><p>对于主命令的<code>option</code>和子命令有时候比较难区分，我们以一个例子来说明一下它们的使用：</p>
+<p>比如对于主命令<code>tmc</code>来说，它具有初始化项目的功能，那么可以给它定义一个名叫<code>init</code>的<code>option</code>：</p>
+<pre><code class="javascript">#!/usr/bin/env node
+
+const program = require(&#39;commander&#39;)
+
+program
+  .version(&#39;0.1.0&#39;)
+  .option(&#39;-i, --init&#39;, &#39;Init the project&#39;)
+  .parse(process.argv);
+
+if(program.init) &#123;
+  // ... do something
+&#125;
+</code></pre>
+<p>更多的使用方法参照：</p>
+<p>[Commander]: <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/commander">https://www.npmjs.com/package/commander</a>	“commander npm官网”</p>
+<h3><a href="#inquirer" class="header-anchor"></a><span id="inquirer">inquirer</span></h3><p>inquirer是一个可以和命令行交互的一个工具包，它提供了多种交互方式：input、radio、select等等，简单的用法如下：</p>
+<pre><code class="javascript">var inquirer = require(&#39;inquirer&#39;);
+inquirer
+  .prompt([
+    /* Pass your questions in here */
+  ])
+  .then(answers =&gt; &#123;
+    // Use user feedback for... whatever!!
+  &#125;);
+</code></pre>
+<h3><a href="#download-git-repo" class="header-anchor"></a><span id="download-git-repo">download-git-repo</span></h3><p>这个工具可以把远程仓库上的代码下载到本地然后作下一步的操作，它的使用方法比较简单，</p>
+<p>例如下载<code>github</code>上的代码时可以这样写：</p>
+<pre><code class="javascript">const download = require(&#39;download-git-repo&#39;);
+
+// download(url, desc, option, callback);
+// url: 仓库地址；
+// desc: 下载到本地目录的路径；
+// option: 下载的一些额外选项；
+// callback: 下载完成后的回调函数，可以处理错误信息；
+download(&#39;https://mygitlab.com:flipxfx/download-git-repo-fixture#my-branch&#39;, &#39;test/tmp&#39;, &#123; clone: true &#125;, function (err) &#123;
+  console.log(err ? &#39;Error&#39; : &#39;Success&#39;)
+&#125;)
+</code></pre>
+<p>更多的使用方法参照：</p>
+<h3><a href="#metalsmith" class="header-anchor"></a><span id="metalsmith">Metalsmith</span></h3><p>Metalsmith是一个静态网站生成器，说抽象了，简单点我个人理解就是它可以把指定目录下的所有文件都遍历出来，然后再把遍历出来的文件每一个都通过定义好的拆件处理一遍，最后再放回去指定的目标路径下。整个过程有点像项目流程构建工具<code>Grunt</code>或者<code>Gulp</code>。</p>
+<p>通过他我们可以很轻松地实现模板插值填充功能。当然如果只有几个文件需要模板插值的话，也可以通过Node API把文件的内容读出来，然后调用模板工具API里对应的编译接口，最后把编译后的内容再覆盖到文件中，这样就不会有种牛刀用到杀鸡上的感觉了。</p>
+<pre><code class="javascript">// Metalsmith(src).use(plugin).build(callback)
+Metalsmith(src)
+  .use(layouts(&#39;handlebars&#39;))
+  .build(function(err) &#123;
+    if (err) throw err;
+    console.log(&#39;Build finished!&#39;);
+  &#125;);
+</code></pre>
+<p>更多的使用方法参照：</p>
+<p>[Metalsmith]: <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/metalsmith">https://www.npmjs.com/package/metalsmith</a>	“metalsmith npm官网”</p>
+<h3><a href="#update-notifier" class="header-anchor"></a><span id="update-notifier">update-notifier</span></h3><p>这个工具可以在用户使用你的工具包的时候检查是够有新的版本可以更新，从而觉得下一步的操作。比如如果我发布了某个工具包的新版本，而某位用户还在使用旧版本的时候就会提醒他有新版本可以更新。</p>
+<pre><code class="javascript">const updateNotifier = require(&#39;update-notifier&#39;);
+const pkg = require(&#39;./package.json&#39;);
+ 
+updateNotifier(&#123;pkg&#125;).notify();
+</code></pre>
+<p>更多的使用方法参照：</p>
+<p>[update-notifier]: <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/update-notifier">https://www.npmjs.com/package/update-notifier</a>	“update-notifier npm官网”</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+                        
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d=''
+        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    >Comments</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2019/09/19/nLtSiD.png" height=300 width=300></img>
+                    <p>CubeSuger</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                            
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">21 <p>Articles</p></a></li>
+                    <li><a href="/categories">9 <p>Categories</p></a></li>
+                    <li><a href="/tags">6 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">目录结构 &amp; 工作流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">实践步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Commander 使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">inquirer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">download-git-repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">Metalsmith</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">update-notifier</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2022
+        <span class="gradient-text">
+            CubeSuger
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.9.3" target="_blank" rel="noopener">v1.4.9.3</a></small>
+        
+        </br>
+        粤ICP备
+        <span class="gradient-text">
+            <a href="https://beian.miit.gov.cn/" title="16094784号" target="_blank" rel="noopener">16094784号</a>
+        </span>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+ 
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>

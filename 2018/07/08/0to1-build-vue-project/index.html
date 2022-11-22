@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>从零到一搭建Vue项目工程（Vue全家桶、Vue测试、持续集成） - CubeSuger&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="开篇前记入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在学,"> 
+    <meta name="author" content="CubeSuger"> 
+    <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">CubeSuger&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://kunkuntang.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">从零到一搭建Vue项目工程（Vue全家桶、Vue测试、持续集成）</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Vue"><b>「
+                    </b>VUE<b> 」</b></a>
+                
+                July 08, 2018
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2018/07/08/0to1-build-vue-project/" title="从零到一搭建Vue项目工程（Vue全家桶、Vue测试、持续集成）" class="">从零到一搭建Vue项目工程（Vue全家桶、Vue测试、持续集成）</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    11k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    10 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" rel="tag">个人总结</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <h2><a href="#kai-pian-qian-ji" class="header-anchor"></a><span id="kai-pian-qian-ji">开篇前记</span></h2><p>入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在学html,css,js三件套，当然还会有JQuery，现在有些人入门都开始直接学Vue框架了。踩过很多坑。但是坑还要一个一个地爬出来，未知的东西还是要一个一个地探索，所以才有了冲动来写这篇文章，第一是为了总结我之前学过的知识和经验，比如Vue全家桶，wepback构建Vue环境等。其次是在我没有实践过的领域进行探索的同时记录下来拿，以后有需要的时候再看回这篇文章。</p>
+<h2><a href="#zhai-yao" class="header-anchor"></a><span id="zhai-yao">摘要</span></h2><p>我把这篇文章的内容拆成几个版块，作为一个连载的文章。首先列一下主要章节内容：</p>
+<ul>
+<li>搭建一个运行Vue的webpack环境</li>
+<li>加入Vue全家桶</li>
+<li>编写项目工程代码</li>
+<li>总结Vue测试</li>
+<li>关于项目的持续集成</li>
+<li>项目总结</li>
+</ul>
+<p>因为在编写项目的时候总会附上对应的测试代码，但这样有时候需要看关于Vue测试的内容时会过于零散，所以在写完项目之后专门给了一个小节来写关于Vue的测试内容。当然如果你是从头往下看的话可以跳过这一小节。最后项目 弄好了按照国际惯例总是要总结一下经验的。</p>
+<h2><a href="#da-jian-yun-xing-vue-de-webpack-huan-jing" class="header-anchor"></a><span id="da-jian-yun-xing-vue-de-webpack-huan-jing">搭建运行Vue的webpack环境</span></h2><h3><a href="#gong-cheng-mu-lu" class="header-anchor"></a><span id="gong-cheng-mu-lu">工程目录</span></h3><pre><code>|____.gitignore
+|____index.html
+|____LICENSE
+|____package-lock.json
+|____package.json
+|____README.md
+|____src
+| |____App.vue
+| |____assets
+| |____components
+| |____main.js
+| |____view
+|____static
+|____test
+|____webpack.config.js
+</code></pre>
+<h3><a href="#webpack-pei-zhi" class="header-anchor"></a><span id="webpack-pei-zhi">webpack配置</span></h3><p>这是我摸索了几个钟弄出来的配置（不得不说webpack的配置是真的麻烦），以前都是懒所以直接使用vue-cli初始化出来的项目，webpack配置什么的都已经帮我配好了，这次自己动刀搭了一下才发现这么费劲，期间不断地报错，再加上由于用了4.0版本，也出现了一些坑，这里一并也记录一下，以后再遇到的时候好回头翻翻。</p>
+<p> 首先是最基础的webpack框架，不清楚的可以去到<a target="_blank" rel="noopener" href="https://www.webpackjs.com/configuration/#%E9%80%89%E9%A1%B9">webpack官网</a>上找（现在都已经有翻译很好的中文网啦，哪像以前那么苦还要去啃英文 (T^T) ）。当然我们也只会用到其中的几个属性。</p>
+<pre><code>const path = require(&#39;path&#39;)
+module.exports = &#123;
+  entry: &#39;&#39;,
+  output: &#123;&#125;,
+  module: &#123;
+      rules: []
+  &#125;,
+  plugins: []
+&#125;
+</code></pre>
+<p>OK,这就完成了webpack最基本的框架，接下来我们要分别搭建不同方式启动webpack的方案。（其实这两者在实现原理上本没有什么区别，而对于我们使用者来说区别最大的大概就是工程目录的划分和关于wepback-dev-server的配置）</p>
+<h3><a href="#ji-yu-webpack-dev-server-cha-jian-lai-qi-dong-webpack" class="header-anchor"></a><span id="ji-yu-webpack-dev-server-cha-jian-lai-qi-dong-webpack">基于webpack-dev-server插件来启动webpack</span></h3><p>基于<code>webpack-dev-server</code>这种方式启动webpack，我们首先把之前的webpack的配置文件命名为<code>webpack.config.js</code>并放在项目的根目录下。然后在<code>package.json</code>里的<code>script</code>对象添加一个<code>dev</code>属性，并在后面添加脚本<code>webpack-dev-server --inline --hot</code>再保存。例如：</p>
+<pre><code>// package.json
+
+&#123;
+  ...
+  &quot;scripts&quot;: &#123;
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --hot&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  &#125;,
+  ...
+&#125;
+</code></pre>
+<p>然后我们在webpack.config.js文件里添加devServer配置：</p>
+<pre><code>// webpack.config.js
+
+const path = require(&#39;path&#39;)
+
+module.exports = &#123;
+  entry: &#39;./src/main.js&#39;,
+  output: &#123;
+    path: path.resolve(__dirname, &#39;./dist&#39;),
+    publicPath: &#39;/dist/&#39;,
+    filename: &#39;build.js&#39;
+  &#125;,
+  module: &#123;
+    rules: []
+  &#125;,
+  plugins: [],
+  devServer: &#123;
+    // contentBase: path.join(__dirname, &quot;dist&quot;),
+    // 确保 publicPath 总是以斜杠(/)开头和结尾。
+    // 默认会取output.path的值，设置之后会覆盖使用devServer.publicPath的值
+    // publicPath: &quot;/&quot;,
+    historyApiFallback: true,
+    compress: true,
+    proxy: &#123; // proxy URLs to backend development server
+      // &#39;/api&#39;: &#39;http://localhost:3000&#39;,
+      // &#39;/api&#39;: &#123;
+      //   target: &#39;http://localhost:3000&#39;,
+      //   pathRewrite: &#123;&#39;^/api&#39; : &#39;&#39;&#125;
+      // &#125;
+    &#125;,
+    hot: true,
+    inline: true
+  &#125;,
+  devtool: &#39;#eval-source-map&#39;
+&#125;
+</code></pre>
+<p>这样就可以把webpack-dev-server启动起来啦~~</p>
+<h3><a href="#ji-yu-node-express-fang-shi-lai-qi-dong-webpack" class="header-anchor"></a><span id="ji-yu-node-express-fang-shi-lai-qi-dong-webpack">基于node + express 方式来启动webpack</span></h3><h3><a href="#ji-ben-ke-yi-yun-xing-vue-xiang-mu-de-webpack-pei-zhi" class="header-anchor"></a><span id="ji-ben-ke-yi-yun-xing-vue-xiang-mu-de-webpack-pei-zhi">基本可以运行Vue项目的webpack配置</span></h3><p>完成了上面的步骤之后，接下来就是配置vue相关的东西了，先回想在使用vue开发的时候，我们会新建一个vue后缀的文件，所以我们就需要一个loader来解析和读取.vue文件的内容。先安装：</p>
+<pre><code>npm install --save-dev vue-loader vue-template-compiler
+</code></pre>
+<p>然后我们再在wepback配置中的module.rules中使用：</p>
+<pre><code>// webpack.config.js/webpack.base.conf.js
+
+module.exports = &#123;
+  ...
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.vue$/,
+        loader: &#39;vue-loader&#39;,
+        options: &#123;&#125;
+      &#125;
+    ]
+  &#125;,
+  ...
+</code></pre>
+<p>至于这里为什么要安装<code>vue-template-compiler</code>，是因为单纯使用<code>vue-loader</code>启动的时候会报错，提示在没有<code>vue-template-compiler</code>的情况下使用<code>vue-loader</code>，我在网上查了一下也有人写了<a target="_blank" rel="noopener" href="https://blog.csdn.net/cominglately/article/details/80555210">blog</a>说明了这一情况，意思大概是升级到webpack 4.0之后会出现的问题。为了解决这个问题我们要在webpack配置上使用一下。</p>
+<pre><code>// webpack.config.js/webpack.base.conf.js
+
+const path = require(&#39;path&#39;)
+const VueLoaderPlugin = require(&#39;vue-loader/lib/plugin&#39;);
+
+module.exports = &#123;
+  ...
+  module: &#123;
+    rules: [
+      &#123;
+        test: /\.vue$/,
+        loader: &#39;vue-loader&#39;,
+        options: &#123;&#125;
+      &#125;
+    ]
+  &#125;,
+  plugins: [
+    new VueLoaderPlugin()
+  ],
+  ...
+</code></pre>
+<p>现在就可以读vue文件了，接下来就是对vue文件里的css、非标准的js、图片分别配置，也让webpack可以有能力解析。</p>
+<p>解析css（css-loader是解析css的，style-loader是把css以<style></style>内嵌的方式注入到html中）:</p>
+<pre><code>npm install --save-dev style-loader css-loader
+</code></pre>
+<p>解析非标准的js（<a target="_blank" rel="noopener" href="https://www.babeljs.cn/docs/setup/#installation">使用babel</a>）:</p>
+<pre><code>npm install --save-dev babel-loader babel-preset-env
+</code></pre>
+<p>解析img:</p>
+<pre><code>npm install --save-dev file-loader
+</code></pre>
+<p>然后再分别写到rules里面，就完成了。整个配置如下：</p>
+<pre><code>// webpack.config.js/webpack.base.conf.js
+
+const path = require(&#39;path&#39;)
+const VueLoaderPlugin = require(&#39;vue-loader/lib/plugin&#39;);
+
+module.exports = &#123;
+  entry: &#39;./src/main.js&#39;,
+  output: &#123;
+    path: path.resolve(__dirname, &#39;./dist&#39;),
+    publicPath: &#39;/dist/&#39;,
+    filename: &#39;build.js&#39;
+  &#125;,
+  module: &#123;
+    rules: [&#123;
+        test: /\.css$/,
+        use: [
+          &#39;vue-style-loader&#39;,
+          &#39;css-loader&#39;
+        ]
+      &#125;,
+      &#123;
+        test: /\.js$/,
+        loader: &#39;babel-loader&#39;,
+        exclude: /node_modules/
+      &#125;,
+      &#123;
+        test: /\.vue$/,
+        loader: &#39;vue-loader&#39;,
+        options: &#123;&#125;
+      &#125;,
+      &#123;
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: &#39;file-loader&#39;,
+        options: &#123;
+          name: &#39;[name].[ext]?[hash]&#39;
+        &#125;
+      &#125;
+    ]
+  &#125;,
+  plugins: [
+    new VueLoaderPlugin()
+  ],
+  devServer: &#123;
+    // contentBase: path.join(__dirname, &quot;dist&quot;),
+    // 确保 publicPath 总是以斜杠(/)开头和结尾。
+    // 默认会取output.path的值，设置之后会覆盖使用devServer.publicPath的值
+    // publicPath: &quot;/&quot;,
+    historyApiFallback: true,
+    compress: true,
+    proxy: &#123; // proxy URLs to backend development server
+      // &#39;/api&#39;: &#39;http://localhost:3000&#39;,
+      // &#39;/api&#39;: &#123;
+      //   target: &#39;http://localhost:3000&#39;,
+      //   pathRewrite: &#123;&#39;^/api&#39; : &#39;&#39;&#125;
+      // &#125;
+    &#125;,
+    hot: true,
+    inline: true
+  &#125;,
+  devtool: &#39;#eval-source-map&#39;
+&#125;
+</code></pre>
+<h3><a href="#xiang-mu-you-hua" class="header-anchor"></a><span id="xiang-mu-you-hua">项目优化</span></h3><p>按照刚刚的步骤进行操作的话，会发现当项目运行起来的时候webpack会报如下错误，现在慢慢地按照提示来对项目进行优化。</p>
+<p><a target="_blank" rel="noopener" href="https://simimg.com/i/qqEhK"><img src="https://s1.ax2x.com/2018/07/19/qqEhK.png" alt="qqEhK.png"></a></p>
+<h4><a href="#warning-in-configuration" class="header-anchor"></a><span id="warning-in-configuration">WARNING in configuration</span></h4><pre><code>The &#39;mode&#39; option has not been set, webpack will fallback to &#39;production&#39; for this value. Set &#39;mode&#39; option to &#39;development&#39; or &#39;production&#39; to enable defaults for each environment.
+You can also set it to &#39;none&#39; to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/
+</code></pre>
+<p>翻译成中文的意思大概是：<code>mode</code>这个选项没有被设置，webpack将会默认设置为<code>production</code>。你可以把<code>mode</code>选项设置为<code>development</code>或者<code>production</code>，以让webpack以指定的环境启动。你也可以设置为<code>none</code>以禁用任何的默认行为。<a target="_blank" rel="noopener" href="https://webpack.js.org/concepts/mode/">了解更多：https://webpack.js.org/concepts/mode/</a>。</p>
+<p>这个问题主要是告诉我们要让webpack知道现是要按什么环境去构建应用，通常我们会通过一个配置文件来记录所有会用到的环境，然后在调用的时候通过传入参数的形式来指定使用哪一个环境。</p>
+<p>我们新建一个目录<code>config</code>，在目录里面再分别建立不同环境的配置，如：</p>
+<pre><code>├── config
+│   ├── dev.js
+│   ├── index.js
+│   ├── prod.js
+│   └── test.js
+</code></pre>
+<p>我们分别区别了开发环境、生产环境、和测试环境，然后再通过一个index.js来判断当前使用哪一个环境：</p>
+<pre><code>// index.js
+const prod = require(&#39;./prod&#39;)
+const dev = require(&#39;./dev&#39;)
+const test = require(&#39;./test&#39;)
+
+let env = prod;
+
+switch (process.env.NODE_ENV) &#123;
+  case &#39;development&#39;:
+    env = dev;
+    break;
+    // case &#39;test&#39;:
+    //   env = test;
+    //   break;
+  default:
+    env = prod;
+&#125;
+
+module.exports = env
+</code></pre>
+<p>这里的<code>process.env</code>是node.js的一个环境变量对象，挂载到这个对象上的属性可以在node的全局运行环境中访问到，而<code>NODE_ENV</code>是node社区约定作为当前运行环境的属性（当然你也可以用其它属性代替）。</p>
+<p>为了我们在启动的时候可以为node指定当前运行环境，我们新加入一个依赖包叫<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cross-env">cross-env</a>，然后修改<code>package.json</code>文件里的运行脚本命令，添加<code>cross-env NODE_ENV=[prototype]</code>在命令前面即可，如：</p>
+<pre><code>// package.json
+
+...
+&quot;scripts&quot;: &#123;
+  &quot;dev&quot;: &quot;cross-env NODE_ENV=development webpack-dev-server --inline --hot&quot;,
+  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+&#125;,
+...
+</code></pre>
+<h4><a href="#warning-in-asset-size-limit" class="header-anchor"></a><span id="warning-in-asset-size-limit">WARNING in asset size limit</span></h4><pre><code>The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets:
+  build.js (2.13 MiB)
+</code></pre>
+<h4><a href="#warning-in-entrypoint-size-limit" class="header-anchor"></a><span id="warning-in-entrypoint-size-limit">WARNING in entrypoint size limit</span></h4><pre><code>The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  main (2.13 MiB)
+      build.js
+      0.9256098444c5c2f2e51c.hot-update.js
+</code></pre>
+<h4><a href="#warning-in-webpack-performance-recommendations" class="header-anchor"></a><span id="warning-in-webpack-performance-recommendations">WARNING in webpack performance recommendations</span></h4><pre><code>You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+For more info visit https://webpack.js.org/guides/code-splitting/
+</code></pre>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+                        
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d=''
+        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    >Comments</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2019/09/19/nLtSiD.png" height=300 width=300></img>
+                    <p>CubeSuger</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                            
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">21 <p>Articles</p></a></li>
+                    <li><a href="/categories">9 <p>Categories</p></a></li>
+                    <li><a href="/tags">6 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">开篇前记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">搭建运行Vue的webpack环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.1.</span> <span class="toc-text">工程目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.2.</span> <span class="toc-text">webpack配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.3.</span> <span class="toc-text">基于webpack-dev-server插件来启动webpack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.4.</span> <span class="toc-text">基于node + express 方式来启动webpack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.5.</span> <span class="toc-text">基本可以运行Vue项目的webpack配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.6.</span> <span class="toc-text">项目优化</span></a></li></ol></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2022
+        <span class="gradient-text">
+            CubeSuger
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.9.3" target="_blank" rel="noopener">v1.4.9.3</a></small>
+        
+        </br>
+        粤ICP备
+        <span class="gradient-text">
+            <a href="https://beian.miit.gov.cn/" title="16094784号" target="_blank" rel="noopener">16094784号</a>
+        </span>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+ 
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>

@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Docker中容器的网络配置常用命令 - CubeSuger&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="网络基础配置虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络,"> 
+    <meta name="author" content="CubeSuger"> 
+    <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">CubeSuger&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://kunkuntang.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Docker中容器的网络配置常用命令</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/Docker"><b>「
+                    </b>DOCKER<b> 」</b></a>
+                
+                November 21, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/11/21/Frequently-Used-Docker-Container-Network-Command/" title="Docker中容器的网络配置常用命令" class="">Docker中容器的网络配置常用命令</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    4.7k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    4 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%87%E5%BF%98%E7%BF%BB%E9%98%85/" rel="tag">备忘翻阅</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <h2><a href="#wang-luo-ji-chu-pei-zhi" class="header-anchor"></a><span id="wang-luo-ji-chu-pei-zhi">网络基础配置</span></h2><p>虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。</p>
+<h3><a href="#cong-wai-bu-fang-wen-rong-qi-ying-yong" class="header-anchor"></a><span id="cong-wai-bu-fang-wen-rong-qi-ying-yong">从外部访问容器应用</span></h3><p>在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外部访问的网络应用时，可以通过-P或者-p参数来指定端口映射。当使用-P标记时，Docker会随机映射一个49000~49900的端口至容器内部开放的网络端口：</p>
+<pre><code>docker run -d -p [mirror ID or TAG]
+</code></pre>
+<p>使用-p （小写）则可以指定要映射的端口，并且在一个指定端口上只可以绑定一个容器。支持的格式有ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort。</p>
+<h4><a href="#ying-she-suo-you-jie-kou-di-zhi" class="header-anchor"></a><span id="ying-she-suo-you-jie-kou-di-zhi">映射所有接口地址</span></h4><p>使用hostPort:containerPort将本地的5000端口映射到容器的5000端口：</p>
+<pre><code>docker run -d -p 5000:5000 training/webapp python app.py
+</code></pre>
+<p>此时默认会绑定本地所有接口上的所有地址。多次使用-p标记可以绑定多个端口：</p>
+<pre><code>docker run -d -p 5000:5000 -p 3000:80 training/webapp python app.py
+</code></pre>
+<h4><a href="#ying-she-dao-zhi-ding-di-zhi-de-zhi-ding-duan-kou" class="header-anchor"></a><span id="ying-she-dao-zhi-ding-di-zhi-de-zhi-ding-duan-kou">映射到指定地址的指定端口</span></h4><p>可以使用ip:hostPort:containerPort格式指定映射使用一个特定地址，比如localhost地址127.0.0.1:</p>
+<pre><code>docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py
+</code></pre>
+<blockquote>
+<p>也可以是内部其它容器的IP地址。</p>
+</blockquote>
+<h4><a href="#ying-she-dao-zhi-ding-di-zhi-de-ren-yi-duan-kou" class="header-anchor"></a><span id="ying-she-dao-zhi-ding-di-zhi-de-ren-yi-duan-kou">映射到指定地址的任意端口</span></h4><p>使用ip::containerPort绑定localhost的任意端口到容器5000端口，本地主机会自动分配一个端口：</p>
+<pre><code>docker run -d -p 127.0.0.1::5000 training/webapp python app.py
+</code></pre>
+<p>还可以使用udp标记来指定udp端口：</p>
+<pre><code>docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
+</code></pre>
+<h4><a href="#cha-kan-ying-she-duan-kou-pei-zhi" class="header-anchor"></a><span id="cha-kan-ying-she-duan-kou-pei-zhi">查看映射端口配置</span></h4><p>使用docker port查看当前映射的端口配置，也可以查看到绑定的地址：</p>
+<pre><code>docker port nostalgic_morse 5000
+</code></pre>
+<blockquote>
+<p>容器有自己的内部网络和IP地址（使用docker inspect+容器ID可以获取所有的变量值）。</p>
+</blockquote>
+<h3><a href="#rong-qi-hu-lian-shi-xian-rong-qi-jian-de-hu-tong-xin" class="header-anchor"></a><span id="rong-qi-hu-lian-shi-xian-rong-qi-jian-de-hu-tong-xin">容器互联实现容器间的互通信</span></h3><p>容器的连接系统是除了端口映射外另一种可以与容器中应用进行交互的方式。它会在源和接收容器之间创建一个隧道，接收容器可以看到源容器指定的信息。</p>
+<h4><a href="#zi-ding-yi-rong-qi-ming-ming" class="header-anchor"></a><span id="zi-ding-yi-rong-qi-ming-ming">自定义容器命名</span></h4><p>连接系统依据容器的名称来执行。因此首先需要自定义一个好记的容器命名。<br>虽然当创建容器的时候，系统默认会分配一个名字，但自定义命名容器有两个好处：</p>
+<ul>
+<li>自定义的命名比较好记</li>
+<li>当要连接其它容器时，可以作为一个有用的参数点，比如连接web容器到db容器。</li>
+</ul>
+<p>使用–name标记可以为容器自定义命名：</p>
+<pre><code>docker run -d -p --name web training/webapp python app.py
+</code></pre>
+<p>使用docker ps可以查看命名，或者使用docker inspect来查看容器的名字：</p>
+<pre><code>docker inspect -f &quot;&#123;&#123;name&#125;&#125;&quot; [mirror ID]
+</code></pre>
+<blockquote>
+<p>容器的名称是唯一的，如果已经命名了一个叫web的容器，必须先用docker rm命令来删除这个容器，才能再以web这个名称创建新容器。</p>
+</blockquote>
+<p>容器互联</p>
+<p>使用–link参数可以让容器之间安全地进行交互。</p>
+<p>–link参数格式是–link name:alias，其中name是要链接容器的名称，alias是这个连接的别名。</p>
+<p>比如我们先创建一个新的数据库容器：</p>
+<pre><code>docker run -d --name db training/postgres
+</code></pre>
+<p>然后再创建一个web容器，并将它连接到db容器：</p>
+<pre><code>docker run -d -p --name web --link db:db training/webapp python app.py
+</code></pre>
+<p>这个时候db容器就与web容器可以互相通信了。可以使用docker ps来查看容器的连接。</p>
+<blockquote>
+<p>使用–link参数可以让Docker在两个容器之间通过一个安全的隧道互相通信，而不用通过开放端口的方式来实现，避免了把端口暴露到外部网络上。</p>
+</blockquote>
+<h4><a href="#cha-kan-gong-kai-rong-qi-de-jie-lian-xin-xi" class="header-anchor"></a><span id="cha-kan-gong-kai-rong-qi-de-jie-lian-xin-xi">查看公开容器的接连信息</span></h4><ul>
+<li>环境变量：使用env命令来查看容器的环境变量</li>
+</ul>
+<pre><code>docker run --name web --link db:db training/webapp env
+</code></pre>
+<ul>
+<li>&#x2F;etc&#x2F;hosts文件：使用link参数时，Docker会添加host信息到父容器的&#x2F;etc&#x2F;hosts的文件。下面是父容器web的hosts文件</li>
+</ul>
+<pre><code>docker run -t -i --link db:db training/webapp /bin/bash
+root@aed84ee21bd3:/opt/webapp# cat /etc/hosts
+127.17.0.7 aed84ee21bde
+...
+172.17.0.5 db
+</code></pre>
+<p>第一个是web容器的host信息，默认用自己的id为主机名。第二个是db容器的ip和主机名。</p>
+<hr>
+<h2><a href="#geng-duo-yue-du" class="header-anchor"></a><span id="geng-duo-yue-du">更多阅读</span></h2><p>Docker系列文章：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d8820cae51d453b1e478b91">Docker中镜像、容器的常用命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d9f53d26fb9a04e3142120c">Docker仓库常用命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d9f4f86e51d4577f3534ead">Docker中容器的网络配置常用命令</a></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+                        
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d=''
+        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    >Comments</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2019/09/19/nLtSiD.png" height=300 width=300></img>
+                    <p>CubeSuger</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                            
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">21 <p>Articles</p></a></li>
+                    <li><a href="/categories">9 <p>Categories</p></a></li>
+                    <li><a href="/tags">6 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">网络基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">从外部访问容器应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">容器互联实现容器间的互通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">更多阅读</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2022
+        <span class="gradient-text">
+            CubeSuger
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.9.3" target="_blank" rel="noopener">v1.4.9.3</a></small>
+        
+        </br>
+        粤ICP备
+        <span class="gradient-text">
+            <a href="https://beian.miit.gov.cn/" title="16094784号" target="_blank" rel="noopener">16094784号</a>
+        </span>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+ 
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>

@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nginx conf 常用配置 - CubeSuger&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。
+nginx.conf 与 conf.d 目录首先Nginx里有一份基础配,"> 
+    <meta name="author" content="CubeSuger"> 
+    <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">CubeSuger&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://kunkuntang.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Nginx conf 常用配置</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/项目构建"><b>「
+                    </b>项目构建<b> 」</b></a>
+                
+                July 15, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/07/15/nginx-commmand-record/" title="Nginx conf 常用配置" class="">Nginx conf 常用配置</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    6.3k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    6 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%87%E5%BF%98%E7%BF%BB%E9%98%85/" rel="tag">备忘翻阅</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <p>因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。</p>
+<h3><a href="#nginx-conf-yu-conf-d-mu-lu" class="header-anchor"></a><span id="nginx-conf-yu-conf-d-mu-lu">nginx.conf 与 conf.d 目录</span></h3><p>首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码</p>
+<pre><code># Load modular configuration files from the /etc/nginx/conf.d directory.
+# See http://nginx.org/en/docs/ngx_core_module.html#include
+# for more information.
+include /etc/nginx/conf.d/*.conf;
+</code></pre>
+<p>最后一行把 <code>conf</code> 目录下的所有以.conf后缀结尾的文件都引入进来，而因为Nginx配置文件的规则是前面先匹配到的先生效，所以我们可以把自己写的自定义配置文件在 <code>conf</code> 目录下，然后覆盖后面的默认配置。</p>
+<h3><a href="#server-kuai" class="header-anchor"></a><span id="server-kuai">server 块</span></h3><p>关于server块目前比较明白的有以下几个字段：</p>
+<ul>
+<li><code>listen</code> 代表着监听的端口<blockquote>
+<p>网页通常是监听80、443端口，还有一些服务应用应该监听对应的端口，如21、25等。</p>
+</blockquote>
+</li>
+<li><code>server_name</code> 代表监听的域名<blockquote>
+<p>通常是在域名服务商通过设置相应的域名然后解析到服务器的ip，其设置的域名便是 <code>server_name</code> 的值</p>
+</blockquote>
+</li>
+<li><code>root</code> 匹配后指向的访问路径（拼接匹配的url部分）<blockquote>
+<p>要注意当前nginx使用的用户是否有该对指向的路径有相应的访问权限。</p>
+</blockquote>
+</li>
+</ul>
+<h3><a href="#location-kuai" class="header-anchor"></a><span id="location-kuai">location 块</span></h3><p><code>location</code> 处于 <code>server</code> 块下，一个 <code>server</code> 块可以有若干个 <code>location</code> ，先匹配到的 <code>location</code> 规则先处理，并停止往后匹配。</p>
+<pre><code>server &#123;
+  ...
+  location [pattern rule] &#123;
+    ...
+  &#125;
+&#125;
+</code></pre>
+<p><code>location</code> 后面接对应的 url 匹配规则，可以是要匹配的字符串（字符串后面可带<code>/</code>也可以不带），也可以是正则。</p>
+<p>通过 <code>location</code> 实现请求转发来处理前端接口跨域问题，还可以通过它来实现外部对内部服务的代理访问。一般我会用到以下几个字段：</p>
+<ul>
+<li><code>root</code> 匹配后指向的访问路径（拼接匹配的url部分）</li>
+<li><code>alias</code> 匹配后指向的访问路径（替换匹配的url部分）</li>
+<li><code>proxy_pass</code> 把请求转发到指向地址</li>
+<li><code>index</code> 匹配后指向的访问路径下的文件</li>
+</ul>
+<h4><a href="#root-yu-alias" class="header-anchor"></a><span id="root-yu-alias">root 与 alias</span></h4><p>当 <code>location</code> 是用字符串来匹配时，配置 <code>root</code> 与 <code>alias</code> 是区别的：当 <code>location</code> 匹配到相应的 <code>url</code> <code>后，root</code> 对在匹配的规则后接上 <code>root</code> 指向的路径，而 <code>alisa</code> 会直接替换掉匹配的url部分。</p>
+<p>举个例子：</p>
+<pre><code>location ~ ^/xingcard/ &#123;
+  root /data/www/;
+&#125;
+</code></pre>
+<p>当一个URI是 <code>/app/xingcard/index.html</code> 时，nginx将会返回服务器上 <code>/data/www/app/xingcard/index.html</code>的文件。root会根据完整的URI请求来映射，也就是&#x2F;path&#x2F;uri。</p>
+<p>如果我们把 <code>root</code> 换成 <code>alias</code> 的话：</p>
+<pre><code>location ~ ^/app/ &#123;
+  alais /data/www/;
+&#125;
+</code></pre>
+<p>则nginx会将<code>/data/www/xingcard/index.html</code>返回给客户端。区别就是在于有没有替换掉 <code>location</code> 匹配的 <code>app</code>。</p>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>使用alias时，目录名后面一定要加”&#x2F;“。</li>
+<li>alias可以指定任何名称。</li>
+<li>alias在使用正则匹配时，必须捕捉要匹配的内容并在指定的内容处使用。</li>
+<li>alias只能位于location块中。</li>
+</ol>
+</blockquote>
+<h4><a href="#proxy-pass-zi-duan" class="header-anchor"></a><span id="proxy-pass-zi-duan">proxy_pass 字段</span></h4><p><code>ngixn</code> 对于 <code>proxy_pass</code> 的处理分为两种，一种是只有IP和端口号，另一种是除了IP和端口号外还包含了其它路径（URI）（其中也包括单个<code>/</code>符）。</p>
+<p>对于不含URI的 <code>proxy_pass</code> ， nginx 将会保留location中的路径部分，即在 <code>proxy_pass</code> 的值后面拼接上 <code>loaction</code> 的匹配路径。</p>
+<p>对于含URI的 <code>proxy_pass</code> ，nginx将使用诸如alias的替换方式对URL进行替换。</p>
+<p>例如：</p>
+<pre><code>server &#123;
+  ...
+  location /api1/ &#123;
+    proxy_pass http://localhost:8080;
+  &#125;
+
+  location /api2/ &#123;
+    proxy_pass http://localhost:8080/;
+  &#125;
+&#125;
+</code></pre>
+<p>访问 <code>ip/api1/login</code> 地址，转发到服务器的地址应该是 <code>http://localhost:8080/api1/login</code><br>访问 <code>ip/api2/login</code> 地址，转发到服务器的地址应该是 <code>http://localhost:8080/login</code></p>
+<h4><a href="#index-zi-duan" class="header-anchor"></a><span id="index-zi-duan">index 字段</span></h4><blockquote>
+<p>转载自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32331073/article/details/81945134">Nginx之坑：完全理解location中的index，配置网站初始页</a></p>
+</blockquote>
+<ul>
+<li>该指令后面可以跟多个文件，用空格隔开；</li>
+<li>如果包括多个文件，Nginx会根据文件的枚举顺序来检查，直到查找的文件存在；</li>
+<li>文件可以是相对路径也可以是绝对路径，绝对路径需要放在最后；</li>
+<li>文件可以使用变量$来命名；</li>
+</ul>
+<pre><code>server &#123;
+  ...
+  location /app &#123;
+    ...
+    index  index.$geo.html  index.0.html  /index.html;
+  &#125;
+&#125;
+</code></pre>
+<p>该指令拥有默认值，index index.html ，即，如果没有给出index，默认初始页为index.html</p>
+<p>Nginx给了三种方式来选择初始页，三种方式按照顺序来执行：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_random_index_module.html">ngx_http_random_index_module</a> 模块，从给定的目录中随机选择一个文件作为初始页，而且这个动作发生在 <a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">ngx_http_index_module</a> 之前，注意：这个模块默认情况下没有被安装，需要在安装时提供配置参数 -with-http_random_index_module；</li>
+<li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">ngx_http_index_module</a> 模块，根据index指令规则来选择初始页；</li>
+<li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_autoindex_module.html">ngx_http_autoindex_module</a> 模块，可以使用指定方式，根据给定目录中的文件列表自动生成初始页，这个动作发生在<br><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">ngx_http_index_module</a> 之后，即只有通过index指令无法确认初始页，此时启用后的自动生成模块才会被使用。</li>
+</ul>
+<p><strong>如果文件存在，则使用文件作为路径，发起内部重定向。直观上看上去就像再一次从客户端发起请求，Nginx再一次搜索location一样。</strong> 既然是内部重定向，域名+端口不发生变化，所以只会在同一个server下搜索。同样，如果内部重定向发生在proxy_pass反向代理后，那么重定向只会发生在代理配置中的同一个server。</p>
+<pre><code>server &#123;
+    listen      80;
+    server_name example.org www.example.org;    
+    
+    location / &#123;
+        root    /data/www;
+        index   index.html index.php;
+    &#125;
+    
+    location ~ \.php$ &#123;
+        root    /data/www/test;
+    &#125;
+&#125;
+</code></pre>
+<p>上面的例子中，如果你使用example.org或<a target="_blank" rel="noopener" href="http://www.example.org直接发起请求,那么首先会访问到“/%E2%80%9D%E7%9A%84location%EF%BC%8C%E7%BB%93%E5%90%88root%E4%B8%8Eindex%E6%8C%87%E4%BB%A4%EF%BC%8C%E4%BC%9A%E5%85%88%E5%88%A4%E6%96%AD/data/www/index.html%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%B8%8D%EF%BC%8C%E5%88%99%E6%8E%A5%E7%9D%80%E6%9F%A5%E7%9C%8B">www.example.org直接发起请求，那么首先会访问到“/”的location，结合root与index指令，会先判断/data/www/index.html是否存在，如果不，则接着查看</a><br>&#x2F;data&#x2F;www&#x2F;index.php ，如果存在，则使用&#x2F;index.php发起内部重定向，就像从客户端再一次发起请求一样，Nginx会再一次搜索location，毫无疑问匹配到第二个~ .php$，从而访问到&#x2F;data&#x2F;www&#x2F;test&#x2F;index.php。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+                        
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d=''
+        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    >Comments</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2019/09/19/nLtSiD.png" height=300 width=300></img>
+                    <p>CubeSuger</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                            
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">21 <p>Articles</p></a></li>
+                    <li><a href="/categories">9 <p>Categories</p></a></li>
+                    <li><a href="/tags">6 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">nginx.conf 与 conf.d 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">server 块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">location 块</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2022
+        <span class="gradient-text">
+            CubeSuger
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.9.3" target="_blank" rel="noopener">v1.4.9.3</a></small>
+        
+        </br>
+        粤ICP备
+        <span class="gradient-text">
+            <a href="https://beian.miit.gov.cn/" title="16094784号" target="_blank" rel="noopener">16094784号</a>
+        </span>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+ 
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>

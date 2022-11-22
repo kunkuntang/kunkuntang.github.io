@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JavaScript 设计模式与开发实践 - CubeSuger&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="description" content="基础知识一、this、call 和 applythis的指向除去不常用的with和eval的情况，具体到实际应用中，this的指向大致可以分为以下4种：
+
+作为对象的方法调用。
+作为普通函数调用。
+,"> 
+    <meta name="author" content="CubeSuger"> 
+    <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">CubeSuger&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://kunkuntang.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">JavaScript 设计模式与开发实践</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/JavaScript"><b>「
+                    </b>JAVASCRIPT<b> 」</b></a>
+                
+                August 09, 2017
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2017/08/09/JavaScript-Design-Patterns-and-Development-Practice/" title="JavaScript 设计模式与开发实践" class="">JavaScript 设计模式与开发实践</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    9.6k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    9 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <h2><a href="#ji-chu-zhi-shi" class="header-anchor"></a><span id="ji-chu-zhi-shi">基础知识</span></h2><h3><a href="#yi-this-call-he-apply" class="header-anchor"></a><span id="yi-this-call-he-apply">一、this、call 和 apply</span></h3><h4><a href="#this-de-zhi-xiang" class="header-anchor"></a><span id="this-de-zhi-xiang">this的指向</span></h4><p>除去不常用的with和eval的情况，具体到实际应用中，this的指向大致可以分为以下4种：</p>
+<ul>
+<li>作为对象的方法调用。</li>
+<li>作为普通函数调用。</li>
+<li>构造器调用。</li>
+<li>Function.prototype.call或Function.prototype.apply调用。</li>
+</ul>
+<span id="more"></span>
+
+<ol>
+<li>作为对象的方法调用</li>
+</ol>
+<p>当函数作为对象的方法被调用时，this指向该对象：</p>
+<pre><code>var obj = &#123;
+    a: 1，
+    getA: function() &#123;
+        alert( this === obj );
+        alert( this.a );
+    &#125;
+&#125;
+
+obj.getA();
+// output: true
+// output: 1
+</code></pre>
+<ol start="2">
+<li>作为普通函数调用</li>
+</ol>
+<p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，无论它在哪里调用，此时的this总是指向全局对象。在浏览器的JavaScript里，p个全局对象 是window对象。</p>
+<pre><code>window.name = &#39;golbalName&#39;;
+
+var getName = function() &#123;
+    return this.name;
+&#125;;
+
+var anotherGetName = function() &#123;
+    console.log(getName())
+&#125;
+
+console.log( getName()) ;
+// output: globalName
+
+anotherGetName();
+// output: globalName
+</code></pre>
+<p>或者</p>
+<pre><code>window.name = &#39;globalName&#39;;
+
+var myObject = &#123;
+    name: &#39;sven&#39;,
+    getName: function()&#123;
+        return this.name;
+    &#125;;
+&#125;;
+
+var getName = myObject.getName;
+cosnole.log( getName() );
+// output: globalName
+</code></pre>
+<ol start="3">
+<li>有时候我们会遇到一些困扰，比如在div节点的事件函数内部，有一个局部的callback方法，callback被作为普通函数调用时，callback内部的this指向了window,但我们往往是想让它指向该div节点，见如下代码：</li>
+</ol>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;I am a div&lt;/div&gt;
+
+    &lt;script&gt;
+        window.id = &#39;window&#39;
+        document.getElementById(&#39;div1&#39;).onclick =function() &#123;
+            alert( this.id ); // output: div1
+            var callback =function() &#123;
+                alert( this.id ); // output: window
+            &#125;
+            callback()
+        &#125;
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>此时有一种简单的解决方案，可以用一个变量保存div节点的引用：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;I am a div&lt;/div&gt;
+
+    &lt;script&gt;
+        window.id = &#39;window&#39;
+        document.getElementById(&#39;div1&#39;).onclick =function() &#123;
+            var that = this
+            var callback =function() &#123;
+                alert( that.id ); // output: div1
+            &#125;
+            callback()
+        &#125;
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>在ECMAScript5的strict模式下，这种情况下的this已经被规定为不会指向全局对象，而是undefined:</p>
+<pre><code>function func() &#123;
+    “use strict&quot;
+    alert( this ) // output: undefined
+&#125;
+</code></pre>
+<h3><a href="#er-bi-bao-he-gao-jie-han-shu" class="header-anchor"></a><span id="er-bi-bao-he-gao-jie-han-shu">二、闭包和高阶函数</span></h3><h4><a href="#bi-bao" class="header-anchor"></a><span id="bi-bao">闭包</span></h4><h2><a href="#she-ji-mo-shi" class="header-anchor"></a><span id="she-ji-mo-shi">设计模式</span></h2><h3><a href="#ding-yue-mo-shi" class="header-anchor"></a><span id="ding-yue-mo-shi">订阅模式</span></h3><p>订阅模式的设计主要有两个结构，一个是存放订阅事件的数组，还有添加订阅事件的方法，广播执行订阅事件的方法。</p>
+<p>例： </p>
+<pre><code>var event = &#123;
+    // 存放订阅事件的数组队列
+    clientList: [],
+    // 添加订阅事件的方法
+    listen: function( key, fn ) &#123;
+        // key 是订阅事件的代号标志，比如login表示登录订阅事件，
+        // loadFail表示读取失败订阅事件
+        // fn 是要订阅事件触发时执行的函数
+        if (!this.clientList[ key ]) &#123;
+            this.clientList[ key ] = []
+        &#125;
+        // 把订阅消息添加到缓存列表
+        this.clientList[ key ].push( fn );
+    &#125;,
+    trigger: function() &#123;
+        var key = Array.prototype.shift.call( arguments )
+            fns = this.clientList[ key ]
+        
+            if ( !fns || fns.length === 0 ) &#123; // 如果没有绑定对应的消息
+                return false
+            &#125;
+        
+            for ( var i = 0, fn; fn = fns[ i++ ];) &#123;
+                fn.apply( this, arguments )  // arguments 是 trigger 是带上的参数
+            &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>我们来测试一下上面的代码：<br>首先定义一个installEvent函数让我们可以给所有对象都动态添加发布-订阅功能（但是这个并不是必须的，不过一般都会声明一个方便调用）</p>
+<pre><code>var installEvent = function( obj ) &#123;
+    for ( var i in event ) &#123;
+        obj[ i ] = event[ i ];
+    &#125;
+&#125;
+</code></pre>
+<p>假设一个场景，在课堂上老师个学生布置作业，然后等我学生到做作业的时间的时候，就开始做老师发布的作业。在这里老师是订阅者，学生是发布者。</p>
+<pre><code>// 先给老师添加发布订阅功能
+var teacher = &#123;&#125;
+installEvent( teacher )
+
+// 老师备课时先定义好将要布置的作业
+function doMath() &#123;
+    console.log( &#39;do Math homework&#39; )
+&#125;
+
+function doMathTest() &#123;
+    console.log( &#39;do Math test homework&#39; )
+&#125;
+
+function doEnglish() &#123;
+    console.log( &#39;do Englisth homework&#39; )
+&#125;
+
+// 在课堂上老师发布作业
+teacher.listen( &#39;Math&#39;, function() &#123;
+    doMath();
+&#125;)
+
+teacher.listen( &#39;Math&#39;, function() &#123;
+    doMathTest()
+&#125;)
+
+teacher.listen( &#39;English&#39;, function() &#123;
+    do English()
+&#125;)
+
+// 做作业的时间到了，学生做老师发布的作业
+// 用if来假设条件成立，可以去掉
+if ( new Date().now === 8888 ) &#123;
+    teacher.trigger( &#39;Math&#39; )
+    teacher.trigger( &#39;English&#39; )
+&#125;
+</code></pre>
+<p>发布订阅模式还很适合协作开发，比如上面的例子，老师只需要负责这天需要做哪科作业（Math, English)，做哪一题(doMath, doMathTest, doEnglish)。而学生只需要负责到点就去完成作业。</p>
+<h3><a href="#zhong-jie-zhe-mo-shi" class="header-anchor"></a><span id="zhong-jie-zhe-mo-shi">中介者模式</span></h3><p>中介者就是把许多相关联的对象进行解耦。有时候对象与对象之间的操作会互相影响，有些对象要在其他对象改变的时候做出相应的响应，这个时候就要用到中介者模式。</p>
+<p>中介者模式一般有两种实现方式：</p>
+<ul>
+<li>利用发布-订阅模式。</li>
+<li>中介者开放一些接口给其它对象调用，而具体实现的逻辑在中介者中实现，然后中介者把执行后的结果发送给其它对象。</li>
+</ul>
+<p>考虑一个现实的一个例子：<br>这手机购买的过程中，可以选择手机的颜色和数量，同时在页面会有相应手机库存的显示，然后页面底下的购习按钮会根据库存等情况作出不同的展示。</p>
+<p>假设有这几种规格的手机：</p>
+<pre><code>var goods = &#123;
+    &quot;red&quot;: 3,
+    &quot;blue: 6
+&#125;
+</code></pre>
+<p>粗略地把上面分成以下几种情况：</p>
+<ol>
+<li>选择红色手机，买4个，显示库存不足，购买按钮不可点</li>
+<li>选择蓝色手机，买5个，显示库存充足，购买按钮可点</li>
+<li>不有选择颜色或者数量的时候，购买按钮不可点</li>
+</ol>
+<p>以下进行编码：</p>
+<p>页面HTML代码：</p>
+<pre><code>选择颜色： 
+&lt;select name=&quot;&quot; id=&quot;colorSelect&quot;&gt;
+    &lt;option value=&quot;&quot;&gt;请选择&lt;/option&gt;
+    &lt;option value=&quot;red&quot;&gt;红色&lt;/option&gt;
+    &lt;option value=&quot;blue&quot;&gt;蓝色&lt;/option&gt;
+&lt;/select&gt;
+输入购买数量：
+&lt;input type=&quot;text&quot; id=&quot;numberInput&quot;&gt;
+您选择了颜色：
+&lt;div id=&quot;colorInfo&quot;&gt;&lt;/div&gt;&lt;br/&gt;
+您输入了数量：
+&lt;div id=&quot;nubmerInfo&quot;&gt;&lt;/div&gt;
+您输入了容量：
+&lt;div id=&quot;momeryInfo&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>先定义商品规格：</p>
+<pre><code>var goods = &#123;
+    &quot;red|32G&quot;: 3,
+    &quot;red|64G&quot;: 0,
+    &quot;blue|32G&quot;: 1,
+    &quot;blue|16G&quot;: 6
+&#125;
+</code></pre>
+<p>定义中介者来作处理其中判断的逻辑，返回一个事件让其它关联对象调用。</p>
+<pre><code>var mediator = (function()&#123;
+    var colorSelect = document.getElementById(&#39;colorSelect&#39;)
+    var memorySelect = document.getElementById(&#39;memorySelect&#39;)
+    var numberInput = document.getElementById(&#39;numberInput&#39;)
+    var colorInfo = document.getElementById(&#39;colorInfo&#39;)
+    var memoryInfo = document.getElementById(&#39;memoryInfo&#39;)
+    var numberInfo = document.getElementById(&#39;numberInfo&#39;)
+    var nextBtn = document.getElementById(&#39;nextBtn&#39;)
+
+    return &#123;
+        changed: function(obj)&#123;
+            var color = colorSelect.value,  // 颜色
+                memory = memorySelect.value, // 内存
+                number = numberSelect.value, // 数量
+                stock = goods[ color + &#39;|&#39; + memory ];  // 颜色和内存对应的手机库存数量
+            
+            if ( obj === colorSelect ) &#123;
+                colorInfo.innerHTML = color
+            &#125; else if ( obj === memorySelect ) &#123;
+                memoryInfo.innerHTML = memory
+            &#125; else if ( obj === numberInput ) &#123;
+                numberInfo.innerHTML = number
+            &#125;
+
+            if ( !memory ) &#123;
+                nextBtn.disabled = true
+                nextBtn.innerHTML = &#39;请选择手机颜色&#39;
+                return
+            &#125;
+
+            if ( !memory ) &#123;
+                nextBtn.disabled = true
+                nextBtn.innerHTML = &#39;请选择内存大小&#39;
+                return
+            &#125;
+
+            if ( Number.isInteger ( number - 0 ) &amp;&amp; number &gt; 0 ) &#123;
+                nextBtn.disabled = true
+                nextBtn.innerHTML = &#39;请输入正确的购买数量&#39;
+                return
+            &#125;
+
+            nextBtn.disabled = false
+            nextBtn.innerHTML = &#39;放入购物车&#39;
+        &#125;
+    &#125;
+&#125;)()
+</code></pre>
+<p>当相对应的对象改变的时候，中介者就能通过响应作出正确的处理，而不用把所有的判断逻辑放在各个事件监听所触发的函数里。</p>
+<pre><code>colorSelect.onchange = function() &#123;
+    mediator.changed( this )
+&#125;
+
+memorySelect.onchange = function() &#123;
+    mediator.changed( this )
+&#125;
+
+numberInput.onchange = function() &#123;
+    mediator.changed( this )
+&#125;
+</code></pre>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+                        
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d=''
+        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    >Comments</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2019/09/19/nLtSiD.png" height=300 width=300></img>
+                    <p>CubeSuger</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                            
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">21 <p>Articles</p></a></li>
+                    <li><a href="/categories">9 <p>Categories</p></a></li>
+                    <li><a href="/tags">6 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">一、this、call 和 apply</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">二、闭包和高阶函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.1.</span> <span class="toc-text">订阅模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.2.</span> <span class="toc-text">中介者模式</span></a></li></ol></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2022
+        <span class="gradient-text">
+            CubeSuger
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.9.3" target="_blank" rel="noopener">v1.4.9.3</a></small>
+        
+        </br>
+        粤ICP备
+        <span class="gradient-text">
+            <a href="https://beian.miit.gov.cn/" title="16094784号" target="_blank" rel="noopener">16094784号</a>
+        </span>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+ 
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>
