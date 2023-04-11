@@ -102,7 +102,8 @@
 在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：Database Design Course
 
 什么是键（Key）
-KEY is something on the logical level, describes your table and database design (i.e. enforces refer...
+
+KEY is something on the logical level, describes your table and database design (i.e. enforces refe...
                                         </p>
                                     </div>
                                 </li>
@@ -142,7 +143,8 @@ https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTa
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2020/06/22/Automaticly-Build-Personal-Website-Via-Jenkins/">使用Jenkins自动化构建你的个人网站</a>
                                         <p>
-                                            前言首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，结果又出现了其他问题被拒绝回来再次需要修改，这样来来回回搞了好几回，因为我的个人网站都是静态网站，每次修改后都要手动把代码发布到服务器上，这样的重复性工作显得很繁琐，所以研究了一下怎么用工具自动化构...
+                                            前言
+首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，结果又出现了其他问题被拒绝回来再次需要修改，这样来来回回搞了好几回，因为我的个人网站都是静态网站，每次修改后都要手动把代码发布到服务器上，这样的重复性工作显得很繁琐，所以研究了一下怎么用工具自动化...
                                         </p>
                                     </div>
                                 </li>
@@ -164,12 +166,14 @@ https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTa
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2019/12/19/Developer-Git-Situation-Solutions/">Git 实战场景</a>
                                         <p>
-                                            情景一：开发中途添加远端仓库通常情况这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下命令：
+                                            情景一：开发中途添加远端仓库
+通常情况
+这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下命令：
 // 添加远程仓库地址并命名为origin
 git remote add origin [URL]
 
 // 提交代码到远程仓库并将origin设置为默认提交仓库
-git push -u ori...
+git push -u o...
                                         </p>
                                     </div>
                                 </li>
@@ -192,8 +196,9 @@ git push -u ori...
                                         <a class="timeline-title" target="_self" href="/2019/11/21/Difference-Between-Concurrency-And-Parallelism/">并发和并行的区别</a>
                                         <p>
                                             在学习NodeJs中事件循环机制的时候遇到了两个不太清楚的概念：并发和并行。文章是这样说的，NodeJs由于是单线程运行的，所以它是无法进行真正意义上的并行操作，准确来说应该是并发。下面记录一下。
-并发（concurrency）并发是指具有处理多个任务的能力，是指逻辑上的同时任务，不是说物理上的，并发事件不一定要同一时刻发生。
-通俗形象一点就是说，当遇到许多任务的时候，可以把其中一个大任务拆...
+并发（concurrency）
+并发是指具有处理多个任务的能力，是指逻辑上的同时任务，不是说物理上的，并发事件不一定要同一时刻发生。
+通俗形象一点就是说，当遇到许多任务的时候，可以把其中一个大任务...
                                         </p>
                                     </div>
                                 </li>
@@ -207,16 +212,19 @@ git push -u ori...
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2019/11/21/Frequently-Used-Docker-Repository-Command/">Docker仓库常用命令</a>
                                         <p>
-                                            登录docker login
+                                            登录
+docker login
 
 通过执行docker login命令来输入用户名、密码和邮箱来完成注册和登录。注册成功后，本地用户目录的.dockercfg中将保存着用户认证的信息。
-从仓库拉取镜像docker pull [镜像名]
+从仓库拉取镜像
+docker pull [镜像名]
 
-搜索镜像docker search [想要搜索的镜像名]
+搜索镜像
+docker search [想要搜索的镜像名]
 
 例如：
 C:\Users\kunta&gt;docker search centos
-NAME  ...
+NAM...
                                         </p>
                                     </div>
                                 </li>
@@ -230,8 +238,10 @@ NAME  ...
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2019/11/21/Frequently-Used-Docker-Container-Network-Command/">Docker中容器的网络配置常用命令</a>
                                         <p>
-                                            网络基础配置虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。
-从外部访问容器应用在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外...
+                                            网络基础配置
+虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。
+###　从外部访问容器应用
+在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行...
                                         </p>
                                     </div>
                                 </li>
@@ -245,8 +255,10 @@ NAME  ...
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2019/11/21/Frequently-Used-Docker-Container-Or-Image-Command/">Docker中镜像、容器的常用命令</a>
                                         <p>
-                                            简述对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。
-要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举...
+                                            简述
+对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。
+要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：
+Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单...
                                         </p>
                                     </div>
                                 </li>
@@ -263,10 +275,10 @@ NAME  ...
                                             
 
 
-
-
 Git常用命令
+
 本地仓库
+
 初始化仓库(Init Repository)
 克隆仓库(Clone Repository)
 暂存新文件(Stage New File) &amp; 暂存文件修改(Sage Modified File)
@@ -318,8 +330,9 @@ Git常用命令
                                         <a class="timeline-title" target="_self" href="/2019/07/15/nginx-commmand-record/">Nginx conf 常用配置</a>
                                         <p>
                                             因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。
-nginx.conf 与 conf.d 目录首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码
-# Load modular configuration files from th...
+nginx.conf 与 conf.d 目录
+首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码
+# Load modular configuration files from t...
                                         </p>
                                     </div>
                                 </li>
@@ -342,11 +355,12 @@ nginx.conf 与 conf.d 目录首先Nginx里有一份基础配置nginx.conf文件�
                                         <a class="timeline-title" target="_self" href="/2018/11/12/manage-Node-js-version-via-mvn/">mac下卸载Node.js并使用nvm来管理Node版本</a>
                                         <p>
                                             
-转载自：https://www.zhihu.com/question/27389115/answer/36434788转载自：https://blog.csdn.net/xieamy/article/details/70270039
+转载自：https://www.zhihu.com/question/27389115/answer/36434788
+转载自：https://blog.csdn.net/xieamy/article/details/70270039
 
 
-
-前言因为不小心的缘故，把自己电脑上的node版本由LTS升到了Current，从而遇到了之前有一个基于vue-cli上搭建的项目跑不起来，在读取配置文件...
+前言
+因为不小心的缘故，把自己电脑上的node版本由LTS升到了Current，从而遇到了之前有一个基于vue-cli上搭建的项目跑不起来，在读取配置文...
                                         </p>
                                     </div>
                                 </li>
@@ -368,11 +382,12 @@ nginx.conf 与 conf.d 目录首先Nginx里有一份基础配置nginx.conf文件�
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2018/08/01/wechat-share-and-single-page-summary/">单页面应用微信分享跳坑指南</a>
                                         <p>
-                                            前言最近在开发的时候遇到了一个微信分享的bug，就是无论你在哪个路径下的页面，发送给朋友后点开都只会跳到项目的首页。本来微信分享这个只算是一个小功能，也很好解决，但由于项目的特殊性，使得在这个bug解决起来并没有那么顺手，所以记录一下备以后翻阅。
+                                            前言
+最近在开发的时候遇到了一个微信分享的bug，就是无论你在哪个路径下的页面，发送给朋友后点开都只会跳到项目的首页。本来微信分享这个只算是一个小功能，也很好解决，但由于项目的特殊性，使得在这个bug解决起来并没有那么顺手，所以记录一下备以后翻阅。
 坑点
-Vue单页面应用，前端通过Hash控制路由——iOS在微信中不能正常地改变浏览器的hash值，分享出去的页面地址被莫名其妙地添加了参数。
 
-...
+
+Vue单页面应用，前端通过Hash控制路由——iOS在微信中不能正常地改变浏览器的hash值，分享出去的页面地址被莫名其妙地添加了参数...
                                         </p>
                                     </div>
                                 </li>
@@ -394,7 +409,8 @@ Vue单页面应用，前端通过Hash控制路由——iOS在微信中不能正�
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2018/07/08/0to1-build-vue-project/">从零到一搭建Vue项目工程（Vue全家桶、Vue测试、持续集成）</a>
                                         <p>
-                                            开篇前记入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在学html,css,js三件套，当然还会有JQuery，现在有些人入门都开始直接学Vue框架了。踩过很多坑。但是坑还要一个一个地爬出来，未知的东西还是要一个一个地探索，所以才有了冲动来写这篇文章，第...
+                                            开篇前记
+入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在学html,css,js三件套，当然还会有JQuery，现在有些人入门都开始直接学Vue框架了。踩过很多坑。但是坑还要一个一个地爬出来，未知的东西还是要一个一个地探索，所以才有了冲动来写这篇文章，...
                                         </p>
                                     </div>
                                 </li>
@@ -433,7 +449,8 @@ mql = w...
                                         <a class="timeline-title" target="_self" href="/2017/12/09/The-problem-of-mobile-web-developing/">关于移动端像素的显示问题</a>
                                         <p>
                                             在移动端开发的过程中大家都会发现，移动端的显示一般与桌面端的不一样。比如在iphone6上显示一个1334x750像素大小块状元素，虽然在苹果官网上iphone6标称的屏幕像素密度是1334x750规格，但是我们却发现这个1334x750像素大小的块状元素却不能铺满整个屏幕。那到底是为什么呢？下面从几个方面来作探讨。
-像素密度（PPI）PPI(Pixel Per Inch)，即表示每英寸有多...
+像素密度（PPI）
+PPI(Pixel Per Inch)，即表示每英寸有...
                                         </p>
                                     </div>
                                 </li>
@@ -455,11 +472,14 @@ mql = w...
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2017/11/30/mongodb-command/">MongoDB Shell命令</a>
                                         <p>
-                                            开启MongoDB数据库服务&amp;emsp;&amp;emsp;mongo根目录/bin/mongod -f 配置文件目录&#x2F;配置文件名例：./bin/mongod -f conf/mongod.conf
+                                            开启MongoDB数据库服务
+  mongo根目录/bin/mongod -f 配置文件目录/配置文件名
+例：./bin/mongod -f conf/mongod.conf
 Mongod.conf文件内容参考如下：
 dbpath = /data/mongodb
 logpath = /data/mongodb/mongodb.log
-logappen...
+logappend = true
+port = 27017...
                                         </p>
                                     </div>
                                 </li>
@@ -482,7 +502,8 @@ logappen...
                                         <a class="timeline-title" target="_self" href="/2017/09/11/processing-medium-effect/">渐进式图片加载效果</a>
                                         <p>
                                             前些日子在逛知乎，发现有个效果挺不错的，就是当一开始页面上的图片是模糊的，过一会图片变清晰。突然感觉这种效果比传统的占位图效果要好的多，于是在好奇心的驱使下百度了一下效果，得出的实现常用可以分为图床和图片地址替换。下面简单叙述一下两个方案的实现思路：
-图床就是在图片原来的地方放一个标签用来放模糊的照片，盖在原来清晰大图片的上方，当大图加载成功后，原来盖在上面的图片隐藏掉。图床可以是一个Div...
+图床
+就是在图片原来的地方放一个标签用来放模糊的照片，盖在原来清晰大图片的上方，当大图加载成功后，原来盖在上面的图片隐藏掉。图床可以是一个Di...
                                         </p>
                                     </div>
                                 </li>
@@ -504,7 +525,10 @@ logappen...
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2017/08/09/JavaScript-Design-Patterns-and-Development-Practice/">JavaScript 设计模式与开发实践</a>
                                         <p>
-                                            基础知识一、this、call 和 applythis的指向除去不常用的with和eval的情况，具体到实际应用中，this的指向大致可以分为以下4种：
+                                            基础知识
+一、this、call 和 apply
+this的指向
+除去不常用的with和eval的情况，具体到实际应用中，this的指向大致可以分为以下4种：
 
 作为对象的方法调用。
 作为普通函数调用。
@@ -513,10 +537,9 @@ Function.prototype.call或Function.prototype.apply调用。
 
 
 
-
 作为对象的方法调用
 
-当函数作为对象的方法被调用时，this指向该对象...
+当函数作为对象的方法被调用时，this指向该...
                                         </p>
                                     </div>
                                 </li>
@@ -530,7 +553,11 @@ Function.prototype.call或Function.prototype.apply调用。
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2017/08/06/JavascriptDataType/">Javascript 数据类型</a>
                                         <p>
-                                            &amp;emsp;&amp;emsp;本文摘录于Javascript高级程序设计（Professional JavaScript for Web Developers）并加上了自己的一些理解，如发现本文有什么错误之处，请麻烦通过以下方式联系我作修正，谢谢!&amp;emsp;&amp;emsp;微信号: kuntang9080&amp;emsp;&amp;emsp;邮箱：&#x6b;&#1...
+                                              本文摘录于Javascript高级程序设计（Professional JavaScript for Web Developers）并加上了自己的一些理解，如发现本文有什么错误之处，请麻烦通过以下方式联系我作修正，谢谢!
+  微信号: kuntang9080
+  邮箱：kuntang@163.com
+
+ECMAScript中有5种简单数据类型（也称基本数据类型）：Undefined、Nul...
                                         </p>
                                     </div>
                                 </li>
@@ -544,13 +571,17 @@ Function.prototype.call或Function.prototype.apply调用。
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2017/08/06/SoftwareTesting/">软件测试</a>
                                         <p>
-                                            行业内的主要知识点软件危机软件测试的分类
+                                            行业内的主要知识点
+软件危机
+软件测试的分类
+
 按测试阶段划分
 
-软件测试 &#x3D; 程序 + 文档 + 数据程序主流方向 B&#x2F;S架构和手机app
-
+软件测试 = 程序 + 文档 + 数据
+程序主流方向 B/S架构和手机app
 
 软件项目流程
+
 可行性分析
 立项
 需求
@@ -562,10 +593,12 @@ Function.prototype.call或Function.prototype.apply调用。
 维护
 
 接口测试
+
 后台和前台的数据
 后台和前台可以交互
 
 文档
+
 需求文档
 设计文档
 开发文档
@@ -574,8 +607,10 @@ Function.prototype.call或Function.prototype.apply调用。
 用户文档
 
 软件测试
+
 测试计划
-测试用例...
+测试用例
+测试...
                                         </p>
                                     </div>
                                 </li>
@@ -597,7 +632,11 @@ Function.prototype.call或Function.prototype.apply调用。
                                     <div class="timeline-content">
                                         <a class="timeline-title" target="_self" href="/2017/06/25/Javascript-data-structure/">Javascript 数据类型</a>
                                         <p>
-                                            &amp;emsp;&amp;emsp;本文摘录于Javascript高级程序设计（Professional JavaScript for Web Developers）并加上了自己的一些理解，如发现本文有什么错误之处，请麻烦通过以下方式联系我作修正，谢谢!&amp;emsp;&amp;emsp;微信号: kuntang9080&amp;emsp;&amp;emsp;邮箱：&#107;&#x...
+                                              本文摘录于Javascript高级程序设计（Professional JavaScript for Web Developers）并加上了自己的一些理解，如发现本文有什么错误之处，请麻烦通过以下方式联系我作修正，谢谢!
+  微信号: kuntang9080
+  邮箱：kuntang@163.com
+
+ECMAScript中有5种简单数据类型（也称基本数据类型）：Undefined、Nul...
                                         </p>
                                     </div>
                                 </li>
@@ -620,8 +659,8 @@ Function.prototype.call或Function.prototype.apply调用。
                                         <a class="timeline-title" target="_self" href="/2017/04/27/interestingCSS/">双栏布局（一）</a>
                                         <p>
                                             今天写代码的时候遇到了一个需求，想想也是觉得这个需求挺常见的，所以就写下来记一下。
-需求说明：这个需求其实很简单，就是在页面中，希望左边的一个卡片固定宽度，右边卡片自适应地撑开。这个需求其实是非常常见的，网上一搜出来的结果也很多，而我更倾向于左边卡片用浮动，右边卡片用一个左边距来撑开这种方法；具体代码如下：
-
+需求说明：
+这个需求其实很简单，就是在页面中，希望左边的一个卡片固定宽度，右边卡片自适应地撑开。这个需求其实是非常常见的，网上一搜出来的结果也很多，而我更倾向于左边卡片用浮动，右边卡片用一个左边距来撑开这种方法；具体代码如下：
 
 &lt;!-- demo1 --&gt;
 &lt;!DOCTYPE html&g...

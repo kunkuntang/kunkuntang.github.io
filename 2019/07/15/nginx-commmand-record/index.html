@@ -11,7 +11,8 @@
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
     <meta name="description" content="因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。
-nginx.conf 与 conf.d 目录首先Nginx里有一份基础配,"> 
+nginx.conf 与 conf.d 目录
+首先Nginx里有一份基础,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -117,13 +118,13 @@ nginx.conf 与 conf.d 目录首先Nginx里有一份基础配,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    6.3k
+                    5.9k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    6 mins.
+                    5 mins.
                 </span>
                 
                 
@@ -158,29 +159,35 @@ nginx.conf 与 conf.d 目录首先Nginx里有一份基础配,">
     <div class='main'>
         <div class="content markdown animated fadeIn">
             <p>因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。</p>
-<h3><a href="#nginx-conf-yu-conf-d-mu-lu" class="header-anchor"></a><span id="nginx-conf-yu-conf-d-mu-lu">nginx.conf 与 conf.d 目录</span></h3><p>首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码</p>
+<h3><a href="#nginx-conf-yu-conf-d-mu-lu" class="header-anchor"></a><span id="nginx-conf-yu-conf-d-mu-lu">nginx.conf 与 conf.d 目录</span></h3>
+<p>首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码</p>
 <pre><code># Load modular configuration files from the /etc/nginx/conf.d directory.
 # See http://nginx.org/en/docs/ngx_core_module.html#include
 # for more information.
 include /etc/nginx/conf.d/*.conf;
 </code></pre>
 <p>最后一行把 <code>conf</code> 目录下的所有以.conf后缀结尾的文件都引入进来，而因为Nginx配置文件的规则是前面先匹配到的先生效，所以我们可以把自己写的自定义配置文件在 <code>conf</code> 目录下，然后覆盖后面的默认配置。</p>
-<h3><a href="#server-kuai" class="header-anchor"></a><span id="server-kuai">server 块</span></h3><p>关于server块目前比较明白的有以下几个字段：</p>
+<h3><a href="#server-kuai" class="header-anchor"></a><span id="server-kuai">server 块</span></h3>
+<p>关于server块目前比较明白的有以下几个字段：</p>
 <ul>
-<li><code>listen</code> 代表着监听的端口<blockquote>
+<li><code>listen</code> 代表着监听的端口
+<blockquote>
 <p>网页通常是监听80、443端口，还有一些服务应用应该监听对应的端口，如21、25等。</p>
 </blockquote>
 </li>
-<li><code>server_name</code> 代表监听的域名<blockquote>
+<li><code>server_name</code> 代表监听的域名
+<blockquote>
 <p>通常是在域名服务商通过设置相应的域名然后解析到服务器的ip，其设置的域名便是 <code>server_name</code> 的值</p>
 </blockquote>
 </li>
-<li><code>root</code> 匹配后指向的访问路径（拼接匹配的url部分）<blockquote>
+<li><code>root</code> 匹配后指向的访问路径（拼接匹配的url部分）
+<blockquote>
 <p>要注意当前nginx使用的用户是否有该对指向的路径有相应的访问权限。</p>
 </blockquote>
 </li>
 </ul>
-<h3><a href="#location-kuai" class="header-anchor"></a><span id="location-kuai">location 块</span></h3><p><code>location</code> 处于 <code>server</code> 块下，一个 <code>server</code> 块可以有若干个 <code>location</code> ，先匹配到的 <code>location</code> 规则先处理，并停止往后匹配。</p>
+<h3><a href="#location-kuai" class="header-anchor"></a><span id="location-kuai">location 块</span></h3>
+<p><code>location</code> 处于 <code>server</code> 块下，一个 <code>server</code> 块可以有若干个 <code>location</code> ，先匹配到的 <code>location</code> 规则先处理，并停止往后匹配。</p>
 <pre><code>server &#123;
   ...
   location [pattern rule] &#123;
@@ -196,13 +203,14 @@ include /etc/nginx/conf.d/*.conf;
 <li><code>proxy_pass</code> 把请求转发到指向地址</li>
 <li><code>index</code> 匹配后指向的访问路径下的文件</li>
 </ul>
-<h4><a href="#root-yu-alias" class="header-anchor"></a><span id="root-yu-alias">root 与 alias</span></h4><p>当 <code>location</code> 是用字符串来匹配时，配置 <code>root</code> 与 <code>alias</code> 是区别的：当 <code>location</code> 匹配到相应的 <code>url</code> <code>后，root</code> 对在匹配的规则后接上 <code>root</code> 指向的路径，而 <code>alisa</code> 会直接替换掉匹配的url部分。</p>
+<h4><a href="#root-yu-alias" class="header-anchor"></a><span id="root-yu-alias">root 与 alias</span></h4>
+<p>当 <code>location</code> 是用字符串来匹配时，配置 <code>root</code> 与 <code>alias</code> 是区别的：当 <code>location</code> 匹配到相应的 <code>url</code> <code>后，root</code> 对在匹配的规则后接上 <code>root</code> 指向的路径，而 <code>alisa</code> 会直接替换掉匹配的url部分。</p>
 <p>举个例子：</p>
 <pre><code>location ~ ^/xingcard/ &#123;
   root /data/www/;
 &#125;
 </code></pre>
-<p>当一个URI是 <code>/app/xingcard/index.html</code> 时，nginx将会返回服务器上 <code>/data/www/app/xingcard/index.html</code>的文件。root会根据完整的URI请求来映射，也就是&#x2F;path&#x2F;uri。</p>
+<p>当一个URI是 <code>/app/xingcard/index.html</code> 时，nginx将会返回服务器上 <code>/data/www/app/xingcard/index.html</code>的文件。root会根据完整的URI请求来映射，也就是/path/uri。</p>
 <p>如果我们把 <code>root</code> 换成 <code>alias</code> 的话：</p>
 <pre><code>location ~ ^/app/ &#123;
   alais /data/www/;
@@ -212,13 +220,14 @@ include /etc/nginx/conf.d/*.conf;
 <blockquote>
 <p>注意：</p>
 <ol>
-<li>使用alias时，目录名后面一定要加”&#x2F;“。</li>
+<li>使用alias时，目录名后面一定要加&quot;/&quot;。</li>
 <li>alias可以指定任何名称。</li>
 <li>alias在使用正则匹配时，必须捕捉要匹配的内容并在指定的内容处使用。</li>
 <li>alias只能位于location块中。</li>
 </ol>
 </blockquote>
-<h4><a href="#proxy-pass-zi-duan" class="header-anchor"></a><span id="proxy-pass-zi-duan">proxy_pass 字段</span></h4><p><code>ngixn</code> 对于 <code>proxy_pass</code> 的处理分为两种，一种是只有IP和端口号，另一种是除了IP和端口号外还包含了其它路径（URI）（其中也包括单个<code>/</code>符）。</p>
+<h4><a href="#proxy-pass-zi-duan" class="header-anchor"></a><span id="proxy-pass-zi-duan">proxy_pass 字段</span></h4>
+<p><code>ngixn</code> 对于 <code>proxy_pass</code> 的处理分为两种，一种是只有IP和端口号，另一种是除了IP和端口号外还包含了其它路径（URI）（其中也包括单个<code>/</code>符）。</p>
 <p>对于不含URI的 <code>proxy_pass</code> ， nginx 将会保留location中的路径部分，即在 <code>proxy_pass</code> 的值后面拼接上 <code>loaction</code> 的匹配路径。</p>
 <p>对于含URI的 <code>proxy_pass</code> ，nginx将使用诸如alias的替换方式对URL进行替换。</p>
 <p>例如：</p>
@@ -233,8 +242,10 @@ include /etc/nginx/conf.d/*.conf;
   &#125;
 &#125;
 </code></pre>
-<p>访问 <code>ip/api1/login</code> 地址，转发到服务器的地址应该是 <code>http://localhost:8080/api1/login</code><br>访问 <code>ip/api2/login</code> 地址，转发到服务器的地址应该是 <code>http://localhost:8080/login</code></p>
-<h4><a href="#index-zi-duan" class="header-anchor"></a><span id="index-zi-duan">index 字段</span></h4><blockquote>
+<p>访问 <code>ip/api1/login</code> 地址，转发到服务器的地址应该是 <code>http://localhost:8080/api1/login</code><br>
+访问 <code>ip/api2/login</code> 地址，转发到服务器的地址应该是 <code>http://localhost:8080/login</code></p>
+<h4><a href="#index-zi-duan" class="header-anchor"></a><span id="index-zi-duan">index 字段</span></h4>
+<blockquote>
 <p>转载自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32331073/article/details/81945134">Nginx之坑：完全理解location中的index，配置网站初始页</a></p>
 </blockquote>
 <ul>
@@ -256,7 +267,8 @@ include /etc/nginx/conf.d/*.conf;
 <ul>
 <li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_random_index_module.html">ngx_http_random_index_module</a> 模块，从给定的目录中随机选择一个文件作为初始页，而且这个动作发生在 <a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">ngx_http_index_module</a> 之前，注意：这个模块默认情况下没有被安装，需要在安装时提供配置参数 -with-http_random_index_module；</li>
 <li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">ngx_http_index_module</a> 模块，根据index指令规则来选择初始页；</li>
-<li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_autoindex_module.html">ngx_http_autoindex_module</a> 模块，可以使用指定方式，根据给定目录中的文件列表自动生成初始页，这个动作发生在<br><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">ngx_http_index_module</a> 之后，即只有通过index指令无法确认初始页，此时启用后的自动生成模块才会被使用。</li>
+<li><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_autoindex_module.html">ngx_http_autoindex_module</a> 模块，可以使用指定方式，根据给定目录中的文件列表自动生成初始页，这个动作发生在<br>
+<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">ngx_http_index_module</a> 之后，即只有通过index指令无法确认初始页，此时启用后的自动生成模块才会被使用。</li>
 </ul>
 <p><strong>如果文件存在，则使用文件作为路径，发起内部重定向。直观上看上去就像再一次从客户端发起请求，Nginx再一次搜索location一样。</strong> 既然是内部重定向，域名+端口不发生变化，所以只会在同一个server下搜索。同样，如果内部重定向发生在proxy_pass反向代理后，那么重定向只会发生在代理配置中的同一个server。</p>
 <pre><code>server &#123;
@@ -273,7 +285,8 @@ include /etc/nginx/conf.d/*.conf;
     &#125;
 &#125;
 </code></pre>
-<p>上面的例子中，如果你使用example.org或<a target="_blank" rel="noopener" href="http://www.example.org直接发起请求,那么首先会访问到“/%E2%80%9D%E7%9A%84location%EF%BC%8C%E7%BB%93%E5%90%88root%E4%B8%8Eindex%E6%8C%87%E4%BB%A4%EF%BC%8C%E4%BC%9A%E5%85%88%E5%88%A4%E6%96%AD/data/www/index.html%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%B8%8D%EF%BC%8C%E5%88%99%E6%8E%A5%E7%9D%80%E6%9F%A5%E7%9C%8B">www.example.org直接发起请求，那么首先会访问到“/”的location，结合root与index指令，会先判断/data/www/index.html是否存在，如果不，则接着查看</a><br>&#x2F;data&#x2F;www&#x2F;index.php ，如果存在，则使用&#x2F;index.php发起内部重定向，就像从客户端再一次发起请求一样，Nginx会再一次搜索location，毫无疑问匹配到第二个~ .php$，从而访问到&#x2F;data&#x2F;www&#x2F;test&#x2F;index.php。</p>
+<p>上面的例子中，如果你使用example.org或www.example.org直接发起请求，那么首先会访问到“/”的location，结合root与index指令，会先判断/data/www/index.html是否存在，如果不，则接着查看<br>
+/data/www/index.php ，如果存在，则使用/index.php发起内部重定向，就像从客户端再一次发起请求一样，Nginx会再一次搜索location，毫无疑问匹配到第二个~ .php$，从而访问到/data/www/test/index.php。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"

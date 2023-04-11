@@ -11,7 +11,8 @@
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
     <meta name="description" content="
-转载自：https://www.zhihu.com/question/27389115/answer/36434788转载自：https://blog.csdn.net/xieamy/articl,"> 
+转载自：https://www.zhihu.com/question/27389115/answer/36434788
+转载自：https://blog.csdn.net/xieamy/artic,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -157,18 +158,21 @@
     <div class='main'>
         <div class="content markdown animated fadeIn">
             <blockquote>
-<p>转载自：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27389115/answer/36434788">https://www.zhihu.com/question/27389115/answer/36434788</a><br>转载自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xieamy/article/details/70270039">https://blog.csdn.net/xieamy/article/details/70270039</a></p>
+<p>转载自：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27389115/answer/36434788">https://www.zhihu.com/question/27389115/answer/36434788</a><br>
+转载自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xieamy/article/details/70270039">https://blog.csdn.net/xieamy/article/details/70270039</a></p>
 </blockquote>
 <span id="more"></span>
-
-<h3><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h3><p>因为不小心的缘故，把自己电脑上的node版本由LTS升到了Current，从而遇到了之前有一个基于vue-cli上搭建的项目跑不起来，在读取配置文件的时候直接报fs模块的错误，因此有了想卸载Node.js再从新安装的想法。</p>
-<h3><a href="#dang-qian-huan-jing" class="header-anchor"></a><span id="dang-qian-huan-jing">当前环境</span></h3><p>当前的环境是 Mac os Sierra 10.12.6, 由于之前是通过直接在官网上下载安装包的方式来安装Node，并没有使用类似n或者nvm这类的Node版本管理工具，所以卸载的方法有点不一样。</p>
-<h3><a href="#shan-chu-dai-ma" class="header-anchor"></a><span id="shan-chu-dai-ma">删除代码</span></h3><ol>
-<li>删除&#x2F;usr&#x2F;local&#x2F;lib中的所有node和node_modules</li>
-<li>删除&#x2F;usr&#x2F;local&#x2F;lib中的所有node和node_modules的文件夹</li>
+<h3><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h3>
+<p>因为不小心的缘故，把自己电脑上的node版本由LTS升到了Current，从而遇到了之前有一个基于vue-cli上搭建的项目跑不起来，在读取配置文件的时候直接报fs模块的错误，因此有了想卸载Node.js再从新安装的想法。</p>
+<h3><a href="#dang-qian-huan-jing" class="header-anchor"></a><span id="dang-qian-huan-jing">当前环境</span></h3>
+<p>当前的环境是 Mac os Sierra 10.12.6, 由于之前是通过直接在官网上下载安装包的方式来安装Node，并没有使用类似n或者nvm这类的Node版本管理工具，所以卸载的方法有点不一样。</p>
+<h3><a href="#shan-chu-dai-ma" class="header-anchor"></a><span id="shan-chu-dai-ma">删除代码</span></h3>
+<ol>
+<li>删除/usr/local/lib中的所有node和node_modules</li>
+<li>删除/usr/local/lib中的所有node和node_modules的文件夹</li>
 <li>如果是从brew安装的, 运行brew uninstall node</li>
-<li>检查~&#x2F;中所有的local, lib或者include文件夹, 删除里面所有node和node_modules</li>
-<li>在&#x2F;usr&#x2F;local&#x2F;bin中, 删除所有node的可执行文件</li>
+<li>检查~/中所有的local, lib或者include文件夹, 删除里面所有node和node_modules</li>
+<li>在/usr/local/bin中, 删除所有node的可执行文件</li>
 <li>最后运行以下代码:</li>
 </ol>
 <pre><code>sudo rm /usr/local/bin/npm
@@ -179,8 +183,10 @@ sudo rm -rf ~/.node-gyp
 sudo rm /opt/local/bin/node
 sudo rm /opt/local/include/node
 sudo rm -rf /opt/local/lib/node_modules
+
 </code></pre>
-<h3><a href="#an-zhuang-nvm" class="header-anchor"></a><span id="an-zhuang-nvm">安装nvm</span></h3><p>打开nvm的github地址：<a target="_blank" rel="noopener" href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a>。在下面的简介中找到install，按照指示执行代码：</p>
+<h3><a href="#an-zhuang-nvm" class="header-anchor"></a><span id="an-zhuang-nvm">安装nvm</span></h3>
+<p>打开nvm的github地址：<a target="_blank" rel="noopener" href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a>。在下面的简介中找到install，按照指示执行代码：</p>
 <p><code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash</code></p>
 <p>当安装好之后会提示：</p>
 <pre><code>=&gt; Appending nvm source string to /Users/kuntang/.bash_profile

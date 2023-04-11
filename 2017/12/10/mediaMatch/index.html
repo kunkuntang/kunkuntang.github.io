@@ -166,7 +166,8 @@
 <p>MediaQueryList对象在一个document上维持着一系列的媒体查询，并负责处理当媒体查询在其document上发生变化时向监听器进行通知的发送。</p>
 <p>如果你需要以编程方式来检测一个document上的媒体查询的值的变化，这个MediaQueryList对象使得通过观察其document而检测它的媒体查询的值的变化成为可能，而不是周期性地对这些媒体查询的值进行检查。</p>
 <p>它有两个方法：</p>
-<p><code>void addListener(MediaQueryListListener listener);</code><br><code>void removeListener(MediaQueryListListener listener);</code></p>
+<p><code>void addListener(MediaQueryListListener listener);</code><br>
+<code>void removeListener(MediaQueryListListener listener);</code></p>
 <p><strong>MediaQueryList对象是一个非标准的对象，使用时应注意其在浏览器上的可用性。</strong></p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/MediaQueryList">关于MediaQueryList的介绍</a></p>
@@ -177,7 +178,7 @@
     mql.addListener(mediaChangeHandler);
     mediaChangeHandler(mql);
 &#125; else &#123;
-    window.addEventListener(&#39;resize&#39;, function() &#123;
+    window.addEventListener('resize', function() &#123;
         var innerWidth = window.innerWidth
                     || document.documentElement.clientWidth
                     || document.body.clientWidth;

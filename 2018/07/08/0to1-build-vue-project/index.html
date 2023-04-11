@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="开篇前记入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在学,"> 
+    <meta name="description" content="开篇前记
+入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -156,8 +157,10 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h2><a href="#kai-pian-qian-ji" class="header-anchor"></a><span id="kai-pian-qian-ji">开篇前记</span></h2><p>入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在学html,css,js三件套，当然还会有JQuery，现在有些人入门都开始直接学Vue框架了。踩过很多坑。但是坑还要一个一个地爬出来，未知的东西还是要一个一个地探索，所以才有了冲动来写这篇文章，第一是为了总结我之前学过的知识和经验，比如Vue全家桶，wepback构建Vue环境等。其次是在我没有实践过的领域进行探索的同时记录下来拿，以后有需要的时候再看回这篇文章。</p>
-<h2><a href="#zhai-yao" class="header-anchor"></a><span id="zhai-yao">摘要</span></h2><p>我把这篇文章的内容拆成几个版块，作为一个连载的文章。首先列一下主要章节内容：</p>
+            <h2><a href="#kai-pian-qian-ji" class="header-anchor"></a><span id="kai-pian-qian-ji">开篇前记</span></h2>
+<p>入门前端有一段时间了，从大学就开始学习前端，到现在刚好毕业就整整4年，其中学习了不少东西，也新出不了少东西，前段的发展总是很快的，一不小心之前所学的技术就开始落后了。以前刚开始学的时候还在学html,css,js三件套，当然还会有JQuery，现在有些人入门都开始直接学Vue框架了。踩过很多坑。但是坑还要一个一个地爬出来，未知的东西还是要一个一个地探索，所以才有了冲动来写这篇文章，第一是为了总结我之前学过的知识和经验，比如Vue全家桶，wepback构建Vue环境等。其次是在我没有实践过的领域进行探索的同时记录下来拿，以后有需要的时候再看回这篇文章。</p>
+<h2><a href="#zhai-yao" class="header-anchor"></a><span id="zhai-yao">摘要</span></h2>
+<p>我把这篇文章的内容拆成几个版块，作为一个连载的文章。首先列一下主要章节内容：</p>
 <ul>
 <li>搭建一个运行Vue的webpack环境</li>
 <li>加入Vue全家桶</li>
@@ -167,7 +170,9 @@
 <li>项目总结</li>
 </ul>
 <p>因为在编写项目的时候总会附上对应的测试代码，但这样有时候需要看关于Vue测试的内容时会过于零散，所以在写完项目之后专门给了一个小节来写关于Vue的测试内容。当然如果你是从头往下看的话可以跳过这一小节。最后项目 弄好了按照国际惯例总是要总结一下经验的。</p>
-<h2><a href="#da-jian-yun-xing-vue-de-webpack-huan-jing" class="header-anchor"></a><span id="da-jian-yun-xing-vue-de-webpack-huan-jing">搭建运行Vue的webpack环境</span></h2><h3><a href="#gong-cheng-mu-lu" class="header-anchor"></a><span id="gong-cheng-mu-lu">工程目录</span></h3><pre><code>|____.gitignore
+<h2><a href="#da-jian-yun-xing-vue-de-webpack-huan-jing" class="header-anchor"></a><span id="da-jian-yun-xing-vue-de-webpack-huan-jing">搭建运行Vue的webpack环境</span></h2>
+<h3><a href="#gong-cheng-mu-lu" class="header-anchor"></a><span id="gong-cheng-mu-lu">工程目录</span></h3>
+<pre><code>|____.gitignore
 |____index.html
 |____LICENSE
 |____package-lock.json
@@ -183,20 +188,22 @@
 |____test
 |____webpack.config.js
 </code></pre>
-<h3><a href="#webpack-pei-zhi" class="header-anchor"></a><span id="webpack-pei-zhi">webpack配置</span></h3><p>这是我摸索了几个钟弄出来的配置（不得不说webpack的配置是真的麻烦），以前都是懒所以直接使用vue-cli初始化出来的项目，webpack配置什么的都已经帮我配好了，这次自己动刀搭了一下才发现这么费劲，期间不断地报错，再加上由于用了4.0版本，也出现了一些坑，这里一并也记录一下，以后再遇到的时候好回头翻翻。</p>
-<p> 首先是最基础的webpack框架，不清楚的可以去到<a target="_blank" rel="noopener" href="https://www.webpackjs.com/configuration/#%E9%80%89%E9%A1%B9">webpack官网</a>上找（现在都已经有翻译很好的中文网啦，哪像以前那么苦还要去啃英文 (T^T) ）。当然我们也只会用到其中的几个属性。</p>
-<pre><code>const path = require(&#39;path&#39;)
+<h3><a href="#webpack-pei-zhi" class="header-anchor"></a><span id="webpack-pei-zhi">webpack配置</span></h3>
+<p>这是我摸索了几个钟弄出来的配置（不得不说webpack的配置是真的麻烦），以前都是懒所以直接使用vue-cli初始化出来的项目，webpack配置什么的都已经帮我配好了，这次自己动刀搭了一下才发现这么费劲，期间不断地报错，再加上由于用了4.0版本，也出现了一些坑，这里一并也记录一下，以后再遇到的时候好回头翻翻。</p>
+<p>首先是最基础的webpack框架，不清楚的可以去到<a target="_blank" rel="noopener" href="https://www.webpackjs.com/configuration/#%E9%80%89%E9%A1%B9">webpack官网</a>上找（现在都已经有翻译很好的中文网啦，哪像以前那么苦还要去啃英文 (T^T) ）。当然我们也只会用到其中的几个属性。</p>
+<pre><code>const path = require('path')
 module.exports = &#123;
-  entry: &#39;&#39;,
+  entry: '',
   output: &#123;&#125;,
   module: &#123;
-      rules: []
+  	rules: []
   &#125;,
   plugins: []
 &#125;
 </code></pre>
 <p>OK,这就完成了webpack最基本的框架，接下来我们要分别搭建不同方式启动webpack的方案。（其实这两者在实现原理上本没有什么区别，而对于我们使用者来说区别最大的大概就是工程目录的划分和关于wepback-dev-server的配置）</p>
-<h3><a href="#ji-yu-webpack-dev-server-cha-jian-lai-qi-dong-webpack" class="header-anchor"></a><span id="ji-yu-webpack-dev-server-cha-jian-lai-qi-dong-webpack">基于webpack-dev-server插件来启动webpack</span></h3><p>基于<code>webpack-dev-server</code>这种方式启动webpack，我们首先把之前的webpack的配置文件命名为<code>webpack.config.js</code>并放在项目的根目录下。然后在<code>package.json</code>里的<code>script</code>对象添加一个<code>dev</code>属性，并在后面添加脚本<code>webpack-dev-server --inline --hot</code>再保存。例如：</p>
+<h3><a href="#ji-yu-webpack-dev-server-cha-jian-lai-qi-dong-webpack" class="header-anchor"></a><span id="ji-yu-webpack-dev-server-cha-jian-lai-qi-dong-webpack">基于webpack-dev-server插件来启动webpack</span></h3>
+<p>基于<code>webpack-dev-server</code>这种方式启动webpack，我们首先把之前的webpack的配置文件命名为<code>webpack.config.js</code>并放在项目的根目录下。然后在<code>package.json</code>里的<code>script</code>对象添加一个<code>dev</code>属性，并在后面添加脚本<code>webpack-dev-server --inline --hot</code>再保存。例如：</p>
 <pre><code>// package.json
 
 &#123;
@@ -211,14 +218,14 @@ module.exports = &#123;
 <p>然后我们在webpack.config.js文件里添加devServer配置：</p>
 <pre><code>// webpack.config.js
 
-const path = require(&#39;path&#39;)
+const path = require('path')
 
 module.exports = &#123;
-  entry: &#39;./src/main.js&#39;,
+  entry: './src/main.js',
   output: &#123;
-    path: path.resolve(__dirname, &#39;./dist&#39;),
-    publicPath: &#39;/dist/&#39;,
-    filename: &#39;build.js&#39;
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
   &#125;,
   module: &#123;
     rules: []
@@ -232,20 +239,22 @@ module.exports = &#123;
     historyApiFallback: true,
     compress: true,
     proxy: &#123; // proxy URLs to backend development server
-      // &#39;/api&#39;: &#39;http://localhost:3000&#39;,
-      // &#39;/api&#39;: &#123;
-      //   target: &#39;http://localhost:3000&#39;,
-      //   pathRewrite: &#123;&#39;^/api&#39; : &#39;&#39;&#125;
+      // '/api': 'http://localhost:3000',
+      // '/api': &#123;
+      //   target: 'http://localhost:3000',
+      //   pathRewrite: &#123;'^/api' : ''&#125;
       // &#125;
     &#125;,
     hot: true,
     inline: true
   &#125;,
-  devtool: &#39;#eval-source-map&#39;
+  devtool: '#eval-source-map'
 &#125;
 </code></pre>
 <p>这样就可以把webpack-dev-server启动起来啦~~</p>
-<h3><a href="#ji-yu-node-express-fang-shi-lai-qi-dong-webpack" class="header-anchor"></a><span id="ji-yu-node-express-fang-shi-lai-qi-dong-webpack">基于node + express 方式来启动webpack</span></h3><h3><a href="#ji-ben-ke-yi-yun-xing-vue-xiang-mu-de-webpack-pei-zhi" class="header-anchor"></a><span id="ji-ben-ke-yi-yun-xing-vue-xiang-mu-de-webpack-pei-zhi">基本可以运行Vue项目的webpack配置</span></h3><p>完成了上面的步骤之后，接下来就是配置vue相关的东西了，先回想在使用vue开发的时候，我们会新建一个vue后缀的文件，所以我们就需要一个loader来解析和读取.vue文件的内容。先安装：</p>
+<h3><a href="#ji-yu-node-express-fang-shi-lai-qi-dong-webpack" class="header-anchor"></a><span id="ji-yu-node-express-fang-shi-lai-qi-dong-webpack">基于node + express 方式来启动webpack</span></h3>
+<h3><a href="#ji-ben-ke-yi-yun-xing-vue-xiang-mu-de-webpack-pei-zhi" class="header-anchor"></a><span id="ji-ben-ke-yi-yun-xing-vue-xiang-mu-de-webpack-pei-zhi">基本可以运行Vue项目的webpack配置</span></h3>
+<p>完成了上面的步骤之后，接下来就是配置vue相关的东西了，先回想在使用vue开发的时候，我们会新建一个vue后缀的文件，所以我们就需要一个loader来解析和读取.vue文件的内容。先安装：</p>
 <pre><code>npm install --save-dev vue-loader vue-template-compiler
 </code></pre>
 <p>然后我们再在wepback配置中的module.rules中使用：</p>
@@ -257,7 +266,7 @@ module.exports = &#123;
     rules: [
       &#123;
         test: /\.vue$/,
-        loader: &#39;vue-loader&#39;,
+        loader: 'vue-loader',
         options: &#123;&#125;
       &#125;
     ]
@@ -267,8 +276,8 @@ module.exports = &#123;
 <p>至于这里为什么要安装<code>vue-template-compiler</code>，是因为单纯使用<code>vue-loader</code>启动的时候会报错，提示在没有<code>vue-template-compiler</code>的情况下使用<code>vue-loader</code>，我在网上查了一下也有人写了<a target="_blank" rel="noopener" href="https://blog.csdn.net/cominglately/article/details/80555210">blog</a>说明了这一情况，意思大概是升级到webpack 4.0之后会出现的问题。为了解决这个问题我们要在webpack配置上使用一下。</p>
 <pre><code>// webpack.config.js/webpack.base.conf.js
 
-const path = require(&#39;path&#39;)
-const VueLoaderPlugin = require(&#39;vue-loader/lib/plugin&#39;);
+const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = &#123;
   ...
@@ -276,7 +285,7 @@ module.exports = &#123;
     rules: [
       &#123;
         test: /\.vue$/,
-        loader: &#39;vue-loader&#39;,
+        loader: 'vue-loader',
         options: &#123;&#125;
       &#125;
     ]
@@ -299,39 +308,39 @@ module.exports = &#123;
 <p>然后再分别写到rules里面，就完成了。整个配置如下：</p>
 <pre><code>// webpack.config.js/webpack.base.conf.js
 
-const path = require(&#39;path&#39;)
-const VueLoaderPlugin = require(&#39;vue-loader/lib/plugin&#39;);
+const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = &#123;
-  entry: &#39;./src/main.js&#39;,
+  entry: './src/main.js',
   output: &#123;
-    path: path.resolve(__dirname, &#39;./dist&#39;),
-    publicPath: &#39;/dist/&#39;,
-    filename: &#39;build.js&#39;
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
   &#125;,
   module: &#123;
     rules: [&#123;
         test: /\.css$/,
         use: [
-          &#39;vue-style-loader&#39;,
-          &#39;css-loader&#39;
+          'vue-style-loader',
+          'css-loader'
         ]
       &#125;,
       &#123;
         test: /\.js$/,
-        loader: &#39;babel-loader&#39;,
+        loader: 'babel-loader',
         exclude: /node_modules/
       &#125;,
       &#123;
         test: /\.vue$/,
-        loader: &#39;vue-loader&#39;,
+        loader: 'vue-loader',
         options: &#123;&#125;
       &#125;,
       &#123;
         test: /\.(png|jpg|gif|svg)$/,
-        loader: &#39;file-loader&#39;,
+        loader: 'file-loader',
         options: &#123;
-          name: &#39;[name].[ext]?[hash]&#39;
+          name: '[name].[ext]?[hash]'
         &#125;
       &#125;
     ]
@@ -347,22 +356,24 @@ module.exports = &#123;
     historyApiFallback: true,
     compress: true,
     proxy: &#123; // proxy URLs to backend development server
-      // &#39;/api&#39;: &#39;http://localhost:3000&#39;,
-      // &#39;/api&#39;: &#123;
-      //   target: &#39;http://localhost:3000&#39;,
-      //   pathRewrite: &#123;&#39;^/api&#39; : &#39;&#39;&#125;
+      // '/api': 'http://localhost:3000',
+      // '/api': &#123;
+      //   target: 'http://localhost:3000',
+      //   pathRewrite: &#123;'^/api' : ''&#125;
       // &#125;
     &#125;,
     hot: true,
     inline: true
   &#125;,
-  devtool: &#39;#eval-source-map&#39;
+  devtool: '#eval-source-map'
 &#125;
 </code></pre>
-<h3><a href="#xiang-mu-you-hua" class="header-anchor"></a><span id="xiang-mu-you-hua">项目优化</span></h3><p>按照刚刚的步骤进行操作的话，会发现当项目运行起来的时候webpack会报如下错误，现在慢慢地按照提示来对项目进行优化。</p>
+<h3><a href="#xiang-mu-you-hua" class="header-anchor"></a><span id="xiang-mu-you-hua">项目优化</span></h3>
+<p>按照刚刚的步骤进行操作的话，会发现当项目运行起来的时候webpack会报如下错误，现在慢慢地按照提示来对项目进行优化。</p>
 <p><a target="_blank" rel="noopener" href="https://simimg.com/i/qqEhK"><img src="https://s1.ax2x.com/2018/07/19/qqEhK.png" alt="qqEhK.png"></a></p>
-<h4><a href="#warning-in-configuration" class="header-anchor"></a><span id="warning-in-configuration">WARNING in configuration</span></h4><pre><code>The &#39;mode&#39; option has not been set, webpack will fallback to &#39;production&#39; for this value. Set &#39;mode&#39; option to &#39;development&#39; or &#39;production&#39; to enable defaults for each environment.
-You can also set it to &#39;none&#39; to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/
+<h4><a href="#warning-in-configuration" class="header-anchor"></a><span id="warning-in-configuration">WARNING in configuration</span></h4>
+<pre><code>The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
+You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/concepts/mode/
 </code></pre>
 <p>翻译成中文的意思大概是：<code>mode</code>这个选项没有被设置，webpack将会默认设置为<code>production</code>。你可以把<code>mode</code>选项设置为<code>development</code>或者<code>production</code>，以让webpack以指定的环境启动。你也可以设置为<code>none</code>以禁用任何的默认行为。<a target="_blank" rel="noopener" href="https://webpack.js.org/concepts/mode/">了解更多：https://webpack.js.org/concepts/mode/</a>。</p>
 <p>这个问题主要是告诉我们要让webpack知道现是要按什么环境去构建应用，通常我们会通过一个配置文件来记录所有会用到的环境，然后在调用的时候通过传入参数的形式来指定使用哪一个环境。</p>
@@ -375,17 +386,17 @@ You can also set it to &#39;none&#39; to disable any default behavior. Learn mor
 </code></pre>
 <p>我们分别区别了开发环境、生产环境、和测试环境，然后再通过一个index.js来判断当前使用哪一个环境：</p>
 <pre><code>// index.js
-const prod = require(&#39;./prod&#39;)
-const dev = require(&#39;./dev&#39;)
-const test = require(&#39;./test&#39;)
+const prod = require('./prod')
+const dev = require('./dev')
+const test = require('./test')
 
 let env = prod;
 
 switch (process.env.NODE_ENV) &#123;
-  case &#39;development&#39;:
+  case 'development':
     env = dev;
     break;
-    // case &#39;test&#39;:
+    // case 'test':
     //   env = test;
     //   break;
   default:
@@ -405,18 +416,21 @@ module.exports = env
 &#125;,
 ...
 </code></pre>
-<h4><a href="#warning-in-asset-size-limit" class="header-anchor"></a><span id="warning-in-asset-size-limit">WARNING in asset size limit</span></h4><pre><code>The following asset(s) exceed the recommended size limit (244 KiB).
+<h4><a href="#warning-in-asset-size-limit" class="header-anchor"></a><span id="warning-in-asset-size-limit">WARNING in asset size limit</span></h4>
+<pre><code>The following asset(s) exceed the recommended size limit (244 KiB).
 This can impact web performance.
 Assets:
   build.js (2.13 MiB)
 </code></pre>
-<h4><a href="#warning-in-entrypoint-size-limit" class="header-anchor"></a><span id="warning-in-entrypoint-size-limit">WARNING in entrypoint size limit</span></h4><pre><code>The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+<h4><a href="#warning-in-entrypoint-size-limit" class="header-anchor"></a><span id="warning-in-entrypoint-size-limit">WARNING in entrypoint size limit</span></h4>
+<pre><code>The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 Entrypoints:
   main (2.13 MiB)
       build.js
       0.9256098444c5c2f2e51c.hot-update.js
 </code></pre>
-<h4><a href="#warning-in-webpack-performance-recommendations" class="header-anchor"></a><span id="warning-in-webpack-performance-recommendations">WARNING in webpack performance recommendations</span></h4><pre><code>You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+<h4><a href="#warning-in-webpack-performance-recommendations" class="header-anchor"></a><span id="warning-in-webpack-performance-recommendations">WARNING in webpack performance recommendations</span></h4>
+<pre><code>You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 For more info visit https://webpack.js.org/guides/code-splitting/
 </code></pre>
 

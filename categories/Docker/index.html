@@ -149,10 +149,11 @@
         
         <div class="md-content animated fadeIn">
             
-            <h3><a href="#deng-lu" class="header-anchor"></a><span id="deng-lu">登录</span></h3><pre><code>docker login
+            <h3><a href="#deng-lu" class="header-anchor"></a><span id="deng-lu">登录</span></h3>
+<pre><code>docker login
 </code></pre>
 <p>通过执行<code>docker login</code>命令来输入用户名、密码和邮箱来完成注册和登录。注册成功后，本地用户目录的<code>.dockercfg</code>中将保存着用户认证的信息。</p>
-<h3><a href="#cong-cang-ku-la-qu-jing-xiang" class="header-anchor"></a><span id="cong-cang-ku-la-qu-jing-xiang">从仓库拉取镜像</span></h3><pre><code>docker...</code></pre>
+<h3><a href="#cong-cang-ku-la-qu-jing-xiang" class="header-anchor"></a><span id="cong-cang-ku-la-qu-jing-xiang">从仓库拉取镜像...</span></h3>
             
             <span class="read-more"><a href="/2019/11/21/Frequently-Used-Docker-Repository-Command/" title="Read article" class="posttitle">Read article</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
@@ -196,7 +197,7 @@
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        4.7k
+                        4.6k
                     </span>
                 
                 
@@ -213,8 +214,10 @@
         
         <div class="md-content animated fadeIn">
             
-                <h2><a href="#wang-luo-ji-chu-pei-zhi" class="header-anchor"></a><span id="wang-luo-ji-chu-pei-zhi">网络基础配置</span></h2><p>虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。</p>
-<h3><a href="#cong-wai-bu-fang-wen-rong-qi-ying-yong" class="header-anchor"></a><span id="cong-wai-bu-fang-wen-rong-qi-ying-yong">从外部访问容器应用</span></h3><p>在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外部访问的网络应用时，可以通过-P或者-p参数来指定端口映射。当使用-P标记时，Docker会随机映射一个49000...</p>
+                <h2><a href="#wang-luo-ji-chu-pei-zhi" class="header-anchor"></a><span id="wang-luo-ji-chu-pei-zhi">网络基础配置</span></h2>
+<p>虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。</p>
+<p>###　从外部访问容器应用</p>
+<p>在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外部访问的网络应用时，可以通过-P或者-p参数来指定端口映射。当使用-P标记时，Docker会随...</p>
             
             <span class="read-more"><a href="/2019/11/21/Frequently-Used-Docker-Container-Network-Command/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
@@ -260,9 +263,13 @@
         
         <div class="md-content animated fadeIn">
             
-                <h2><a href="#jian-shu" class="header-anchor"></a><span id="jian-shu">简述</span></h2><p>对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。</p>
-<p>要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：<br>Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举以下有关镜像、容器的命令：</p>
-<h2><a href="#docker-jing-xiang" class="header-anchor"></a><span id="docker-jing-xiang">Docker镜像</span></h2><h3><a href="#cong-wang-luo-shang-xia-jie-jing-xiang" class="header-anchor"></a><span id="cong-wang-luo-shang-xia-jie-jing-xiang">从网络上下截镜像</span></h3><pre><code>docker pull [mirror] NAME...</code></pre>
+                <h2><a href="#jian-shu" class="header-anchor"></a><span id="jian-shu">简述</span></h2>
+<p>对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。</p>
+<p>要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：<br>
+Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举以下有关镜像、容器的命令：</p>
+<h2><a href="#docker-jing-xiang" class="header-anchor"></a><span id="docker-jing-xiang">Docker镜像</span></h2>
+<h3><a href="#cong-wang-luo-shang-xia-jie-jing-xiang" class="header-anchor"></a><span id="cong-wang-luo-shang-xia-jie-jing-xiang">从网络上下截镜像</span></h3>
+<pre><code>docker pull [mirror...</code></pre>
             
             <span class="read-more"><a href="/2019/11/21/Frequently-Used-Docker-Container-Or-Image-Command/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>

@@ -160,11 +160,12 @@ Database Des,">
     <div class='main'>
         <div class="content markdown animated fadeIn">
             <blockquote>
-<p>在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">Database Design Course</a></p>
+<p>在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">Database Design Course</a></p>
 </blockquote>
 <p>Database Design Course：</p>
 <p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI</a></p>
-<h2><a href="#wei-shi-me-yao-shi-yong-guan-xi" class="header-anchor"></a><span id="wei-shi-me-yao-shi-yong-guan-xi">为什么要使用关系？</span></h2><p>使用关系关联的目的是为了减少<strong>数据冗余</strong>，比如我们要记录用户和用户卡片相关的信息，如果不使用关联关系，则数据存储如下：</p>
+<h2><a href="#wei-shi-me-yao-shi-yong-guan-xi" class="header-anchor"></a><span id="wei-shi-me-yao-shi-yong-guan-xi">为什么要使用关系？</span></h2>
+<p>使用关系关联的目的是为了减少<strong>数据冗余</strong>，比如我们要记录用户和用户卡片相关的信息，如果不使用关联关系，则数据存储如下：</p>
 <table>
 <thead>
 <tr>
@@ -176,7 +177,8 @@ Database Des,">
 <th>card_name</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>001</td>
 <td>John</td>
 <td>24</td>
@@ -192,7 +194,8 @@ Database Des,">
 <td>null</td>
 <td>null</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>不难发现，因为不是每个人都会拥有卡片，当遇到那些没有卡片的人时，卡片信息的相关字段便会<strong>记录为没有意义的null，空间被白白浪费掉</strong>。这时如果使用关联关系则会如下：</p>
 <table>
 <thead>
@@ -203,7 +206,8 @@ Database Des,">
 <th>sex</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>001</td>
 <td>John</td>
 <td>24</td>
@@ -215,7 +219,8 @@ Database Des,">
 <td>22</td>
 <td>female</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -224,18 +229,20 @@ Database Des,">
 <th>belong_user_id</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1</td>
 <td>GoldCard</td>
 <td>001</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>用户表通过 foreign key(belong_card_id)与卡片表的primary key(card_id)相关联，从而达到减少数据冗余的情况。</p>
 <p>当然除了一对一的关系，也可能存在一个人有多张卡的情况，也有可能一张卡被多个人共用的情况，这就是一对多和多对一的关联关系了。</p>
 <p><strong>在有关联关系的两个表之间，必定有一个是父表（parent table），另一个为子表（child table），父表不知道有哪些子表关联着它，而子表可以通过 foregin key 从父表中查找出对于关联的信息。</strong></p>
 <p>一般情况下，关系型数据可以通过使用 Primary Key 和 Foreign Key 来很好地处理 One to One（一对一）, One to Many（一对多）, Many to One（多对一）的关系，但是对于 Many to Many（多对多）的关系是需要一些技巧来处理的。</p>
 <p>对于多对多的关联关系，我们通常使用 <strong>中间表（Intermediary Table）</strong> 的技巧来优化我们的表数据。</p>
-<p>我们假设一个人可以有多张卡，一张卡也可以被多个人共同使用，那么表结构如下：  </p>
+<p>我们假设一个人可以有多张卡，一张卡也可以被多个人共同使用，那么表结构如下：</p>
 <p>用户表：</p>
 <table>
 <thead>
@@ -246,7 +253,8 @@ Database Des,">
 <th>sex</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>001</td>
 <td>John</td>
 <td>24</td>
@@ -258,7 +266,8 @@ Database Des,">
 <td>22</td>
 <td>female</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>卡片表：</p>
 <table>
 <thead>
@@ -267,11 +276,13 @@ Database Des,">
 <th>card_name</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1</td>
 <td>GoldCard</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>用户、卡片关系表：</p>
 <table>
 <thead>
@@ -280,11 +291,13 @@ Database Des,">
 <th>card_id</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>001</td>
 <td>1</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>通过用户、卡片关系表可以得知，001用户拥有编号为1的卡片，如果001还拥有其他卡片，都可以通过该表查出对应的卡片信息。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->

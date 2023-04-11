@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="网络基础配置虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络,"> 
+    <meta name="description" content="网络基础配置
+虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -116,7 +117,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    4.7k
+                    4.6k
                 </span>
                 
                 
@@ -156,37 +157,46 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h2><a href="#wang-luo-ji-chu-pei-zhi" class="header-anchor"></a><span id="wang-luo-ji-chu-pei-zhi">网络基础配置</span></h2><p>虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。</p>
-<h3><a href="#cong-wai-bu-fang-wen-rong-qi-ying-yong" class="header-anchor"></a><span id="cong-wai-bu-fang-wen-rong-qi-ying-yong">从外部访问容器应用</span></h3><p>在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外部访问的网络应用时，可以通过-P或者-p参数来指定端口映射。当使用-P标记时，Docker会随机映射一个49000~49900的端口至容器内部开放的网络端口：</p>
+            <h2><a href="#wang-luo-ji-chu-pei-zhi" class="header-anchor"></a><span id="wang-luo-ji-chu-pei-zhi">网络基础配置</span></h2>
+<p>虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。</p>
+<p>###　从外部访问容器应用</p>
+<p>在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外部访问的网络应用时，可以通过-P或者-p参数来指定端口映射。当使用-P标记时，Docker会随机映射一个49000~49900的端口至容器内部开放的网络端口：</p>
 <pre><code>docker run -d -p [mirror ID or TAG]
 </code></pre>
 <p>使用-p （小写）则可以指定要映射的端口，并且在一个指定端口上只可以绑定一个容器。支持的格式有ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort。</p>
-<h4><a href="#ying-she-suo-you-jie-kou-di-zhi" class="header-anchor"></a><span id="ying-she-suo-you-jie-kou-di-zhi">映射所有接口地址</span></h4><p>使用hostPort:containerPort将本地的5000端口映射到容器的5000端口：</p>
+<h4><a href="#ying-she-suo-you-jie-kou-di-zhi" class="header-anchor"></a><span id="ying-she-suo-you-jie-kou-di-zhi">映射所有接口地址</span></h4>
+<p>使用hostPort:containerPort将本地的5000端口映射到容器的5000端口：</p>
 <pre><code>docker run -d -p 5000:5000 training/webapp python app.py
 </code></pre>
 <p>此时默认会绑定本地所有接口上的所有地址。多次使用-p标记可以绑定多个端口：</p>
 <pre><code>docker run -d -p 5000:5000 -p 3000:80 training/webapp python app.py
 </code></pre>
-<h4><a href="#ying-she-dao-zhi-ding-di-zhi-de-zhi-ding-duan-kou" class="header-anchor"></a><span id="ying-she-dao-zhi-ding-di-zhi-de-zhi-ding-duan-kou">映射到指定地址的指定端口</span></h4><p>可以使用ip:hostPort:containerPort格式指定映射使用一个特定地址，比如localhost地址127.0.0.1:</p>
+<h4><a href="#ying-she-dao-zhi-ding-di-zhi-de-zhi-ding-duan-kou" class="header-anchor"></a><span id="ying-she-dao-zhi-ding-di-zhi-de-zhi-ding-duan-kou">映射到指定地址的指定端口</span></h4>
+<p>可以使用ip:hostPort:containerPort格式指定映射使用一个特定地址，比如localhost地址127.0.0.1:</p>
 <pre><code>docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py
 </code></pre>
 <blockquote>
 <p>也可以是内部其它容器的IP地址。</p>
 </blockquote>
-<h4><a href="#ying-she-dao-zhi-ding-di-zhi-de-ren-yi-duan-kou" class="header-anchor"></a><span id="ying-she-dao-zhi-ding-di-zhi-de-ren-yi-duan-kou">映射到指定地址的任意端口</span></h4><p>使用ip::containerPort绑定localhost的任意端口到容器5000端口，本地主机会自动分配一个端口：</p>
+<h4><a href="#ying-she-dao-zhi-ding-di-zhi-de-ren-yi-duan-kou" class="header-anchor"></a><span id="ying-she-dao-zhi-ding-di-zhi-de-ren-yi-duan-kou">映射到指定地址的任意端口</span></h4>
+<p>使用ip::containerPort绑定localhost的任意端口到容器5000端口，本地主机会自动分配一个端口：</p>
 <pre><code>docker run -d -p 127.0.0.1::5000 training/webapp python app.py
 </code></pre>
 <p>还可以使用udp标记来指定udp端口：</p>
 <pre><code>docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
 </code></pre>
-<h4><a href="#cha-kan-ying-she-duan-kou-pei-zhi" class="header-anchor"></a><span id="cha-kan-ying-she-duan-kou-pei-zhi">查看映射端口配置</span></h4><p>使用docker port查看当前映射的端口配置，也可以查看到绑定的地址：</p>
+<h4><a href="#cha-kan-ying-she-duan-kou-pei-zhi" class="header-anchor"></a><span id="cha-kan-ying-she-duan-kou-pei-zhi">查看映射端口配置</span></h4>
+<p>使用docker port查看当前映射的端口配置，也可以查看到绑定的地址：</p>
 <pre><code>docker port nostalgic_morse 5000
 </code></pre>
 <blockquote>
 <p>容器有自己的内部网络和IP地址（使用docker inspect+容器ID可以获取所有的变量值）。</p>
 </blockquote>
-<h3><a href="#rong-qi-hu-lian-shi-xian-rong-qi-jian-de-hu-tong-xin" class="header-anchor"></a><span id="rong-qi-hu-lian-shi-xian-rong-qi-jian-de-hu-tong-xin">容器互联实现容器间的互通信</span></h3><p>容器的连接系统是除了端口映射外另一种可以与容器中应用进行交互的方式。它会在源和接收容器之间创建一个隧道，接收容器可以看到源容器指定的信息。</p>
-<h4><a href="#zi-ding-yi-rong-qi-ming-ming" class="header-anchor"></a><span id="zi-ding-yi-rong-qi-ming-ming">自定义容器命名</span></h4><p>连接系统依据容器的名称来执行。因此首先需要自定义一个好记的容器命名。<br>虽然当创建容器的时候，系统默认会分配一个名字，但自定义命名容器有两个好处：</p>
+<h3><a href="#rong-qi-hu-lian-shi-xian-rong-qi-jian-de-hu-tong-xin" class="header-anchor"></a><span id="rong-qi-hu-lian-shi-xian-rong-qi-jian-de-hu-tong-xin">容器互联实现容器间的互通信</span></h3>
+<p>容器的连接系统是除了端口映射外另一种可以与容器中应用进行交互的方式。它会在源和接收容器之间创建一个隧道，接收容器可以看到源容器指定的信息。</p>
+<h4><a href="#zi-ding-yi-rong-qi-ming-ming" class="header-anchor"></a><span id="zi-ding-yi-rong-qi-ming-ming">自定义容器命名</span></h4>
+<p>连接系统依据容器的名称来执行。因此首先需要自定义一个好记的容器命名。<br>
+虽然当创建容器的时候，系统默认会分配一个名字，但自定义命名容器有两个好处：</p>
 <ul>
 <li>自定义的命名比较好记</li>
 <li>当要连接其它容器时，可以作为一个有用的参数点，比如连接web容器到db容器。</li>
@@ -213,13 +223,14 @@
 <blockquote>
 <p>使用–link参数可以让Docker在两个容器之间通过一个安全的隧道互相通信，而不用通过开放端口的方式来实现，避免了把端口暴露到外部网络上。</p>
 </blockquote>
-<h4><a href="#cha-kan-gong-kai-rong-qi-de-jie-lian-xin-xi" class="header-anchor"></a><span id="cha-kan-gong-kai-rong-qi-de-jie-lian-xin-xi">查看公开容器的接连信息</span></h4><ul>
+<h4><a href="#cha-kan-gong-kai-rong-qi-de-jie-lian-xin-xi" class="header-anchor"></a><span id="cha-kan-gong-kai-rong-qi-de-jie-lian-xin-xi">查看公开容器的接连信息</span></h4>
+<ul>
 <li>环境变量：使用env命令来查看容器的环境变量</li>
 </ul>
 <pre><code>docker run --name web --link db:db training/webapp env
 </code></pre>
 <ul>
-<li>&#x2F;etc&#x2F;hosts文件：使用link参数时，Docker会添加host信息到父容器的&#x2F;etc&#x2F;hosts的文件。下面是父容器web的hosts文件</li>
+<li>/etc/hosts文件：使用link参数时，Docker会添加host信息到父容器的/etc/hosts的文件。下面是父容器web的hosts文件</li>
 </ul>
 <pre><code>docker run -t -i --link db:db training/webapp /bin/bash
 root@aed84ee21bd3:/opt/webapp# cat /etc/hosts
@@ -229,7 +240,8 @@ root@aed84ee21bd3:/opt/webapp# cat /etc/hosts
 </code></pre>
 <p>第一个是web容器的host信息，默认用自己的id为主机名。第二个是db容器的ip和主机名。</p>
 <hr>
-<h2><a href="#geng-duo-yue-du" class="header-anchor"></a><span id="geng-duo-yue-du">更多阅读</span></h2><p>Docker系列文章：</p>
+<h2><a href="#geng-duo-yue-du" class="header-anchor"></a><span id="geng-duo-yue-du">更多阅读</span></h2>
+<p>Docker系列文章：</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d8820cae51d453b1e478b91">Docker中镜像、容器的常用命令</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d9f53d26fb9a04e3142120c">Docker仓库常用命令</a></li>
@@ -295,7 +307,7 @@ root@aed84ee21bd3:/opt/webapp# cat /etc/hosts
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">网络基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">从外部访问容器应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text">容器互联实现容器间的互通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">更多阅读</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">网络基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">容器互联实现容器间的互通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">更多阅读</span></a></li></ol>
                 </div>
             </div>
             

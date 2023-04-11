@@ -13,10 +13,10 @@
     <meta name="description" content="
 
 
-
-
 Git常用命令
+
 本地仓库
+
 初始化仓库(Init Repository)
 克隆仓库(Clone Repository)
 暂存新文件(Stage New File) &amp;amp; 暂存文件修改(,"> 
@@ -166,12 +166,12 @@ Git常用命令
     <div class='main'>
         <div class="content markdown animated fadeIn">
             <div class="toc">
-
 <!-- toc -->
-
 <ul>
-<li><a href="#git-chang-yong-ming-ling">Git常用命令</a><ul>
-<li><a href="#ben-di-cang-ku">本地仓库</a><ul>
+<li><a href="#git-chang-yong-ming-ling">Git常用命令</a>
+<ul>
+<li><a href="#ben-di-cang-ku">本地仓库</a>
+<ul>
 <li><a href="#chu-shi-hua-cang-ku-init-repository">初始化仓库(Init Repository)</a></li>
 <li><a href="#ke-long-cang-ku-clone-repository">克隆仓库(Clone Repository)</a></li>
 <li><a href="#zan-cun-xin-wen-jian-stage-new-file-zan-cun-wen-jian-xiu-gai-sage-modified-file">暂存新文件(Stage New File) &amp; 暂存文件修改(Sage Modified File)</a></li>
@@ -187,7 +187,8 @@ Git常用命令
 <li><a href="#che-xiao-cao-zuo">撤销操作</a></li>
 </ul>
 </li>
-<li><a href="#yuan-cheng-cang-ku">远程仓库</a><ul>
+<li><a href="#yuan-cheng-cang-ku">远程仓库</a>
+<ul>
 <li><a href="#cha-kan-yuan-cheng-cang-ku">查看远程仓库</a></li>
 <li><a href="#xiu-gai-git-cang-ku-di-zhi">修改Git 仓库地址</a></li>
 <li><a href="#chong-ming-ming-yuan-cheng-cang-ku">重命名远程仓库</a></li>
@@ -197,7 +198,8 @@ Git常用命令
 <li><a href="#tui-song-dao-yuan-cheng-cang-ku">推送到远程仓库</a></li>
 </ul>
 </li>
-<li><a href="#biao-qian">标签</a><ul>
+<li><a href="#biao-qian">标签</a>
+<ul>
 <li><a href="#lie-chu-biao-qian">列出标签</a></li>
 <li><a href="#chuang-jian-biao-qian">创建标签</a></li>
 <li><a href="#git-bie-ming">Git 别名</a></li>
@@ -207,96 +209,119 @@ Git常用命令
 </li>
 </ul>
 <!-- tocstop -->
-
 </div>
-
-<h1><a href="#git-chang-yong-ming-ling" class="header-anchor"></a><span id="git-chang-yong-ming-ling">Git常用命令</span></h1><h2><a href="#ben-di-cang-ku" class="header-anchor"></a><span id="ben-di-cang-ku">本地仓库</span></h2><p>本地仓库位于自己的电脑里，我们首先在本地编写好代码，然后提交到本地的仓库，但是这些代码仅仅只是在本地，还没推送到服务器上。一开始对于本地仓库的操作也仅仅只是影响本地，只有推送了才应用到服务器仓库。因此在推送到远端之前，可以很大胆地进行各种操作而不用担心会对远程仓库造成什么影响。</p>
-<h3><a href="#chu-shi-hua-cang-ku-init-repository" class="header-anchor"></a><span id="chu-shi-hua-cang-ku-init-repository">初始化仓库(Init Repository)</span></h3><p>为一个项目初始化为git仓库。</p>
-<pre><code class="bash">git init
+<h1><a href="#git-chang-yong-ming-ling" class="header-anchor"></a><span id="git-chang-yong-ming-ling">Git常用命令</span></h1>
+<h2><a href="#ben-di-cang-ku" class="header-anchor"></a><span id="ben-di-cang-ku">本地仓库</span></h2>
+<p>本地仓库位于自己的电脑里，我们首先在本地编写好代码，然后提交到本地的仓库，但是这些代码仅仅只是在本地，还没推送到服务器上。一开始对于本地仓库的操作也仅仅只是影响本地，只有推送了才应用到服务器仓库。因此在推送到远端之前，可以很大胆地进行各种操作而不用担心会对远程仓库造成什么影响。</p>
+<h3><a href="#chu-shi-hua-cang-ku-init-repository" class="header-anchor"></a><span id="chu-shi-hua-cang-ku-init-repository">初始化仓库(Init Repository)</span></h3>
+<p>为一个项目初始化为git仓库。</p>
+<pre><code class="language-bash">git init
 </code></pre>
-<h3><a href="#ke-long-cang-ku-clone-repository" class="header-anchor"></a><span id="ke-long-cang-ku-clone-repository">克隆仓库(Clone Repository)</span></h3><p>把远端的一个仓库下载到本地。</p>
-<pre><code class="bash">git clone [url]
+<h3><a href="#ke-long-cang-ku-clone-repository" class="header-anchor"></a><span id="ke-long-cang-ku-clone-repository">克隆仓库(Clone Repository)</span></h3>
+<p>把远端的一个仓库下载到本地。</p>
+<pre><code class="language-bash">git clone [url]
 </code></pre>
-<h3><a href="#zan-cun-xin-wen-jian-stage-new-file-amp-zan-cun-wen-jian-xiu-gai-sage-modified-file" class="header-anchor"></a><span id="zan-cun-xin-wen-jian-stage-new-file-amp-zan-cun-wen-jian-xiu-gai-sage-modified-file">暂存新文件(Stage New File) &amp; 暂存文件修改(Sage Modified File)</span></h3><p>把新建的文件或者文件的新修改放到暂存区。</p>
-<pre><code class="bash">git add [file]
+<h3><a href="#zan-cun-xin-wen-jian-stage-new-file-amp-zan-cun-wen-jian-xiu-gai-sage-modified-file" class="header-anchor"></a><span id="zan-cun-xin-wen-jian-stage-new-file-amp-zan-cun-wen-jian-xiu-gai-sage-modified-file">暂存新文件(Stage New File) &amp; 暂存文件修改(Sage Modified File)</span></h3>
+<p>把新建的文件或者文件的新修改放到暂存区。</p>
+<pre><code class="language-bash">git add [file]
 </code></pre>
-<h3><a href="#qu-xiao-gang-gang-xin-zan-cun-de-wen-jian-unstage-new-file" class="header-anchor"></a><span id="qu-xiao-gang-gang-xin-zan-cun-de-wen-jian-unstage-new-file">取消刚刚新暂存的文件(Unstage New File)</span></h3><p>对于未追踪的文件，可以使用一下命令来取消文件暂存：</p>
-<pre><code class="bash">git rm --cached &lt;file&gt;
+<h3><a href="#qu-xiao-gang-gang-xin-zan-cun-de-wen-jian-unstage-new-file" class="header-anchor"></a><span id="qu-xiao-gang-gang-xin-zan-cun-de-wen-jian-unstage-new-file">取消刚刚新暂存的文件(Unstage New File)</span></h3>
+<p>对于未追踪的文件，可以使用一下命令来取消文件暂存：</p>
+<pre><code class="language-bash">git rm --cached &lt;file&gt;
 </code></pre>
-<h3><a href="#qu-xiao-gang-gang-zan-cun-de-wen-jian-xiu-gai-unstage-modified-file" class="header-anchor"></a><span id="qu-xiao-gang-gang-zan-cun-de-wen-jian-xiu-gai-unstage-modified-file">取消刚刚暂存的文件修改(Unstage Modified File)</span></h3><p>对于已经在追踪（之前通过<code>git add</code>添加过）的文件，要想取消刚刚暂存的文件修改，可以使用以下命令：</p>
-<pre><code class="bash">git reset HEAD &lt;file&gt;
+<h3><a href="#qu-xiao-gang-gang-zan-cun-de-wen-jian-xiu-gai-unstage-modified-file" class="header-anchor"></a><span id="qu-xiao-gang-gang-zan-cun-de-wen-jian-xiu-gai-unstage-modified-file">取消刚刚暂存的文件修改(Unstage Modified File)</span></h3>
+<p>对于已经在追踪（之前通过<code>git add</code>添加过）的文件，要想取消刚刚暂存的文件修改，可以使用以下命令：</p>
+<pre><code class="language-bash">git reset HEAD &lt;file&gt;
 </code></pre>
-<h3><a href="#cha-kan-cang-ku-zhuang-tai-check-repository-status" class="header-anchor"></a><span id="cha-kan-cang-ku-zhuang-tai-check-repository-status">查看仓库状态（Check Repository Status）</span></h3><pre><code class="bash">git status
+<h3><a href="#cha-kan-cang-ku-zhuang-tai-check-repository-status" class="header-anchor"></a><span id="cha-kan-cang-ku-zhuang-tai-check-repository-status">查看仓库状态（Check Repository Status）</span></h3>
+<pre><code class="language-bash">git status
 </code></pre>
 <p>查看状态简览</p>
 <p><code>git status -s</code> 或者 <code>git status --short</code></p>
-<h3><a href="#cha-kan-wei-zan-cun-de-xiu-gai-check-unstaged-modified-file" class="header-anchor"></a><span id="cha-kan-wei-zan-cun-de-xiu-gai-check-unstaged-modified-file">查看未暂存的修改(Check Unstaged Modified File)</span></h3><pre><code class="bash">git diff
+<h3><a href="#cha-kan-wei-zan-cun-de-xiu-gai-check-unstaged-modified-file" class="header-anchor"></a><span id="cha-kan-wei-zan-cun-de-xiu-gai-check-unstaged-modified-file">查看未暂存的修改(Check Unstaged Modified File)</span></h3>
+<pre><code class="language-bash">git diff
 </code></pre>
 <p>此命令比较的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。</p>
-<h3><a href="#cha-kan-yi-zan-cun-de-xiu-gai-check-staged-modified-file" class="header-anchor"></a><span id="cha-kan-yi-zan-cun-de-xiu-gai-check-staged-modified-file">查看已暂存的修改(Check Staged Modified File)</span></h3><pre><code class="bash">git diff --cached
+<h3><a href="#cha-kan-yi-zan-cun-de-xiu-gai-check-staged-modified-file" class="header-anchor"></a><span id="cha-kan-yi-zan-cun-de-xiu-gai-check-staged-modified-file">查看已暂存的修改(Check Staged Modified File)</span></h3>
+<pre><code class="language-bash">git diff --cached
 </code></pre>
 <p>或者</p>
-<pre><code class="bash">git diff --staged // Git 1.6.1 及更高版本
+<pre><code class="language-bash">git diff --staged // Git 1.6.1 及更高版本
 </code></pre>
-<h3><a href="#ti-jiao-geng-xin-commit-file" class="header-anchor"></a><span id="ti-jiao-geng-xin-commit-file">提交更新(Commit File)</span></h3><p>在提交之前先要执行<code>git add </code>操作把文件放到暂存区。</p>
-<pre><code class="bash">git commit
+<h3><a href="#ti-jiao-geng-xin-commit-file" class="header-anchor"></a><span id="ti-jiao-geng-xin-commit-file">提交更新(Commit File)</span></h3>
+<p>在提交之前先要执行<code>git add </code>操作把文件放到暂存区。</p>
+<pre><code class="language-bash">git commit
 </code></pre>
 <p>这种方式会启动文本编辑器以便输入本次提交的说明。也可以在<code>git commit</code>后面带上<code>-m</code>参数使得提交信息与命令放在同一行</p>
-<pre><code class="bash">git commit -m &quot;&quot;
+<pre><code class="language-bash">git commit -m &quot;&quot;
 </code></pre>
 <p>如果想跳过暂存区直接提交更新：</p>
-<pre><code class="bash">git commit -a -m &quot;&quot;
+<pre><code class="language-bash">git commit -a -m &quot;&quot;
 </code></pre>
 <p><code>-a</code> 参数会自动执行<code>git add </code>步骤，把**所有已经跟踪过的文件暂存起来 **。</p>
-<h3><a href="#yi-chu-wen-jian" class="header-anchor"></a><span id="yi-chu-wen-jian">移除文件</span></h3><p>要把文件不纳入仓库中的版本管理中，首先要从已追踪文件列表中移除，然后再提交。</p>
+<h3><a href="#yi-chu-wen-jian" class="header-anchor"></a><span id="yi-chu-wen-jian">移除文件</span></h3>
+<p>要把文件不纳入仓库中的版本管理中，首先要从已追踪文件列表中移除，然后再提交。</p>
 <pre><code>git rm &lt;file&gt;
 </code></pre>
 <p>执行后会发现本地的文件被删除了，并且把修改放到了暂存区，因此只要把暂存区里的更改提交就完成移除文件的操作。</p>
 <p>当要移除被本地修改过的文件，应该使用：</p>
-<pre><code class="bash">// 从暂存区里不追踪文件，但是本地保留文件
+<pre><code class="language-bash">// 从暂存区里不追踪文件，但是本地保留文件
 git rm --cache &lt;file&gt;
 </code></pre>
 <p>或者：</p>
-<pre><code class="bash">// 从暂存区里不追踪文件并在本地删除文件
+<pre><code class="language-bash">// 从暂存区里不追踪文件并在本地删除文件
 git rm -f &lt;file&gt;
 </code></pre>
-<h3><a href="#yi-dong-wen-jian-shan-chu-wen-jian" class="header-anchor"></a><span id="yi-dong-wen-jian-shan-chu-wen-jian">移动文件（删除文件）</span></h3><p>要在 Git 中对文件改名，可以这么做: </p>
-<pre><code class="bash">git mv [old fileName] [new fileName]
+<h3><a href="#yi-dong-wen-jian-shan-chu-wen-jian" class="header-anchor"></a><span id="yi-dong-wen-jian-shan-chu-wen-jian">移动文件（删除文件）</span></h3>
+<p>要在 Git 中对文件改名，可以这么做:</p>
+<pre><code class="language-bash">git mv [old fileName] [new fileName]
 </code></pre>
 <p>执行后如图所示：</p>
-<p>51AE82F6-D51D-43CC-9C1D-919CCEA100E7.png<br><img src="/images/git_move_file.png" alt="upload successful"><br>可以看到Git变更出现了一个R的操作，代表着rename。</p>
+<p>51AE82F6-D51D-43CC-9C1D-919CCEA100E7.png<br>
+<img src="/images/git_move_file.png" alt="upload successful"><br>
+可以看到Git变更出现了一个R的操作，代表着rename。</p>
 <p><code>git mv [old fileName] [new fileName]</code>可以分解成以下三个命令：</p>
-<pre><code class="bash">mv [old fileName] [new fileName]
+<pre><code class="language-bash">mv [old fileName] [new fileName]
 git rm [old fileName]
 git add [new fileName]
 </code></pre>
 <p>上面三行命令同样可以完成文件的重命名操作。</p>
 <p><strong>注意:在window系统中进行重命名要主要大小写问题，一般来说在window下git对文件大小写不敏感，需要在git全局设置<code>git config core.ignorecase false</code>才能检测得到。</strong></p>
 <blockquote>
-<p><strong>Git 并不显式跟踪文件移动操作，因为Git是根据文件内容来推断文件是否有更改的，所以如果在 Git 中重命名了某个文件，仓库中存储的元数据 并不会体现出这是一次改名操作。</strong> </p>
+<p><strong>Git 并不显式跟踪文件移动操作，因为Git是根据文件内容来推断文件是否有更改的，所以如果在 Git 中重命名了某个文件，仓库中存储的元数据 并不会体现出这是一次改名操作。</strong></p>
 </blockquote>
-<h3><a href="#cha-kan-ti-jiao-li-shi" class="header-anchor"></a><span id="cha-kan-ti-jiao-li-shi">查看提交历史</span></h3><p>使用<code>git log</code>命令查看项目仓库的提交历史，默认不用任何参数的话，git log会按提交时间列出所有的更新，最近的更新排在最上面 。</p>
-<pre><code class="bash">git log
+<h3><a href="#cha-kan-ti-jiao-li-shi" class="header-anchor"></a><span id="cha-kan-ti-jiao-li-shi">查看提交历史</span></h3>
+<p>使用<code>git log</code>命令查看项目仓库的提交历史，默认不用任何参数的话，git log会按提交时间列出所有的更新，最近的更新排在最上面 。</p>
+<pre><code class="language-bash">git log
 </code></pre>
 <p><code>git log</code>常用的参数有：</p>
 <ul>
-<li><p>-p：显示每次提交的内容差异。</p>
+<li>
+<p>-p：显示每次提交的内容差异。</p>
 </li>
-<li><p>-<n>：仅显示最近n次提交 。</n></p>
+<li>
+<p>-<n>：仅显示最近n次提交 。</n></p>
 </li>
-<li><p>–stat：查每次提交的简略的统计信息 。</p>
+<li>
+<p>–stat：查每次提交的简略的统计信息 。</p>
 </li>
-<li><p>–pretty：指定使用不同于默认格式的方式展示提交历史 。</p>
+<li>
+<p>–pretty：指定使用不同于默认格式的方式展示提交历史 。</p>
 </li>
-<li><p>–pretty&#x3D;oneline： 将每个提交放在一行显示 。</p>
+<li>
+<p>–pretty=oneline： 将每个提交放在一行显示 。</p>
 </li>
-<li><p>–pretty&#x3D;short ：显示提交的简要信息。</p>
+<li>
+<p>–pretty=short ：显示提交的简要信息。</p>
 </li>
-<li><p>–pretty&#x3D;full：显示完全的信息。</p>
+<li>
+<p>–pretty=full：显示完全的信息。</p>
 </li>
-<li><p>–pretty&#x3D;fuller：显示全部的信息。</p>
+<li>
+<p>–pretty=fuller：显示全部的信息。</p>
 </li>
-<li><p>–pretty&#x3D;format ：可以定制要显示的记录格式（这样的输出对后期提取分析格外有用 ）。</p>
+<li>
+<p>–pretty=format ：可以定制要显示的记录格式（这样的输出对后期提取分析格外有用 ）。</p>
 <p>对于<code>git log --pretty=format</code>常用的格式占位符以及其代表的含义如下表：</p>
 </li>
 </ul>
@@ -307,7 +332,8 @@ git add [new fileName]
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>%H</td>
 <td>提交对象(commit)的完整哈希字串</td>
 </tr>
@@ -341,7 +367,7 @@ git add [new fileName]
 </tr>
 <tr>
 <td>%ad</td>
-<td>作者修订日期(可以用 –date&#x3D; 选项定制格式)</td>
+<td>作者修订日期(可以用 --date= 选项定制格式)</td>
 </tr>
 <tr>
 <td>%ar</td>
@@ -367,25 +393,29 @@ git add [new fileName]
 <td>%s</td>
 <td>提交说明</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <pre><code>&gt; *作者* 和 *提交者* 之间究竟有何差别？其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。 
 </code></pre>
 <ul>
 <li>–graph： 添加一些ASCII字符串来形象地展示你的分支、合并历史。</li>
 </ul>
-<h3><a href="#che-xiao-cao-zuo" class="header-anchor"></a><span id="che-xiao-cao-zuo">撤销操作</span></h3><p>如果在刚刚提交完后马上发现还有东西需要修改，或者漏掉文件需要提交，或者提交信息写错了，可以使用以下命令覆盖上一次的提交：</p>
-<pre><code class="bash">git commit --amend
-// git commit -m &#39;do some thing&#39;
+<h3><a href="#che-xiao-cao-zuo" class="header-anchor"></a><span id="che-xiao-cao-zuo">撤销操作</span></h3>
+<p>如果在刚刚提交完后马上发现还有东西需要修改，或者漏掉文件需要提交，或者提交信息写错了，可以使用以下命令覆盖上一次的提交：</p>
+<pre><code class="language-bash">git commit --amend
+// git commit -m 'do some thing'
 // git add README.md
 // git commit --amend
 </code></pre>
 <p>这个命令会将暂存区中的文件提交，并启动一个文本编辑器，在里面可以看到之前提交的信息，你可以在文本编辑器里修改。编辑后保存会覆盖原来的提交信息。</p>
-<h4><a href="#qu-xiao-zan-cun-de-wen-jian" class="header-anchor"></a><span id="qu-xiao-zan-cun-de-wen-jian">取消暂存的文件</span></h4><p>当你误将一个未完成的文件添加到缓存区是，可以使用下面命令来撤销暂存：</p>
-<pre><code class="bash">git reset HEAD &lt;file&gt; ...
+<h4><a href="#qu-xiao-zan-cun-de-wen-jian" class="header-anchor"></a><span id="qu-xiao-zan-cun-de-wen-jian">取消暂存的文件</span></h4>
+<p>当你误将一个未完成的文件添加到缓存区是，可以使用下面命令来撤销暂存：</p>
+<pre><code class="language-bash">git reset HEAD &lt;file&gt; ...
 // git reset HEAD READMD.md
 </code></pre>
 <p>使用该命令后，目标文件将会退回<strong>修改未暂存</strong>的状态。</p>
-<h4><a href="#che-xiao-wen-jian-de-xiu-gai-huan-yuan-wen-jian" class="header-anchor"></a><span id="che-xiao-wen-jian-de-xiu-gai-huan-yuan-wen-jian">撤销文件的修改（还原文件）</span></h4><p>如果你在编写代码的过程中，突然需要丢弃刚刚所做的更改（比如说产品说这个功能不用做了），那么可以使用下面命令来还原文件：</p>
+<h4><a href="#che-xiao-wen-jian-de-xiu-gai-huan-yuan-wen-jian" class="header-anchor"></a><span id="che-xiao-wen-jian-de-xiu-gai-huan-yuan-wen-jian">撤销文件的修改（还原文件）</span></h4>
+<p>如果你在编写代码的过程中，突然需要丢弃刚刚所做的更改（比如说产品说这个功能不用做了），那么可以使用下面命令来还原文件：</p>
 <pre><code>git checkout -- &lt;file&gt;
 // git checkout -- README.md
 </code></pre>
@@ -393,8 +423,10 @@ git add [new fileName]
 <p><strong>上面的命令只能对还没放到暂存区里的文件进行还原，如果文件在暂存区，则需要先执行 取消暂存文件 的命令。</strong></p>
 </blockquote>
 <p><strong>撤销的修改不能恢复</strong>，如需要恢复建议使用<strong>分支</strong>。</p>
-<h2><a href="#yuan-cheng-cang-ku" class="header-anchor"></a><span id="yuan-cheng-cang-ku">远程仓库</span></h2><p>远程仓库位于服务器上，是保存我们代码和与其他协作组同步代码的地方。</p>
-<h3><a href="#cha-kan-yuan-cheng-cang-ku" class="header-anchor"></a><span id="cha-kan-yuan-cheng-cang-ku">查看远程仓库</span></h3><pre><code class="bash">git remote
+<h2><a href="#yuan-cheng-cang-ku" class="header-anchor"></a><span id="yuan-cheng-cang-ku">远程仓库</span></h2>
+<p>远程仓库位于服务器上，是保存我们代码和与其他协作组同步代码的地方。</p>
+<h3><a href="#cha-kan-yuan-cheng-cang-ku" class="header-anchor"></a><span id="cha-kan-yuan-cheng-cang-ku">查看远程仓库</span></h3>
+<pre><code class="language-bash">git remote
 </code></pre>
 <p>它会列出你指定的每一个远程服务器 的简写。如果你已经克隆了自己的仓库，那么至少应该能看到 origin - 这是 Git 给你克隆的仓库服务器的默认名字。</p>
 <p>添加参数<code>-v</code>可以显示简写及对于的URL。</p>
@@ -402,44 +434,53 @@ git add [new fileName]
 <p><strong>Git不想传统的CSV，它是分布式的，这也说明了一个仓库可以对应多个远程仓库进行同步。这在某些项目环境下会有应用。</strong></p>
 </blockquote>
 <p>如果想查看某个远程仓库的详细信息，可以使用下面命令：</p>
-<pre><code class="bash">git remote show [remote-name]
+<pre><code class="language-bash">git remote show [remote-name]
 // git remote show master
 </code></pre>
-<h3><a href="#xiu-gai-git-cang-ku-di-zhi" class="header-anchor"></a><span id="xiu-gai-git-cang-ku-di-zhi">修改Git 仓库地址</span></h3><pre><code class="bash">git remote set-url origin [NEW_URL]
+<h3><a href="#xiu-gai-git-cang-ku-di-zhi" class="header-anchor"></a><span id="xiu-gai-git-cang-ku-di-zhi">修改Git 仓库地址</span></h3>
+<pre><code class="language-bash">git remote set-url origin [NEW_URL]
 </code></pre>
-<h3><a href="#chong-ming-ming-yuan-cheng-cang-ku" class="header-anchor"></a><span id="chong-ming-ming-yuan-cheng-cang-ku">重命名远程仓库</span></h3><p>如果想要重命名引用的名字可以运行git remote rename去修改一个远程仓库的简写名。例如，想要将pb重命名为paul，可以用git remote rename这样做:  </p>
-<pre><code class="bash">git remote rename [old-branch-name] [new-branch-name]
+<h3><a href="#chong-ming-ming-yuan-cheng-cang-ku" class="header-anchor"></a><span id="chong-ming-ming-yuan-cheng-cang-ku">重命名远程仓库</span></h3>
+<p>如果想要重命名引用的名字可以运行git remote rename去修改一个远程仓库的简写名。例如，想要将pb重命名为paul，可以用git remote rename这样做:</p>
+<pre><code class="language-bash">git remote rename [old-branch-name] [new-branch-name]
 // git remote rename pb paul
 </code></pre>
-<h3><a href="#yi-chu-yuan-cheng-cang-ku" class="header-anchor"></a><span id="yi-chu-yuan-cheng-cang-ku">移除远程仓库</span></h3><p>如果因为一些原因想要移除一个远程仓库 - 你已经从服务器上搬走了或不再想使用某一个特定的镜像了，又或者 某一个贡献者不再贡献了-可以使用git remote rm: </p>
-<pre><code class="bash">git remote rm [branch-name]
+<h3><a href="#yi-chu-yuan-cheng-cang-ku" class="header-anchor"></a><span id="yi-chu-yuan-cheng-cang-ku">移除远程仓库</span></h3>
+<p>如果因为一些原因想要移除一个远程仓库 - 你已经从服务器上搬走了或不再想使用某一个特定的镜像了，又或者 某一个贡献者不再贡献了-可以使用git remote rm:</p>
+<pre><code class="language-bash">git remote rm [branch-name]
 </code></pre>
-<h3><a href="#tian-jia-yuan-cheng-cang-ku-di-zhi" class="header-anchor"></a><span id="tian-jia-yuan-cheng-cang-ku-di-zhi">添加远程仓库地址</span></h3><pre><code class="bash">git remote add origin git@github.com:&lt;username&gt;/&lt;projectName&gt;.git
+<h3><a href="#tian-jia-yuan-cheng-cang-ku-di-zhi" class="header-anchor"></a><span id="tian-jia-yuan-cheng-cang-ku-di-zhi">添加远程仓库地址</span></h3>
+<pre><code class="language-bash">git remote add origin git@github.com:&lt;username&gt;/&lt;projectName&gt;.git
 // username是你在github里注册的用户名，projectName则是你远程仓库的项目名称
 git push -u origin master
 </code></pre>
-<h3><a href="#cong-yuan-cheng-cang-ku-zhong-zhua-qu-yu-la-qu" class="header-anchor"></a><span id="cong-yuan-cheng-cang-ku-zhong-zhua-qu-yu-la-qu">从远程仓库中抓取与拉取</span></h3><pre><code class="bash">git fetch [remote-name]
+<h3><a href="#cong-yuan-cheng-cang-ku-zhong-zhua-qu-yu-la-qu" class="header-anchor"></a><span id="cong-yuan-cheng-cang-ku-zhong-zhua-qu-yu-la-qu">从远程仓库中抓取与拉取</span></h3>
+<pre><code class="language-bash">git fetch [remote-name]
 // git fetch origin
 </code></pre>
 <p>这个命令会访问远程仓库，从中拉取你还没有的数据（拉取本地还没有的所有分支代码），你也可以指定一个分支名来拉取指定分支代码。</p>
-<pre><code class="bash">git fetch [remote-name] [branch-name]
+<pre><code class="language-bash">git fetch [remote-name] [branch-name]
 // git fetch origin master
 </code></pre>
 <p>但是不管怎么样，这个操作不会把拉取下来的代码自动合并到当前的工作区，而要你手动将其合并到你想要的分支。</p>
 <p>如果你使用 clone 命令克隆了一个仓库，命令会自动将其添加为远程仓库并默认以 “origin” 为简写 。这是可以使用<code>git pull</code>命令来抓取远程分支的代码并自动合并到当前分支 。</p>
-<h3><a href="#tui-song-dao-yuan-cheng-cang-ku" class="header-anchor"></a><span id="tui-song-dao-yuan-cheng-cang-ku">推送到远程仓库</span></h3><p>想把本地的提交推送到远程仓库，可以使用下面命令：</p>
-<pre><code class="bash">git push [remote-name] [branch-name]
+<h3><a href="#tui-song-dao-yuan-cheng-cang-ku" class="header-anchor"></a><span id="tui-song-dao-yuan-cheng-cang-ku">推送到远程仓库</span></h3>
+<p>想把本地的提交推送到远程仓库，可以使用下面命令：</p>
+<pre><code class="language-bash">git push [remote-name] [branch-name]
 // git push origin master
 </code></pre>
-<h2><a href="#biao-qian" class="header-anchor"></a><span id="biao-qian">标签</span></h2><p>Git 可以给历史中的某一个提交打上标签，以示重要。比较有代表性的是人 们会使用这个功能来标记发布结点(v1.0 等等) 。</p>
-<h3><a href="#lie-chu-biao-qian" class="header-anchor"></a><span id="lie-chu-biao-qian">列出标签</span></h3><p>使用下面的命令列出所有标签：</p>
-<pre><code class="bash">git tag
+<h2><a href="#biao-qian" class="header-anchor"></a><span id="biao-qian">标签</span></h2>
+<p>Git 可以给历史中的某一个提交打上标签，以示重要。比较有代表性的是人 们会使用这个功能来标记发布结点(v1.0 等等) 。</p>
+<h3><a href="#lie-chu-biao-qian" class="header-anchor"></a><span id="lie-chu-biao-qian">列出标签</span></h3>
+<p>使用下面的命令列出所有标签：</p>
+<pre><code class="language-bash">git tag
 </code></pre>
 <p>这个命令以字母顺序列出标签，但是它们出现的顺序并不重要。</p>
 <p>可以使用<code>-l</code>参数来查找特定的标签 ，例如像看1.8.5系列的标签，可以执行：</p>
-<pre><code>git tag -l &#39;v1.8.5*&#39;
+<pre><code>git tag -l 'v1.8.5*'
 </code></pre>
-<h3><a href="#chuang-jian-biao-qian" class="header-anchor"></a><span id="chuang-jian-biao-qian">创建标签</span></h3><p>Git有两种类型的标签：</p>
+<h3><a href="#chuang-jian-biao-qian" class="header-anchor"></a><span id="chuang-jian-biao-qian">创建标签</span></h3>
+<p>Git有两种类型的标签：</p>
 <ul>
 <li>轻量标签（lightweight）</li>
 <li>附注标签（annotated）</li>
@@ -447,37 +488,43 @@ git push -u origin master
 <p>轻量标签就像一个不会改变的分支（它只是一个特定提交的引用）。</p>
 <p>附注标签则是存储在Git数据库的一个完整对象，他们是可以被校验的，其中包括打标签者的名字、电子邮件地址、日期时间。并且可以使用GNU Privacy Guard(GPG)签名与验证。</p>
 <p>通常建议创建附注标签，这样可以拥有以上所有信息。但如果只是一个临时的标签，或者因为某些原因不想保留那些信息，则可以使用轻量标签。</p>
-<h4><a href="#chuang-jian-qing-liang-biao-qian" class="header-anchor"></a><span id="chuang-jian-qing-liang-biao-qian">创建轻量标签</span></h4><p>使用git tag即可为commit创建一个标签：</p>
-<pre><code class="bash">git tag [tag-name]
+<h4><a href="#chuang-jian-qing-liang-biao-qian" class="header-anchor"></a><span id="chuang-jian-qing-liang-biao-qian">创建轻量标签</span></h4>
+<p>使用git tag即可为commit创建一个标签：</p>
+<pre><code class="language-bash">git tag [tag-name]
 </code></pre>
-<h4><a href="#chuang-jian-fu-zhu-biao-qian" class="header-anchor"></a><span id="chuang-jian-fu-zhu-biao-qian">创建附注标签</span></h4><p>在git tag后面添加-a 指定标签名称，-m 指定附加的信息：</p>
-<pre><code class="bash">git tag -a [tag-name] -m [message]
-// git tag -a v1.4 -m &#39;annotated tag message&#39;
+<h4><a href="#chuang-jian-fu-zhu-biao-qian" class="header-anchor"></a><span id="chuang-jian-fu-zhu-biao-qian">创建附注标签</span></h4>
+<p>在git tag后面添加-a 指定标签名称，-m 指定附加的信息：</p>
+<pre><code class="language-bash">git tag -a [tag-name] -m [message]
+// git tag -a v1.4 -m 'annotated tag message'
 </code></pre>
-<h4><a href="#dui-ti-jiao-da-biao-qian" class="header-anchor"></a><span id="dui-ti-jiao-da-biao-qian">对提交打标签</span></h4><p>对于以往的一次提交打标签，可以在最末尾指定提交的commit id：</p>
-<pre><code class="bash">// 对以往的提交添加轻量标签
+<h4><a href="#dui-ti-jiao-da-biao-qian" class="header-anchor"></a><span id="dui-ti-jiao-da-biao-qian">对提交打标签</span></h4>
+<p>对于以往的一次提交打标签，可以在最末尾指定提交的commit id：</p>
+<pre><code class="language-bash">// 对以往的提交添加轻量标签
 git tag [tag-name] [commit-id]
 // 对以往的提交添加附注标签
 git tag -a [tag-name] -m [tag-message] [commit-id]
 // git tag v1.2 9fcea32
-// git tag -a v1.2 -m &#39;message&#39; 9fcea32
+// git tag -a v1.2 -m 'message' 9fcea32
 </code></pre>
-<h4><a href="#tui-song-biao-qian" class="header-anchor"></a><span id="tui-song-biao-qian">推送标签</span></h4><p>默认情况下，git push命令并不会传送标签到远程仓库服务器上。在创建完标签后你必须显式地推送标签到共享服务器上。</p>
-<pre><code class="bash">git push origin [tagname]
+<h4><a href="#tui-song-biao-qian" class="header-anchor"></a><span id="tui-song-biao-qian">推送标签</span></h4>
+<p>默认情况下，git push命令并不会传送标签到远程仓库服务器上。在创建完标签后你必须显式地推送标签到共享服务器上。</p>
+<pre><code class="language-bash">git push origin [tagname]
 // git push origin v1.3
 </code></pre>
-<p>如果想要一次性推送很多标签，也可以使用带有–tags选项的git push命令。这将会把所有不在远程仓库服务器上的标签全部传送到那里。 </p>
-<pre><code class="bash">git push origin --tags
+<p>如果想要一次性推送很多标签，也可以使用带有–tags选项的git push命令。这将会把所有不在远程仓库服务器上的标签全部传送到那里。</p>
+<pre><code class="language-bash">git push origin --tags
 </code></pre>
-<h4><a href="#jian-chu-biao-qian" class="header-anchor"></a><span id="jian-chu-biao-qian">检出标签</span></h4><p>在 Git 中你并不能真的检出一个标签，因为它们并不能像分支一样来回移动。如果你想要工作目录与仓库中特定的标签版本完全一样，可以使用<code>git checkout -b [branchname] [tagname]</code>在特定的标签上创建一个新分支: </p>
-<pre><code class="bash">git checkout -b [branchname] [tagname]
+<h4><a href="#jian-chu-biao-qian" class="header-anchor"></a><span id="jian-chu-biao-qian">检出标签</span></h4>
+<p>在 Git 中你并不能真的检出一个标签，因为它们并不能像分支一样来回移动。如果你想要工作目录与仓库中特定的标签版本完全一样，可以使用<code>git checkout -b [branchname] [tagname]</code>在特定的标签上创建一个新分支:</p>
+<pre><code class="language-bash">git checkout -b [branchname] [tagname]
 // git checkout -b devCopy v1.3
 </code></pre>
 <blockquote>
-<p> **如果在这之后又进行了一次提交，devCopy 分支会因为改动向前移动了，那么 devCopy 分支就会和 v1.3 标签稍微有些不同，这时就应该当心了。 **</p>
+<p>**如果在这之后又进行了一次提交，devCopy 分支会因为改动向前移动了，那么 devCopy 分支就会和 v1.3 标签稍微有些不同，这时就应该当心了。 **</p>
 </blockquote>
-<h3><a href="#git-bie-ming" class="header-anchor"></a><span id="git-bie-ming">Git 别名</span></h3><p>Git 并不会在你输入部分命令时自动推断出你想要的命令。如果不想每次都输入完整的 Git 命令，可以通过 git config 文件来轻松地为每一个命令设置一个别名。</p>
-<pre><code class="bash">git config --global alias.[name] [command]
+<h3><a href="#git-bie-ming" class="header-anchor"></a><span id="git-bie-ming">Git 别名</span></h3>
+<p>Git 并不会在你输入部分命令时自动推断出你想要的命令。如果不想每次都输入完整的 Git 命令，可以通过 git config 文件来轻松地为每一个命令设置一个别名。</p>
+<pre><code class="language-bash">git config --global alias.[name] [command]
 // git config --global alias.co checkout
 // git config --global alias.br branch
 // git config --global alias.ci commit
@@ -485,11 +532,11 @@ git tag -a [tag-name] -m [tag-message] [commit-id]
 </code></pre>
 <p>这意味着，当要输入<code>git commit</code>时，只需要输入 <code>git ci</code>即可。</p>
 <p>添加一个取消暂存文件的快捷别名：</p>
-<pre><code class="bash">git config --global alias.unstage &#39;reset HEAD --&#39; 
+<pre><code class="language-bash">git config --global alias.unstage 'reset HEAD --' 
 // git unstage fileA 等于 git reset HEAD -- fileA
 </code></pre>
 <p>添加一个 last 别名 快速查看最后一次提交：</p>
-<pre><code class="bash">git config --global alias.last &#39;log -1 HEAD&#39;
+<pre><code class="language-bash">git config --global alias.last 'log -1 HEAD'
 // git last 等于 git log -1 HEAD
 </code></pre>
 

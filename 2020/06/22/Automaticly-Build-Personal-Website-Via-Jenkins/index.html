@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="前言首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，结,"> 
+    <meta name="description" content="前言
+首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -116,7 +117,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    8k
+                    7.9k
                 </span>
                 
                 
@@ -156,13 +157,15 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h2><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h2><p>首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，结果又出现了其他问题被拒绝回来再次需要修改，这样来来回回搞了好几回，因为我的个人网站都是静态网站，每次修改后都要手动把代码发布到服务器上，这样的重复性工作显得很繁琐，所以研究了一下怎么用工具自动化构建自己的网站。</p>
-<h2><a href="#shi-yong-docker-zai-dian-nao-shang-yun-xing-jenkins-ping-tai" class="header-anchor"></a><span id="shi-yong-docker-zai-dian-nao-shang-yun-xing-jenkins-ping-tai">使用Docker在电脑上运行 Jenkins 平台</span></h2><p>首先拉取Jenkins镜像，我使用的网易的蜂巢镜像源，镜像地址是：<code>hubhub.c.163.com/library/jenkins:latest</code>。<a target="_blank" rel="noopener" href="https://c.163yun.com/hub#/library/repository/info?repoId=3093">镜像仓库地址（需要登录才能查看）</a>  </p>
+            <h2><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h2>
+<p>首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，结果又出现了其他问题被拒绝回来再次需要修改，这样来来回回搞了好几回，因为我的个人网站都是静态网站，每次修改后都要手动把代码发布到服务器上，这样的重复性工作显得很繁琐，所以研究了一下怎么用工具自动化构建自己的网站。</p>
+<h2><a href="#shi-yong-docker-zai-dian-nao-shang-yun-xing-jenkins-ping-tai" class="header-anchor"></a><span id="shi-yong-docker-zai-dian-nao-shang-yun-xing-jenkins-ping-tai">使用Docker在电脑上运行 Jenkins 平台</span></h2>
+<p>首先拉取Jenkins镜像，我使用的网易的蜂巢镜像源，镜像地址是：<code>hubhub.c.163.com/library/jenkins:latest</code>。<a target="_blank" rel="noopener" href="https://c.163yun.com/hub#/library/repository/info?repoId=3093">镜像仓库地址（需要登录才能查看）</a></p>
 <p>运行命令<code>docker pull hub.c.163.com/library/jenkins:latest</code> 把镜像拉取到本地，然后为了日后使用方便，我们给这个镜像打上一个标签：</p>
 <pre><code>docker tag hubhub.c.163.com/library/jenkins:latest cubesuger/jenkins
 </code></pre>
 <blockquote>
-<p>我这里是使用cubeSuger&#x2F;jenknis这个名称</p>
+<p>我这里是使用cubeSuger/jenknis这个名称</p>
 </blockquote>
 <p>根据这个镜像的使用说明，我们需要映射 8080 和 50000 端口，那我们使用下面的命令来运行这个镜像：</p>
 <pre><code>docker run -p 8080:8080 -p 50000:50000 --name jenkins -v D:/docker/docker-file/jenkins:/var/jenkins_home cubesuger/jenkins
@@ -199,7 +202,8 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 <p>我们填上Jenkins的默认密码串，密码串可以在刚刚启动时输出的内容中找到。找不到的也可以到<code>/var/jenkins_home/secrets/initialAdminPassword</code>这个目录下用文件编辑器打开查看。（<code>/var/jenkins_home</code>这个目录我们映射到了<code>D:/docker/docker-file/jenkins</code>这个目录中，所以可以在电脑上直接到这个目录上打开查看，而不用在容器中用cat命令查看）</p>
 <p>输入后便会跳转到用户管理界面，这个时候最好修改一下原始密码，防止以后忘记要进入容器中寻找。</p>
 <p>一般来说我们从蜂巢上下载下来的Jenkins版本会相对老一些，这时候我们应该对jenkins做升级，防止因为版本而出现问题。</p>
-<h2><a href="#geng-xin-jenkins" class="header-anchor"></a><span id="geng-xin-jenkins">更新Jenkins</span></h2><p>我们可以从清华镜像中下载最新版本的Jenkins，<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/war/latest/">（下载地址：:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;jenkins&#x2F;war&#x2F;latest&#x2F;）</a>，打开后选择下载jenkins.war即可，然后我们把下载好的文件移动到刚刚我们给容器共享的目录中（这里我设置的目录是：D:&#x2F;docker&#x2F;docker-file&#x2F;jenkins），然后我们执行命令以root身份进入容器：</p>
+<h2><a href="#geng-xin-jenkins" class="header-anchor"></a><span id="geng-xin-jenkins">更新Jenkins</span></h2>
+<p>我们可以从清华镜像中下载最新版本的Jenkins，<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/war/latest/">（下载地址：://mirrors.tuna.tsinghua.edu.cn/jenkins/war/latest/）</a>，打开后选择下载jenkins.war即可，然后我们把下载好的文件移动到刚刚我们给容器共享的目录中（这里我设置的目录是：D:/docker/docker-file/jenkins），然后我们执行命令以root身份进入容器：</p>
 <pre><code>docker exec -it -u root [containerID] /bin/bash
 </code></pre>
 <blockquote>
@@ -211,17 +215,22 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 <p>然后我们查看当前jenkins的war包在哪里，点击设置，查看系统信息</p>
 <p>等重启完毕后就能看到新版本的Jenkins在运行了：</p>
 <p><img src="/images/jenkins_image2.png" alt="jenkins_image2"></p>
-<h2><a href="#geng-xin-guo-nei-yuan" class="header-anchor"></a><span id="geng-xin-guo-nei-yuan">更新国内源</span></h2><p>默认情况下Jenkins会使用国外的地址进行更新和插件下载，这些地址访问时可能会非常慢，因此如果出现这种现象的时候，我们应该把更新地址改为国内的镜像地址。更新为国内源需要两步：</p>
+<h2><a href="#geng-xin-guo-nei-yuan" class="header-anchor"></a><span id="geng-xin-guo-nei-yuan">更新国内源</span></h2>
+<p>默认情况下Jenkins会使用国外的地址进行更新和插件下载，这些地址访问时可能会非常慢，因此如果出现这种现象的时候，我们应该把更新地址改为国内的镜像地址。更新为国内源需要两步：</p>
 <ol>
 <li>修改<code>jenkins_home/update</code>目录下<code>default</code>文件里的地址，因为我们在启动容器的时候做了映射，所以这个文件可以在<code>D:\docker\docker-file\jenkins\updates</code>这个目录中找到，打开<code>default</code>文件，把里面的<code>http://www.google.com/</code>全部改成<code>http://www.baidu.com/</code>，把<code>http://updates.jenkins-ci.org/download/</code>全部改成<code>https://mirrors.tuna.tsinghua.edu.cn/jenkins/</code>，然后保存修改。</li>
 <li>打开jenkins控制台，进入插件管理，点击Advanced（高级）,在最下面的update site 中填写<code>https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</code>这个地址，点击submit（提交）然后等待刷新然后重启就可以了。</li>
 </ol>
 <p>修改完成后可以发现插件的更新速度有了明显的提升。</p>
-<h2><a href="#an-zhuang-bi-yao-de-cha-jian" class="header-anchor"></a><span id="an-zhuang-bi-yao-de-cha-jian">安装必要的插件</span></h2><p>接下来安装必要的插件来完成我们的自动化构建。</p>
-<h3><a href="#han-hua-cha-jian" class="header-anchor"></a><span id="han-hua-cha-jian">汉化插件</span></h3><p>对于英文不好的朋友，可以先去安装一个汉化插件，名字叫 Localization Chinese(Simplified)。安装完后重启就可以看到汉化后的界面了。</p>
-<p><img src="/images/jenkins_image3.png"></p>
-<h3><a href="#an-zhuang-git-cha-jian" class="header-anchor"></a><span id="an-zhuang-git-cha-jian">安装git插件</span></h3><p>在插件中搜索git并安装，一般来说在安装git的过程中会把凭证插件也安装上，所以就不用手动去安装凭证插件了，如果发现没有安装凭证插件，则需要手动安装一下。</p>
-<h3><a href="#an-zhuang-bing-pei-zhi-ping-zheng-cha-jian" class="header-anchor"></a><span id="an-zhuang-bing-pei-zhi-ping-zheng-cha-jian">安装并配置凭证插件</span></h3><p>要想自动化构建网站，首先要可以获取到构建网站的代码，这就涉及到安全验证的问题，比如GitHub的私有仓库就有两种方式来获取代码，ssh和用户密码。还有我们有时候在构建好代码后，需要登录到服务器上把构建好的代码放到指定目录上去，也需要用到凭证。</p>
+<h2><a href="#an-zhuang-bi-yao-de-cha-jian" class="header-anchor"></a><span id="an-zhuang-bi-yao-de-cha-jian">安装必要的插件</span></h2>
+<p>接下来安装必要的插件来完成我们的自动化构建。</p>
+<h3><a href="#han-hua-cha-jian" class="header-anchor"></a><span id="han-hua-cha-jian">汉化插件</span></h3>
+<p>对于英文不好的朋友，可以先去安装一个汉化插件，名字叫 Localization Chinese(Simplified)。安装完后重启就可以看到汉化后的界面了。</p>
+<p><img src="/images/jenkins_image3.png" alt></p>
+<h3><a href="#an-zhuang-git-cha-jian" class="header-anchor"></a><span id="an-zhuang-git-cha-jian">安装git插件</span></h3>
+<p>在插件中搜索git并安装，一般来说在安装git的过程中会把凭证插件也安装上，所以就不用手动去安装凭证插件了，如果发现没有安装凭证插件，则需要手动安装一下。</p>
+<h3><a href="#an-zhuang-bing-pei-zhi-ping-zheng-cha-jian" class="header-anchor"></a><span id="an-zhuang-bing-pei-zhi-ping-zheng-cha-jian">安装并配置凭证插件</span></h3>
+<p>要想自动化构建网站，首先要可以获取到构建网站的代码，这就涉及到安全验证的问题，比如GitHub的私有仓库就有两种方式来获取代码，ssh和用户密码。还有我们有时候在构建好代码后，需要登录到服务器上把构建好的代码放到指定目录上去，也需要用到凭证。</p>
 <p>安装Credentials Binding插件，安装完成后重启jenkins。</p>
 <p>重启完成后点击管理凭证，然后点击全局，添加一个凭证，这里可以选择 用户名和密码 、ssh等方式。选择自己想要的验证方式并且配置就可以了。用户名和密码比较简单，这里就列举比较复杂的ssh方式：</p>
 <p>首先进入到容器中生成公钥和私钥<a target="_blank" rel="noopener" href="https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">（这里参考GitHub上的教程）：</a></p>
@@ -233,14 +242,17 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 <p>最后在jenkins的凭证中配置：</p>
 <p><img src="/images/jenkins_image4.png" alt="jenkins_image4"></p>
 <p>私钥中选中在容器中创建的 <code>~/.ssh/id_rsa</code>，然后保存即可。</p>
-<h3><a href="#an-zhuang-node-js" class="header-anchor"></a><span id="an-zhuang-node-js">安装Node.js</span></h3><p>搜索node.js插件并安装，安装完成后到系统管理，全局工具配置中配置Node.js。</p>
+<h3><a href="#an-zhuang-node-js" class="header-anchor"></a><span id="an-zhuang-node-js">安装Node.js</span></h3>
+<p>搜索node.js插件并安装，安装完成后到系统管理，全局工具配置中配置Node.js。</p>
 <p><img src="/images/jenkins_image5.png" alt="jenkins_image5"></p>
 <p>这里我选择安装了两个版本的Node.js，都是使用从nodejs.org官网上的安装方法，如果你的项目有使用到一些全局的包也可以在下面的<code>Global npm packages to install</code>选项中配置。</p>
-<h3><a href="#an-zhuang-publish-over-ssh" class="header-anchor"></a><span id="an-zhuang-publish-over-ssh">安装Publish Over SSH</span></h3><p>当我们把项目在容器中构建好后，就需要把构建好的代码发送到生产服务器上，这个时候就需要用到这个插件：<code>Publish Over SSH</code></p>
+<h3><a href="#an-zhuang-publish-over-ssh" class="header-anchor"></a><span id="an-zhuang-publish-over-ssh">安装Publish Over SSH</span></h3>
+<p>当我们把项目在容器中构建好后，就需要把构建好的代码发送到生产服务器上，这个时候就需要用到这个插件：<code>Publish Over SSH</code></p>
 <p>搜索<code>Publish Over SSH</code>插件并安装，安装好在系统管理——系统配置中配置<code>Publish Over SSH</code>。</p>
 <p><img src="/images/jeninks_image6.png" alt="jeninks_image6"></p>
 <p>这样就可以在构建流程中使用了。</p>
-<h3><a href="#chuang-jian-gong-zuo-liu-cheng" class="header-anchor"></a><span id="chuang-jian-gong-zuo-liu-cheng">创建工作流程</span></h3><p>首先创建一个自由风格的项目，给项目起个名字，然后就进入到了构建流程配置中：</p>
+<h3><a href="#chuang-jian-gong-zuo-liu-cheng" class="header-anchor"></a><span id="chuang-jian-gong-zuo-liu-cheng">创建工作流程</span></h3>
+<p>首先创建一个自由风格的项目，给项目起个名字，然后就进入到了构建流程配置中：</p>
 <p><img src="/images/jenkins_image7.png" alt="jenkins_image7"></p>
 <ol>
 <li>可以给项目添加一个描述</li>
@@ -262,7 +274,8 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 <p><img src="/images/jenkins_image11.png" alt="jenkins_image11"></p>
 <p>点击保存后就可以进行构建了。</p>
 <p>第一次构建的时候需要安装node.js和一些全局的npm包，所以等待的时间会久一些，之后的构建速度就快很多了。</p>
-<h2><a href="#jie-wei" class="header-anchor"></a><span id="jie-wei">结尾</span></h2><p>至此，我们就已经完成了使用Jenkins来自动化构建自己的网站应用了。</p>
+<h2><a href="#jie-wei" class="header-anchor"></a><span id="jie-wei">结尾</span></h2>
+<p>至此，我们就已经完成了使用Jenkins来自动化构建自己的网站应用了。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"

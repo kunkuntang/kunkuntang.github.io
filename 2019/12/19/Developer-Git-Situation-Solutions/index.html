@@ -10,7 +10,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="情景一：开发中途添加远端仓库通常情况这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下命令,"> 
+    <meta name="description" content="情景一：开发中途添加远端仓库
+通常情况
+这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -116,7 +118,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    3.3k
+                    3.4k
                 </span>
                 
                 
@@ -156,8 +158,10 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h3><a href="#qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku" class="header-anchor"></a><span id="qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku">情景一：开发中途添加远端仓库</span></h3><h5><a href="#tong-chang-qing-kuang" class="header-anchor"></a><span id="tong-chang-qing-kuang">通常情况</span></h5><p>这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下命令：</p>
-<pre><code class="bash">// 添加远程仓库地址并命名为origin
+            <h3><a href="#qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku" class="header-anchor"></a><span id="qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku">情景一：开发中途添加远端仓库</span></h3>
+<h5><a href="#tong-chang-qing-kuang" class="header-anchor"></a><span id="tong-chang-qing-kuang">通常情况</span></h5>
+<p>这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下命令：</p>
+<pre><code class="language-bash">// 添加远程仓库地址并命名为origin
 git remote add origin [URL]
 
 // 提交代码到远程仓库并将origin设置为默认提交仓库
@@ -166,7 +170,8 @@ git push -u origin master
 <blockquote>
 <p>设置了默认提交仓库后，以后再往origin这个远程仓库提交代码就可以不用指定直接执行<code>git push</code>就可以了。</p>
 </blockquote>
-<h5><a href="#te-shu-qing-kuang" class="header-anchor"></a><span id="te-shu-qing-kuang">特殊情况</span></h5><p>但由于一般的代码托管平台在新建仓库时可以选择<strong>初始化仓库</strong>，也就是会新建一个<strong>README.md</strong>文件并生成一次提交。如下图：</p>
+<h5><a href="#te-shu-qing-kuang" class="header-anchor"></a><span id="te-shu-qing-kuang">特殊情况</span></h5>
+<p>但由于一般的代码托管平台在新建仓库时可以选择<strong>初始化仓库</strong>，也就是会新建一个<strong><a target="_blank" rel="noopener" href="http://README.md">README.md</a></strong>文件并生成一次提交。如下图：</p>
 <p><img src="/images/image-20191128113937513.png" alt="upload successful"></p>
 <p>如果不小心在新建的时候勾选了这个一个选项，那么你将可以有一下方法处理：</p>
 <p>一、 删掉重建</p>
@@ -193,14 +198,16 @@ git push -u origin master
 <p><img src="/images/image-20191128142447611.png" alt="upload successful"></p>
 <p>可以看到，本地的master分支和master_backup分支已经连成一条直线了。最后再切换回master分支，然后使用<code>git merge master_backup</code>合并（Fost-forward）master_backup分支就完成了代码的迁移了。此时master_backup分支上的代码就可以删除掉了。最后分支图如下：</p>
 <p><img src="/images/image-20191128142917368.png" alt="upload successful"></p>
-<h2><a href="#chang-jing-er-wang-ji-ba-hu-lue-wen-jian-tian-jia-dao-gitignore-zhong" class="header-anchor"></a><span id="chang-jing-er-wang-ji-ba-hu-lue-wen-jian-tian-jia-dao-gitignore-zhong">场景二：忘记把忽略文件添加到.gitignore中</span></h2><p>当你忘记添加 .gitignore 文件，不小心把一个很大的不需要追踪的文件添加到暂存区时（还没有提交），比如没有排除<code>node_modules</code>文件夹并执行了<code>git add -A</code>操作。如图：</p>
+<h2><a href="#chang-jing-er-wang-ji-ba-hu-lue-wen-jian-tian-jia-dao-gitignore-zhong" class="header-anchor"></a><span id="chang-jing-er-wang-ji-ba-hu-lue-wen-jian-tian-jia-dao-gitignore-zhong">场景二：忘记把忽略文件添加到.gitignore中</span></h2>
+<p>当你忘记添加 .gitignore 文件，不小心把一个很大的不需要追踪的文件添加到暂存区时（还没有提交），比如没有排除<code>node_modules</code>文件夹并执行了<code>git add -A</code>操作。如图：</p>
 <p><img src="/images/image-20191128182507434.png" alt="upload successful"></p>
 <p>这个时候你想把<code>node_modules</code>文件夹下的文件从追踪列表中移除，可以使用一下命令：</p>
-<pre><code class="bash">git rm --cached node_modules -r
+<pre><code class="language-bash">git rm --cached node_modules -r
 </code></pre>
 <p><img src="/images/image-20191128182813621.png" alt="upload successful"></p>
 <p>这样<code>node_modules</code>里的文件就已经从追踪列表中移除了，这个时候就可以在.gitignore文件中添加node_modules目录了。</p>
 <h2><a href="#qing-jing-san-shi-yong-bie-ming" class="header-anchor"></a><span id="qing-jing-san-shi-yong-bie-ming">情景三：使用别名</span></h2>
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
                 data-autoplay="false">

@@ -14,7 +14,8 @@
 在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：Database Design Course
 
 什么是键（Key）
-KE,"> 
+
+K,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -120,13 +121,13 @@ KE,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    4.1k
+                    3.6k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    4 mins.
+                    3 mins.
                 </span>
                 
                 
@@ -161,9 +162,10 @@ KE,">
     <div class='main'>
         <div class="content markdown animated fadeIn">
             <blockquote>
-<p>在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">Database Design Course</a></p>
+<p>在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">Database Design Course</a></p>
 </blockquote>
-<h2><a href="#shi-me-shi-jian-key" class="header-anchor"></a><span id="shi-me-shi-jian-key">什么是键（Key）</span></h2><blockquote>
+<h2><a href="#shi-me-shi-jian-key" class="header-anchor"></a><span id="shi-me-shi-jian-key">什么是键（Key）</span></h2>
+<blockquote>
 <p>KEY is something on the logical level, describes your table and database design (i.e. enforces referential integrity …)</p>
 </blockquote>
 <p>键（KEY）是数据库中常见的概念，通常用来描述数据库中表字段的性质和它们之间的关系，是逻辑层面的概念。比如有以下用户表：</p>
@@ -177,21 +179,23 @@ KE,">
 <th>email</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>001</td>
 <td>John</td>
 <td>24</td>
 <td>man</td>
-<td><a href="mailto:&#97;&#98;&#99;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;">&#97;&#98;&#99;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;</a></td>
+<td><a href="mailto:abc@gmail.com">abc@gmail.com</a></td>
 </tr>
 <tr>
 <td>002</td>
 <td>Mary</td>
 <td>22</td>
 <td>female</td>
-<td><a href="mailto:&#98;&#x63;&#x64;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#98;&#x63;&#x64;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a></td>
+<td><a href="mailto:bcd@gmail.com">bcd@gmail.com</a></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>如果想要从表中识别出每一条数据，那么必定会存在一个字段，它的每一行的值都不一样，就比如表中的 <code>user_id</code> 字段，而这个字段常常被称之为用户表的 主键（PRIMARY_KEY）。</p>
 <p>假如还有一个卡片表：</p>
 <table>
@@ -202,26 +206,32 @@ KE,">
 <th>belong_user_id</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1</td>
 <td>GoldCard</td>
 <td>001</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>它的某个字段（belong_user_id）关联着其他表的主键（user_id），那么这个字段常常称之为表的 外键（FOREIGN_KEY）。</p>
 <p>在数据库设计与实践中，往往会遵循 键（Key）的三个特征：</p>
 <ol>
-<li><p>唯一性（Unique）。</p>
+<li>
+<p>唯一性（Unique）。</p>
 </li>
-<li><p>不可修改性（Nerver Changing）。</p>
+<li>
+<p>不可修改性（Nerver Changing）。</p>
 </li>
-<li><p>不能为空（Never Null）。</p>
-<p> <strong>唯一性（Unique）</strong>： 因为 <strong>键（KEY) 的作用是帮助我们可以在数据库中找出对应的数据</strong> ，所以如果想要从表中的海量数据找到对应的一条数据，那么 键（KEY)  必定是表中不能重复的字段，否则使用这个 键（KEY)  就不能找出对应的一条数据。</p>
-<p> <strong>不可修改性（Nerver Changing）</strong>：我们除了使用 键（KEY)  来查找表中对应的数据，也常常会使用 键（KEY) 来关联不同表中的数据。比如在上面的用户表外，还有一个 课程表 关联了这个学生表，还有 教师表 关联了 学生表等等，如果我们修改了学生表的 键（KEY) ，那么其他以这个键（KEY)  关联学生表的关联关系都要做改变，这些改变往往会容易引起程序错误，在迫不得已的时候，我们应该遵循 键（KEY)  的不可修改性。</p>
-<p> <strong>不能为空（Never Null）</strong>：这个很容易理解，如果 键（KEY)  为空，那么我们便从表中查找不出任何数据，也关联不上任务数据。</p>
+<li>
+<p>不能为空（Never Null）。</p>
+<p><strong>唯一性（Unique）</strong>： 因为 <strong>键（KEY) 的作用是帮助我们可以在数据库中找出对应的数据</strong> ，所以如果想要从表中的海量数据找到对应的一条数据，那么 键（KEY)  必定是表中不能重复的字段，否则使用这个 键（KEY)  就不能找出对应的一条数据。</p>
+<p><strong>不可修改性（Nerver Changing）</strong>：我们除了使用 键（KEY)  来查找表中对应的数据，也常常会使用 键（KEY) 来关联不同表中的数据。比如在上面的用户表外，还有一个 课程表 关联了这个学生表，还有 教师表 关联了 学生表等等，如果我们修改了学生表的 键（KEY) ，那么其他以这个键（KEY)  关联学生表的关联关系都要做改变，这些改变往往会容易引起程序错误，在迫不得已的时候，我们应该遵循 键（KEY)  的不可修改性。</p>
+<p><strong>不能为空（Never Null）</strong>：这个很容易理解，如果 键（KEY)  为空，那么我们便从表中查找不出任何数据，也关联不上任务数据。</p>
 </li>
 </ol>
-<h2><a href="#shi-me-shi-suo-yin-index" class="header-anchor"></a><span id="shi-me-shi-suo-yin-index">什么是索引（Index）</span></h2><blockquote>
+<h2><a href="#shi-me-shi-suo-yin-index" class="header-anchor"></a><span id="shi-me-shi-suo-yin-index">什么是索引（Index）</span></h2>
+<blockquote>
 <p>INDEX is something on the physical level, helps improve access time for table operations. Behind every PK there is (usually) unique index created (automatically).</p>
 </blockquote>
 <p>索引（INDEX) 也是数据库中另一种常见的概念，通常用来优化数据库的查询工作，是数据库物理层面上的概念，索引（INDEX) 通常记录在数据库的默认表中，由数据库程序自己维护。而刚刚我们提到的 键（KEY）其实是 索引（INDEX）的一种实现。</p>
@@ -236,23 +246,25 @@ KE,">
 <th>email</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>001</td>
 <td>John</td>
 <td>24</td>
 <td>man</td>
-<td><a href="mailto:&#x61;&#98;&#99;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x61;&#98;&#99;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a></td>
+<td><a href="mailto:abc@gmail.com">abc@gmail.com</a></td>
 </tr>
 <tr>
 <td>002</td>
 <td>Mary</td>
 <td>22</td>
 <td>female</td>
-<td><a href="mailto:&#98;&#99;&#x64;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#98;&#99;&#x64;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a></td>
+<td><a href="mailto:bcd@gmail.com">bcd@gmail.com</a></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>理论上我们可以随意挑选表中的字段作为 索引（INDEX），但是在实践中需要选择那些可以识别出每行数据的字段或字段组合作为 索引（INDEX) ，否则便失去了 索引（INDEX) 的意义。</p>
-<p>要想从数据库中的表查找出其中一行数据，常用 SELECT * FROM <code>table_name</code> WHERE <code>column</code> &#x3D; <code>condition</code> 。在 SELECT 语句中的 WHERE 条件就用到 <strong>索引（INDEX）</strong>。而使用 SELECT 语句查找数据最基本的方法就是从表的第一行找到表的最后一行。如果事先明确知道要查找用户的 <code>user_id（主键）</code> ，那么是可以通过查找一遍所有的表数据来找到想要的数据。但是如果假设我们只知道用户的叫 <code>Jonh</code> 且他的邮箱是 <code>adc@gmail.com</code>，那么就需要最多查找 m^2 次：第一遍找出符合用户名的人，第二遍找出符合邮箱的人，最后把两遍的结果组合起来。</p>
+<p>要想从数据库中的表查找出其中一行数据，常用 SELECT * FROM <code>table_name</code> WHERE <code>column</code> = <code>condition</code> 。在 SELECT 语句中的 WHERE 条件就用到 <strong>索引（INDEX）</strong>。而使用 SELECT 语句查找数据最基本的方法就是从表的第一行找到表的最后一行。如果事先明确知道要查找用户的 <code>user_id（主键）</code> ，那么是可以通过查找一遍所有的表数据来找到想要的数据。但是如果假设我们只知道用户的叫 <code>Jonh</code> 且他的邮箱是 <code>adc@gmail.com</code>，那么就需要最多查找 m^2 次：第一遍找出符合用户名的人，第二遍找出符合邮箱的人，最后把两遍的结果组合起来。</p>
 <p>如果我们给用户表设置了以用户用户名和邮箱这两个字段组合而成的 索引（INDEX)，那么在数据库内部就已经存放着对应索引所代表的记录，当要查询时只需要查找一遍便可得到想要的结果。</p>
 <p>因此，在数据库的表中选用哪些字段作为 键（KEY），往往会影响整个表的查询效率。</p>
 

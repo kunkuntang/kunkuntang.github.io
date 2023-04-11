@@ -132,7 +132,7 @@
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>Words count</i>
-                3.3k
+                3.4k
             </span>
             
             
@@ -149,7 +149,9 @@
         
         <div class="md-content animated fadeIn">
             
-            <h3><a href="#qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku" class="header-anchor"></a><span id="qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku">情景一：开发中途添加远端仓库</span></h3><h5><a href="#tong-chang-qing-kuang" class="header-anchor"></a><span id="tong-chang-qing-kuang">通常情况</span></h5><p>这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下命令：...</p>
+            <h3><a href="#qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku" class="header-anchor"></a><span id="qing-jing-yi-kai-fa-zhong-tu-tian-jia-yuan-duan-cang-ku">情景一：开发中途添加远端仓库</span></h3>
+<h5><a href="#tong-chang-qing-kuang" class="header-anchor"></a><span id="tong-chang-qing-kuang">通常情况</span></h5>
+<p>这个场景通常是：开发者在接到新项目时直接在本地开发，到了开发中途才发现需要把工程纳入到版本管理，这个时候他在代码托管平台上新建了一个空的远程仓库，然后执行一下命...</p>
             
             <span class="read-more"><a href="/2019/12/19/Developer-Git-Situation-Solutions/" title="Read article" class="posttitle">Read article</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
@@ -210,12 +212,15 @@
         
         <div class="md-content animated fadeIn">
             
-                <h3><a href="#deng-lu" class="header-anchor"></a><span id="deng-lu">登录</span></h3><pre><code>docker login
+                <h3><a href="#deng-lu" class="header-anchor"></a><span id="deng-lu">登录</span></h3>
+<pre><code>docker login
 </code></pre>
 <p>通过执行<code>docker login</code>命令来输入用户名、密码和邮箱来完成注册和登录。注册成功后，本地用户目录的<code>.dockercfg</code>中将保存着用户认证的信息。</p>
-<h3><a href="#cong-cang-ku-la-qu-jing-xiang" class="header-anchor"></a><span id="cong-cang-ku-la-qu-jing-xiang">从仓库拉取镜像</span></h3><pre><code>docker pull [镜像名]
+<h3><a href="#cong-cang-ku-la-qu-jing-xiang" class="header-anchor"></a><span id="cong-cang-ku-la-qu-jing-xiang">从仓库拉取镜像</span></h3>
+<pre><code>docker pull [镜像名]
 </code></pre>
-<h3><a href="#sou-suo-jing-xiang" class="header-anchor"></a><span id="sou-suo-jing-xiang">搜索镜像</span></h3><pre><code>docker search [想要搜索的镜像名]
+<h3><a href="#sou-suo-jing-xiang" class="header-anchor"></a><span id="sou-suo-jing-xiang">搜索镜像</span></h3>
+<pre><code>docker search [想要搜索的镜像名]
 </code></pre>
 <p>例如：</p>
 <pre><code>C:\Users\kunta&gt;docker search centos
@@ -249,7 +254,7 @@ centos                             The official...</code></pre>
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        4.7k
+                        4.6k
                     </span>
                 
                 
@@ -266,8 +271,10 @@ centos                             The official...</code></pre>
         
         <div class="md-content animated fadeIn">
             
-                <h2><a href="#wang-luo-ji-chu-pei-zhi" class="header-anchor"></a><span id="wang-luo-ji-chu-pei-zhi">网络基础配置</span></h2><p>虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。</p>
-<h3><a href="#cong-wai-bu-fang-wen-rong-qi-ying-yong" class="header-anchor"></a><span id="cong-wai-bu-fang-wen-rong-qi-ying-yong">从外部访问容器应用</span></h3><p>在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外部访问的网络应用时，可以通过-P或者-p参数来指定端口映射。当使用-P标记时，Docker会随机映射一个49000...</p>
+                <h2><a href="#wang-luo-ji-chu-pei-zhi" class="header-anchor"></a><span id="wang-luo-ji-chu-pei-zhi">网络基础配置</span></h2>
+<p>虽然Docker可以根据镜像“多开”容器，并而每个容器互不影响，但并不代表容器与容器之间是完全决裂的。Docker在运行镜像的时候提供了映射容器端口到宿主主机、容器端口到另一个容器的网络互联功能，使得容器与宿主主机、容器与容器之间可以相互通信。</p>
+<p>###　从外部访问容器应用</p>
+<p>在启动容器的时候，如果不指定对应的参数，在容器外是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些需要被外部访问的网络应用时，可以通过-P或者-p参数来指定端口映射。当使用-P标记时，Docker会随...</p>
             
             <span class="read-more"><a href="/2019/11/21/Frequently-Used-Docker-Container-Network-Command/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
@@ -313,9 +320,13 @@ centos                             The official...</code></pre>
         
         <div class="md-content animated fadeIn">
             
-                <h2><a href="#jian-shu" class="header-anchor"></a><span id="jian-shu">简述</span></h2><p>对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。</p>
-<p>要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：<br>Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举以下有关镜像、容器的命令：</p>
-<h2><a href="#docker-jing-xiang" class="header-anchor"></a><span id="docker-jing-xiang">Docker镜像</span></h2><h3><a href="#cong-wang-luo-shang-xia-jie-jing-xiang" class="header-anchor"></a><span id="cong-wang-luo-shang-xia-jie-jing-xiang">从网络上下截镜像</span></h3><pre><code>docker pull [mirror] NAME...</code></pre>
+                <h2><a href="#jian-shu" class="header-anchor"></a><span id="jian-shu">简述</span></h2>
+<p>对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。</p>
+<p>要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：<br>
+Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举以下有关镜像、容器的命令：</p>
+<h2><a href="#docker-jing-xiang" class="header-anchor"></a><span id="docker-jing-xiang">Docker镜像</span></h2>
+<h3><a href="#cong-wang-luo-shang-xia-jie-jing-xiang" class="header-anchor"></a><span id="cong-wang-luo-shang-xia-jie-jing-xiang">从网络上下截镜像</span></h3>
+<pre><code>docker pull [mirror...</code></pre>
             
             <span class="read-more"><a href="/2019/11/21/Frequently-Used-Docker-Container-Or-Image-Command/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
@@ -363,11 +374,11 @@ centos                             The official...</code></pre>
             
                 <div class="toc">
 
-
-
 <ul>
-<li><a href="#git-chang-yong-ming-ling">Git常用命令</a><ul>
-<li><a href="#ben-di-cang-ku">本地仓库</a><ul>
+<li><a href="#git-chang-yong-ming-ling">Git常用命令</a>
+<ul>
+<li><a href="#ben-di-cang-ku">本地仓库</a>
+<ul>
 <li><a href="#chu-shi-hua-cang-ku-init-repository">初始化仓库(Init Repository)</a></li>
 <li><a href="#ke-long-cang-ku-clone-repository">克隆仓库(Clone Repository)</a></li>
 <li><a href="#zan-cun-xin-wen-jian-stage-new-file-zan-cun-wen-jian-xiu-gai-sage-modified-file">暂存新文件(Stage New File) &amp; 暂存文件修改(Sage Modified File)</a></li>
@@ -403,13 +414,13 @@ centos                             The official...</code></pre>
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        6.3k
+                        5.9k
                     </span>
                 
                 
                     <span>
                         <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                        6 mins.
+                        5 mins.
                     </span>
                 
                 
@@ -421,7 +432,8 @@ centos                             The official...</code></pre>
         <div class="md-content animated fadeIn">
             
                 <p>因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。</p>
-<h3><a href="#nginx-conf-yu-conf-d-mu-lu" class="header-anchor"></a><span id="nginx-conf-yu-conf-d-mu-lu">nginx.conf 与 conf.d 目录</span></h3><p>首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码</p>
+<h3><a href="#nginx-conf-yu-conf-d-mu-lu" class="header-anchor"></a><span id="nginx-conf-yu-conf-d-mu-lu">nginx.conf 与 conf.d 目录</span></h3>
+<p>首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码</p>
 <pre><code># Load modular configuration files from the /etc/nginx/conf.d directory.
 # See http://nginx.org...</code></pre>
             
@@ -468,12 +480,14 @@ centos                             The official...</code></pre>
         <div class="md-content animated fadeIn">
             
                 <blockquote>
-<p>转载自：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27389115/answer/36434788">https://www.zhihu.com/question/27389115/answer/36434788</a><br>转载自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xieamy/article/details/70270039">https://blog.csdn.net/xieamy/article/details/70270039</a></p>
+<p>转载自：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27389115/answer/36434788">https://www.zhihu.com/question/27389115/answer/36434788</a><br>
+转载自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xieamy/article/details/70270039">https://blog.csdn.net/xieamy/article/details/70270039</a></p>
 </blockquote>
 <span id="more"></span>
-
-<h3><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h3><p>因为不小心的缘故，把自己电脑上的node版本由LTS升到了Current，从而遇到了之前有一个基于vue-cli上搭建的项目跑不起来，在读取配置文件的时候直接报fs模块的错误，因此有了想卸载Node.js再从新安装的想法。</p>
-<h3><a href="#dang-qian-huan-jing" class="header-anchor"></a><span id="dang-qian-huan-jing">当前环境</span></h3><p>当前的环境是 Mac os...</p>
+<h3><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h3>
+<p>因为不小心的缘故，把自己电脑上的node版本由LTS升到了Current，从而遇到了之前有一个基于vue-cli上搭建的项目跑不起来，在读取配置文件的时候直接报fs模块的错误，因此有了想卸载Node.js再从新安装的想法。</p>
+<h3><a href="#dang-qian-huan-jing" class="header-anchor"></a><span id="dang-qian-huan-jing">当前环境</span></h3>
+<p>当前的环境是 Mac...</p>
             
             <span class="read-more"><a href="/2018/11/12/manage-Node-js-version-via-mvn/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
@@ -502,7 +516,7 @@ centos                             The official...</code></pre>
                 
                     <span>
                         <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        6.6k
+                        6.4k
                     </span>
                 
                 
@@ -519,7 +533,9 @@ centos                             The official...</code></pre>
         
         <div class="md-content animated fadeIn">
             
-                <h4><a href="#kai-qi-mongodb-shu-ju-ku-fu-wu" class="header-anchor"></a><span id="kai-qi-mongodb-shu-ju-ku-fu-wu">开启MongoDB数据库服务</span></h4><p>&amp;emsp;&amp;emsp;mongo根目录<code>/bin/mongod -f</code> 配置文件目录&#x2F;配置文件名<br>例：<code>./bin/mongod -f conf/mongod.conf</code></p>
+                <h4><a href="#kai-qi-mongodb-shu-ju-ku-fu-wu" class="header-anchor"></a><span id="kai-qi-mongodb-shu-ju-ku-fu-wu">开启MongoDB数据库服务</span></h4>
+<p>  mongo根目录<code>/bin/mongod -f</code> 配置文件目录/配置文件名<br>
+例：<code>./bin/mongod -f conf/mongod.conf</code></p>
 <p>Mongod.conf文件内容参考如下：</p>
 <pre><code>dbpath = /data/mongodb
 logpath = /data/mongodb/mongodb.log
@@ -528,7 +544,14 @@ port = 27017
 fork = true
 auth = true
 </code></pre>
-<p>Mongod...</p>
+<p>Mongod命令各常用参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+...</thead></table>
             
             <span class="read-more"><a href="/2017/11/30/mongodb-command/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>

@@ -117,7 +117,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    973
+                    976
                 </span>
                 
                 
@@ -158,12 +158,15 @@
     <div class='main'>
         <div class="content markdown animated fadeIn">
             <p>在学习NodeJs中事件循环机制的时候遇到了两个不太清楚的概念：并发和并行。文章是这样说的，NodeJs由于是单线程运行的，所以它是无法进行真正意义上的并行操作，准确来说应该是并发。下面记录一下。</p>
-<h3><a href="#bing-fa-concurrency" class="header-anchor"></a><span id="bing-fa-concurrency">并发（concurrency）</span></h3><p>并发是指具有处理多个任务的能力，是指逻辑上的同时任务，不是说物理上的，并发事件不一定要同一时刻发生。</p>
+<h3><a href="#bing-fa-concurrency" class="header-anchor"></a><span id="bing-fa-concurrency">并发（concurrency）</span></h3>
+<p>并发是指具有处理多个任务的能力，是指逻辑上的同时任务，不是说物理上的，并发事件不一定要同一时刻发生。</p>
 <p>通俗形象一点就是说，当遇到许多任务的时候，可以把其中一个大任务拆解成多个小任务，然后这些被拆解的小任务交叉执行（一般这个过程由操作系统完成），而实际上在某一时刻还是只执行一个任务，所以本质上还是串行的。</p>
 <p><img src="/images/concurrency.png" alt="concurrency.png"></p>
-<h3><a href="#bing-xing-parallelism" class="header-anchor"></a><span id="bing-xing-parallelism">并行（parallelism）</span></h3><p>并行是指具有同时处理多个任务的能力，是真正意义上的同时执行。</p>
+<h3><a href="#bing-xing-parallelism" class="header-anchor"></a><span id="bing-xing-parallelism">并行（parallelism）</span></h3>
+<p>并行是指具有同时处理多个任务的能力，是真正意义上的同时执行。</p>
 <p><img src="/images/parallelism.png" alt="parallelism.png"></p>
-<h3><a href="#ji-suan-ji-zhong-de-bing-fa-he-bing-xing" class="header-anchor"></a><span id="ji-suan-ji-zhong-de-bing-fa-he-bing-xing">计算机中的并发和并行</span></h3><p>对于一台单核CPU的计算机来说，即使使用了多线程或者多进程来执行任务，在真实环境中也是不可能并行执行的，简单道理就是一个CPU在某一时刻只能执行一条指令。所以在这种情况下他们只能说是并发执行。</p>
+<h3><a href="#ji-suan-ji-zhong-de-bing-fa-he-bing-xing" class="header-anchor"></a><span id="ji-suan-ji-zhong-de-bing-fa-he-bing-xing">计算机中的并发和并行</span></h3>
+<p>对于一台单核CPU的计算机来说，即使使用了多线程或者多进程来执行任务，在真实环境中也是不可能并行执行的，简单道理就是一个CPU在某一时刻只能执行一条指令。所以在这种情况下他们只能说是并发执行。</p>
 <p>换个角度说，并行执行只能出现在多核CPU上。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->

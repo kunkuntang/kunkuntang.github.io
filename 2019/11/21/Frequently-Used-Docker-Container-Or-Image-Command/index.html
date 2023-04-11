@@ -10,8 +10,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="简述对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。
-要理解Docker以及Docker里关于镜像、容器的概念，这,"> 
+    <meta name="description" content="简述
+对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。
+要理解Docker以及Docker里关于镜像、容器的概念，,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -157,9 +158,13 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h2><a href="#jian-shu" class="header-anchor"></a><span id="jian-shu">简述</span></h2><p>对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。</p>
-<p>要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：<br>Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举以下有关镜像、容器的命令：</p>
-<h2><a href="#docker-jing-xiang" class="header-anchor"></a><span id="docker-jing-xiang">Docker镜像</span></h2><h3><a href="#cong-wang-luo-shang-xia-jie-jing-xiang" class="header-anchor"></a><span id="cong-wang-luo-shang-xia-jie-jing-xiang">从网络上下截镜像</span></h3><pre><code>docker pull [mirror] NAME[:TAG]
+            <h2><a href="#jian-shu" class="header-anchor"></a><span id="jian-shu">简述</span></h2>
+<p>对于Docker来说整体还是比较容易入门的，理解起来跟虚拟机差不多，只要知道了镜像、容器的概念后，其他的就要考验Linux的知识了。</p>
+<p>要理解Docker以及Docker里关于镜像、容器的概念，这里打个比方：<br>
+Docker就像一台支持软件多开的机子，Docker的镜像就像一个软件，Docker的容器就是这个软件多开时运行的窗口。每一个镜像都可以独立运行在不同的容器，他们互不干扰。下面简单列举以下有关镜像、容器的命令：</p>
+<h2><a href="#docker-jing-xiang" class="header-anchor"></a><span id="docker-jing-xiang">Docker镜像</span></h2>
+<h3><a href="#cong-wang-luo-shang-xia-jie-jing-xiang" class="header-anchor"></a><span id="cong-wang-luo-shang-xia-jie-jing-xiang">从网络上下截镜像</span></h3>
+<pre><code>docker pull [mirror] NAME[:TAG]
 </code></pre>
 <p>例如：</p>
 <pre><code>docker pull ubuntu
@@ -188,7 +193,8 @@ Digest: sha256:0fc4a48462a92b0a5a53b35540b8ca33a68606c6cd23c21df54c5f54bccbf33a
 Status: Downloaded newer image for hub.c.163.com/public/ubuntu:16.04-tools
 hub.c.163.com/public/ubuntu:16.04-tools
 </code></pre>
-<h3><a href="#cha-kan-ben-di-de-cun-zai-de-jing-xiang" class="header-anchor"></a><span id="cha-kan-ben-di-de-cun-zai-de-jing-xiang">查看本地的存在的镜像</span></h3><p>查看本地镜像可以执行<code>docker images</code>命令：</p>
+<h3><a href="#cha-kan-ben-di-de-cun-zai-de-jing-xiang" class="header-anchor"></a><span id="cha-kan-ben-di-de-cun-zai-de-jing-xiang">查看本地的存在的镜像</span></h3>
+<p>查看本地镜像可以执行<code>docker images</code>命令：</p>
 <pre><code>C:\Users\kunta&gt;docker images
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
 hub.c.163.com/kuntang/lingermarket   latest              c7a70a3810cf        23 months ago       418MB
@@ -202,8 +208,9 @@ hub.c.163.com/public/centos          6.7-tools           b2ab0ed558bb        2 y
 <li>CREATED：创建时间</li>
 <li>SIZE：镜像大小</li>
 </ul>
-<p><img src="https://user-gold-cdn.xitu.io/2019/10/10/16db635dd1090a6e?w=993&h=519&f=png&s=25613"></p>
-<h3><a href="#gei-ben-di-jing-xiang-tian-jia-xin-biao-qian" class="header-anchor"></a><span id="gei-ben-di-jing-xiang-tian-jia-xin-biao-qian">给本地镜像添加新标签</span></h3><pre><code>docker tag [mirror ID] [NEW TAG]
+<p><img src="https://user-gold-cdn.xitu.io/2019/10/10/16db635dd1090a6e?w=993&amp;h=519&amp;f=png&amp;s=25613" alt></p>
+<h3><a href="#gei-ben-di-jing-xiang-tian-jia-xin-biao-qian" class="header-anchor"></a><span id="gei-ben-di-jing-xiang-tian-jia-xin-biao-qian">给本地镜像添加新标签</span></h3>
+<pre><code>docker tag [mirror ID] [NEW TAG]
 </code></pre>
 <p>为方便使用，我们应该用<code>docker tag</code>命令为镜像加上别名；</p>
 <pre><code>C:\Users\kunta&gt;docker tag 119 ubuntu
@@ -227,7 +234,8 @@ hub.c.163.com/public/ubuntu          16.04-tools         1196ea15dad6        2 y
 hub.c.163.com/public/centos          6.7-tools           b2ab0ed558bb        2 years ago         602MB
 </code></pre>
 <p>实际上这个命令不会创建新的镜像，仔细比较一下新创建的镜像，它们的ID都是一样的，所以它们指向的是同一个镜像，这里的tag命令相当于给它们新建了一个快捷方式。</p>
-<h3><a href="#cha-kan-jing-xiang-xiang-xi-xin-xi" class="header-anchor"></a><span id="cha-kan-jing-xiang-xiang-xi-xin-xi">查看镜像详细信息</span></h3><pre><code>docker inspect [IMAGE ID]
+<h3><a href="#cha-kan-jing-xiang-xiang-xi-xin-xi" class="header-anchor"></a><span id="cha-kan-jing-xiang-xiang-xi-xin-xi">查看镜像详细信息</span></h3>
+<pre><code>docker inspect [IMAGE ID]
 </code></pre>
 <p>这个命令将会返回一串JSON字符串，如果想要查看某一项的内容，可以使用<code>-f</code>来指定。如：</p>
 <pre><code>docker inspect -f &#123;&#123;".[字段名]"&#125;&#125; [IMAGE ID]
@@ -239,25 +247,33 @@ hub.c.163.com/public/centos          6.7-tools           b2ab0ed558bb        2 y
 <pre><code>C:\Users\kunta&gt;docker inspect -f &#123;&#123;".Id"&#125;&#125; 119
 sha256:1196ea15dad679677c220abedb654d7e8f4402c88fc1985ef1e224b50206d729
 </code></pre>
-<h3><a href="#sou-xun-jing-xiang" class="header-anchor"></a><span id="sou-xun-jing-xiang">搜寻镜像</span></h3><pre><code>docker search TERM 
+<h3><a href="#sou-xun-jing-xiang" class="header-anchor"></a><span id="sou-xun-jing-xiang">搜寻镜像</span></h3>
+<pre><code>docker search TERM 
 </code></pre>
 <p>支持参数包括 <code>--automated=false</code> 仅显示自动创建的镜像 <code>--no-trunc=false</code> 输出信息不截断显示 <code>-s, --start=0</code> 仅显示评价为指定星级以上的镜像</p>
-<h3><a href="#shan-chu-jing-xiang" class="header-anchor"></a><span id="shan-chu-jing-xiang">删除镜像</span></h3><pre><code>docker rmi [IMAGES ID or TAG]
+<h3><a href="#shan-chu-jing-xiang" class="header-anchor"></a><span id="shan-chu-jing-xiang">删除镜像</span></h3>
+<pre><code>docker rmi [IMAGES ID or TAG]
 </code></pre>
 <p>** 当一个镜像拥有多个标签的时候，执行删除命令只会删除镜像对应的标签，当镜像只剩下最后一个标签时执行删除操作，则会彻底删除镜像 **</p>
 <p>强制删除镜像</p>
 <pre><code>docker rmi -f [mirrors]
 </code></pre>
-<h3><a href="#chuang-jian-jing-xiang" class="header-anchor"></a><span id="chuang-jian-jing-xiang">创建镜像</span></h3><pre><code>docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+<h3><a href="#chuang-jian-jing-xiang" class="header-anchor"></a><span id="chuang-jian-jing-xiang">创建镜像</span></h3>
+<pre><code>docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 </code></pre>
-<h3><a href="#shang-chuan-jing-xiang" class="header-anchor"></a><span id="shang-chuan-jing-xiang">上传镜像</span></h3><pre><code>docker push NAME[:TAG]
+<h3><a href="#shang-chuan-jing-xiang" class="header-anchor"></a><span id="shang-chuan-jing-xiang">上传镜像</span></h3>
+<pre><code>docker push NAME[:TAG]
 </code></pre>
-<h2><a href="#docker-rong-qi" class="header-anchor"></a><span id="docker-rong-qi">Docker容器</span></h2><h3><a href="#chuang-jian-rong-qi" class="header-anchor"></a><span id="chuang-jian-rong-qi">创建容器</span></h3><p>创建成功后返回容器ID</p>
+<h2><a href="#docker-rong-qi" class="header-anchor"></a><span id="docker-rong-qi">Docker容器</span></h2>
+<h3><a href="#chuang-jian-rong-qi" class="header-anchor"></a><span id="chuang-jian-rong-qi">创建容器</span></h3>
+<p>创建成功后返回容器ID</p>
 <pre><code>docker create [mirrors]
 </code></pre>
-<h3><a href="#yun-xing-rong-qi" class="header-anchor"></a><span id="yun-xing-rong-qi">运行容器</span></h3><pre><code>docker start [mirrors ID]
+<h3><a href="#yun-xing-rong-qi" class="header-anchor"></a><span id="yun-xing-rong-qi">运行容器</span></h3>
+<pre><code>docker start [mirrors ID]
 </code></pre>
-<h3><a href="#chuang-jian-bing-yun-xing-rong-qi" class="header-anchor"></a><span id="chuang-jian-bing-yun-xing-rong-qi">创建并运行容器</span></h3><pre><code>docker run -i -t [mirrors ID] /bin/bash
+<h3><a href="#chuang-jian-bing-yun-xing-rong-qi" class="header-anchor"></a><span id="chuang-jian-bing-yun-xing-rong-qi">创建并运行容器</span></h3>
+<pre><code>docker run -i -t [mirrors ID] /bin/bash
 </code></pre>
 <p><code>-t</code>选项让Docker分配一个伪终端(pseudo-tty)并绑定到容器的标准输入上，<code>-i</code>则让容器的标准输入保持打开。</p>
 <p>在交互模式下，用户可以通过所创建的终端来输入命令，例如：</p>
@@ -268,31 +284,41 @@ sha256:1196ea15dad679677c220abedb654d7e8f4402c88fc1985ef1e224b50206d729
 bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  sbin  selinux  srv  sys  tmp  usr  var
 </code></pre>
 <p>用户可以使用<code>Ctrl+D</code>或者输入<code>exit</code>来退出交互模式。</p>
-<h3><a href="#shou-hu-tai-yun-xing" class="header-anchor"></a><span id="shou-hu-tai-yun-xing">守护态运行</span></h3><pre><code>docker run -d [mirrors ID]
+<h3><a href="#shou-hu-tai-yun-xing" class="header-anchor"></a><span id="shou-hu-tai-yun-xing">守护态运行</span></h3>
+<pre><code>docker run -d [mirrors ID]
 </code></pre>
-<h3><a href="#jin-ru-rong-qi" class="header-anchor"></a><span id="jin-ru-rong-qi">进入容器</span></h3><p>在使用-d参数时，容器启动后会进入后台，用户无法看到容器中的信息。某些时候如果需要进入容器操作，有多种方法，包括使用docker attach命令、docker exec命令，以及nsenter工具等。</p>
-<h4><a href="#attach-ming-ling" class="header-anchor"></a><span id="attach-ming-ling">attach命令</span></h4><pre><code>docker attach [mirrors ID]
+<h3><a href="#jin-ru-rong-qi" class="header-anchor"></a><span id="jin-ru-rong-qi">进入容器</span></h3>
+<p>在使用-d参数时，容器启动后会进入后台，用户无法看到容器中的信息。某些时候如果需要进入容器操作，有多种方法，包括使用docker attach命令、docker exec命令，以及nsenter工具等。</p>
+<h4><a href="#attach-ming-ling" class="header-anchor"></a><span id="attach-ming-ling">attach命令</span></h4>
+<pre><code>docker attach [mirrors ID]
 </code></pre>
 <p>使用attach命令有时候并不方便，当多个窗口同时attach到同一个容器时，所有窗口都会同步显示。当某个窗口因命令阻塞时，其它容器也无法执行操作了。</p>
-<h4><a href="#exec-ming-ling" class="header-anchor"></a><span id="exec-ming-ling">exec命令</span></h4><p>Docker自1.3版本起，提供了一个更加方便的工具exec，可以直接在窗口内运行命令。例如进入到刚创建的容器中，并启动一个bash：</p>
+<h4><a href="#exec-ming-ling" class="header-anchor"></a><span id="exec-ming-ling">exec命令</span></h4>
+<p>Docker自1.3版本起，提供了一个更加方便的工具exec，可以直接在窗口内运行命令。例如进入到刚创建的容器中，并启动一个bash：</p>
 <pre><code>docker exec -it [mirrors ID] /bin/bash
 </code></pre>
-<h3><a href="#zhong-zhi-rong-qi" class="header-anchor"></a><span id="zhong-zhi-rong-qi">终止容器</span></h3><pre><code>docker stop [mirrors ID]
+<h3><a href="#zhong-zhi-rong-qi" class="header-anchor"></a><span id="zhong-zhi-rong-qi">终止容器</span></h3>
+<pre><code>docker stop [mirrors ID]
 </code></pre>
-<h3><a href="#chong-qi-yi-jing-ting-zhi-de-rong-qi" class="header-anchor"></a><span id="chong-qi-yi-jing-ting-zhi-de-rong-qi">重启已经停止的容器</span></h3><p>重新启动一个容器</p>
+<h3><a href="#chong-qi-yi-jing-ting-zhi-de-rong-qi" class="header-anchor"></a><span id="chong-qi-yi-jing-ting-zhi-de-rong-qi">重启已经停止的容器</span></h3>
+<p>重新启动一个容器</p>
 <pre><code>docker restart [mirrors ID]
 </code></pre>
-<h3><a href="#cha-kan-dang-qian-rong-qi-lie-biao" class="header-anchor"></a><span id="cha-kan-dang-qian-rong-qi-lie-biao">查看当前容器列表</span></h3><pre><code>列出正在运行的容器
+<h3><a href="#cha-kan-dang-qian-rong-qi-lie-biao" class="header-anchor"></a><span id="cha-kan-dang-qian-rong-qi-lie-biao">查看当前容器列表</span></h3>
+<pre><code>列出正在运行的容器
 docker ps
 列出所有的容器
 docker ps -a
 </code></pre>
-<h3><a href="#dao-chu-rong-qi" class="header-anchor"></a><span id="dao-chu-rong-qi">导出容器</span></h3><pre><code>docker export [mirrors ID] &gt;[name].tar
+<h3><a href="#dao-chu-rong-qi" class="header-anchor"></a><span id="dao-chu-rong-qi">导出容器</span></h3>
+<pre><code>docker export [mirrors ID] &gt;[name].tar
 </code></pre>
-<h3><a href="#dao-ru-rong-qi" class="header-anchor"></a><span id="dao-ru-rong-qi">导入容器</span></h3><pre><code>docker import - [name]
+<h3><a href="#dao-ru-rong-qi" class="header-anchor"></a><span id="dao-ru-rong-qi">导入容器</span></h3>
+<pre><code>docker import - [name]
 </code></pre>
 <hr>
-<h2><a href="#geng-duo-yue-du" class="header-anchor"></a><span id="geng-duo-yue-du">更多阅读</span></h2><p>Docker系列文章：</p>
+<h2><a href="#geng-duo-yue-du" class="header-anchor"></a><span id="geng-duo-yue-du">更多阅读</span></h2>
+<p>Docker系列文章：</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d8820cae51d453b1e478b91">Docker中镜像、容器的常用命令</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d9f53d26fb9a04e3142120c">Docker仓库常用命令</a></li>
