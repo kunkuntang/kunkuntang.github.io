@@ -72,7 +72,7 @@
         
     </ul>
     <p class="copyright" id="copyright">
-        &copy; 2022 CubeSuger.
+        &copy; 2023 CubeSuger.
         Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
         Theme <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
     </p>
@@ -120,25 +120,25 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/项目构建"><b>「
-                </b>项目构建<b> 」</b></a>
+            <a href="/categories/Database"><b>「
+                </b>DATABASE<b> 」</b></a>
             
-            June 22, 2020
+            April 11, 2023
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2020/06/22/Automaticly-Build-Personal-Website-Via-Jenkins/" title="使用Jenkins自动化构建你的个人网站" class="posttitle">使用Jenkins自动化构建你的个人网站</a></h3>
+            <a href="/2023/04/11/Database-Key-and-Index/" title="Database-Key-and-Index" class="posttitle">Database-Key-and-Index</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>Words count</i>
-                8k
+                4.1k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                7 mins.
+                4 mins.
             </span>
             
             
@@ -149,9 +149,13 @@
         
         <div class="md-content animated fadeIn">
             
-            <h2><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h2><p>首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，结果...</p>
+            <blockquote>
+<p>在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">Database Design Course</a></p>
+</blockquote>
+<h2><a href="#shi-me-shi-jian-key" class="header-anchor"></a><span id="shi-me-shi-jian-key">什么是键（Key）</span></h2><blockquote>
+<p>KEY...</p></blockquote>
             
-            <span class="read-more"><a href="/2020/06/22/Automaticly-Build-Personal-Website-Via-Jenkins/" title="Read article" class="posttitle">Read article</a>
+            <span class="read-more"><a href="/2023/04/11/Database-Key-and-Index/" title="Read article" class="posttitle">Read article</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -172,6 +176,104 @@
 
     <div id="primary">
         
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/Database">
+                  <b>「 </b>DATABASE<b> 」</b>
+                </a>
+            
+            April 10, 2023
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2023/04/10/Database-Relationship/" title="Database Relationship" class="posttitle">Database Relationship</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        2.7k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" rel="tag">个人总结</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <blockquote>
+<p>在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">Database Design Course</a></p>
+</blockquote>
+<p>Database Design Course：</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">https://www.youtube.com/watch?v=ztHopE5Wnpc&amp;list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI</a></p>
+<h2><a href="#wei-shi-me-yao-shi-yong-guan-xi" class="header-anchor"></a><span id="wei-shi-me-yao-shi-yong-guan-xi">为什么要使用关系？</span></h2><p>使用关系关联的目的是为了减少<strong>数据冗余</strong>，比如我们要记录用户和用户卡片相关的信息，如果不...</p>
+            
+            <span class="read-more"><a href="/2023/04/10/Database-Relationship/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/项目构建">
+                  <b>「 </b>项目构建<b> 」</b>
+                </a>
+            
+            June 22, 2020
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2020/06/22/Automaticly-Build-Personal-Website-Via-Jenkins/" title="使用Jenkins自动化构建你的个人网站" class="posttitle">使用Jenkins自动化构建你的个人网站</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        8k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        7 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" rel="tag">个人总结</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <h2><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h2><p>首先想要做这个自动化构建的初衷是，最近网站备案信息作了更改，我需要重新备案，但是现在备案可比几年前的时候严格多了，导致了现在网站的内容有好多不符合规范，因此我把个人网站修改了之后，再提交审核，结果又出现了其他问题被拒绝回来再次需要修改，这样来来回回搞了好几回，因为我的个人网站都是静态网站，每次修改后都要手动把代码发布到服务器上，这样的重复性工作显得很繁琐，所以研究了一下怎么用工具自动化构建自己的网站。</p>
+<h2><a href="#shi-yong-docker-zai-dian-nao-shang-yun-xing-jenkins-ping-tai" class="header-anchor"></a><span id="shi-yong-docker-zai-dian-nao-shang-yun-xing-jenkins-ping-tai">使用Docker在电脑上运行 Jenkins 平台</span></h2><p>首先拉取Jenkins镜像，我使用的网易...</p>
+            
+            <span class="read-more"><a href="/2020/06/22/Automaticly-Build-Personal-Website-Via-Jenkins/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
 <div class="post" id="post">
     <div class="post-cover animated fadeIn" style="
             background-image:
@@ -481,7 +583,7 @@
 </body>
 <footer>
     <p class="copyright" id="copyright">
-        &copy; 2022
+        &copy; 2023
         <span class="gradient-text">
             CubeSuger
         </span>.

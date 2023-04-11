@@ -72,7 +72,7 @@
         
     </ul>
     <p class="copyright" id="copyright">
-        &copy; 2022 CubeSuger.
+        &copy; 2023 CubeSuger.
         Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
         Theme <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
     </p>
@@ -120,38 +120,39 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="/categories/小程序"><b>「
-                </b>小程序<b> 」</b></a>
+            <a href="/categories/项目构建"><b>「
+                </b>项目构建<b> 」</b></a>
             
-            August 01, 2018
+            July 15, 2019
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2018/08/01/wechat-share-and-single-page-summary/" title="单页面应用微信分享跳坑指南" class="posttitle">单页面应用微信分享跳坑指南</a></h3>
+            <a href="/2019/07/15/nginx-commmand-record/" title="Nginx conf 常用配置" class="posttitle">Nginx conf 常用配置</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>Words count</i>
-                8.2k
+                6.3k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                7 mins.
+                6 mins.
             </span>
             
             
         </p>
         
         
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" rel="tag">个人总结</a></li></ul>
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%87%E5%BF%98%E7%BF%BB%E9%98%85/" rel="tag">备忘翻阅</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li></ul>
         
         <div class="md-content animated fadeIn">
             
-            <h2><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h2><p>最近在开发的时候遇到了一个微信分享的bug，就是无论你在哪个路径下的页面，发送给朋友后点开都只会跳到项目的首页。本来微信分享这个只算是一个小功能，也很好解决，但由于项目的特殊性，使得在这个bug解...</p>
+            <p>因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。</p>
+<h3><a href="#nginx-conf-yu-conf-d-mu-lu" class="header-anchor"></a><span id="nginx-conf-yu-conf-d-mu-lu">nginx.conf 与 conf.d 目录</span></h3><p>首先Nginx里有一份基础配置...</p>
             
-            <span class="read-more"><a href="/2018/08/01/wechat-share-and-single-page-summary/" title="Read article" class="posttitle">Read article</a>
+            <span class="read-more"><a href="/2019/07/15/nginx-commmand-record/" title="Read article" class="posttitle">Read article</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -172,6 +173,105 @@
 
     <div id="primary">
         
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="/categories/项目构建">
+                  <b>「 </b>项目构建<b> 」</b>
+                </a>
+            
+            July 15, 2019
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2019/07/15/nginx-commmand-record/" title="Nginx conf 常用配置" class="posttitle">Nginx conf 常用配置</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        6.3k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        6 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%87%E5%BF%98%E7%BF%BB%E9%98%85/" rel="tag">备忘翻阅</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <p>因为不熟悉Nginx，对他的匹配规则似懂非懂，所以平时在部署自己项目的时候经常会遇到各种问题，因此在此记录一下一路踩过的坑。</p>
+<h3><a href="#nginx-conf-yu-conf-d-mu-lu" class="header-anchor"></a><span id="nginx-conf-yu-conf-d-mu-lu">nginx.conf 与 conf.d 目录</span></h3><p>首先Nginx里有一份基础配置nginx.conf文件，里面通常是nginx的一些默认配置信息，注意在默认配置前有一行引入自定义文件的代码</p>
+<pre><code># Load modular configuration files from the /etc/nginx/conf.d directory.
+# See http://nginx.org...</code></pre>
+            
+            <span class="read-more"><a href="/2019/07/15/nginx-commmand-record/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="post" id="post">
+    <div class="post-cover animated fadeIn" style="
+            background-image:
+            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+            url(/img/welcome-cover.jpg);">
+    </div>
+    <div class="else">
+        <p class="animated fadeInDown">
+            
+                <a href="javascript:;"><b>「 </b>Article<b> 」</b></a>
+            
+            November 12, 2018
+        </p>
+        <h3 class="post-title animated fadeInDown"><a href="/2018/11/12/manage-Node-js-version-via-mvn/" title="mac下卸载Node.js并使用nvm来管理Node版本" class="posttitle">mac下卸载Node.js并使用nvm来管理Node版本</a></h3>
+        
+            <p class="post-count animated fadeInDown">
+                
+                    <span>
+                        <b class="iconfont icon-text2"></b> <i>Words count</i>
+                        2.6k
+                    </span>
+                
+                
+                    <span>
+                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                        2 mins.
+                    </span>
+                
+                
+            </p>
+            
+                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%87%E5%BF%98%E7%BF%BB%E9%98%85/" rel="tag">备忘翻阅</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a></li></ul>
+            
+        
+        <div class="md-content animated fadeIn">
+            
+                <blockquote>
+<p>转载自：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27389115/answer/36434788">https://www.zhihu.com/question/27389115/answer/36434788</a><br>转载自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xieamy/article/details/70270039">https://blog.csdn.net/xieamy/article/details/70270039</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h3><a href="#qian-yan" class="header-anchor"></a><span id="qian-yan">前言</span></h3><p>因为不小心的缘故，把自己电脑上的node版本由LTS升到了Current，从而遇到了之前有一个基于vue-cli上搭建的项目跑不起来，在读取配置文件的时候直接报fs模块的错误，因此有了想卸载Node.js再从新安装的想法。</p>
+<h3><a href="#dang-qian-huan-jing" class="header-anchor"></a><span id="dang-qian-huan-jing">当前环境</span></h3><p>当前的环境是 Mac os...</p>
+            
+            <span class="read-more"><a href="/2018/11/12/manage-Node-js-version-via-mvn/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+        </div>
+    </div>
+</div>
+
+
 <div class="post" id="post">
     <div class="post-cover animated fadeIn" style="
             background-image:
@@ -574,139 +674,9 @@ auth = true
         
         <div class="md-content animated fadeIn">
             
-                <p>&amp;emsp;&amp;emsp;<em>本文摘录于Javascript高级程序设计（Professional JavaScript for Web Developers）并加上了自己的一些理解，如发现本文有什么错误之处，请麻烦通过以下方式联系我作修正，谢谢!</em><br>&amp;emsp;&amp;emsp;<em>微信号: kuntang9080</em><br>&amp;emsp;&amp;emsp;<em>邮箱：<a href="mailto:&#x6b;&#117;&#110;&#116;&#x61;&#110;&#103;&#64;&#x31;&#x36;&#51;&#x2e;&#99;&#111;&#x6d;">&#x6b;&#117;&#110;&#116;&#x61;&#110;&#103;&#64;&#x31;&#x36;&#51...</a></em></p>
+                <p>&amp;emsp;&amp;emsp;<em>本文摘录于Javascript高级程序设计（Professional JavaScript for Web Developers）并加上了自己的一些理解，如发现本文有什么错误之处，请麻烦通过以下方式联系我作修正，谢谢!</em><br>&amp;emsp;&amp;emsp;<em>微信号: kuntang9080</em><br>&amp;emsp;&amp;emsp;<em>邮箱：<a href="mailto:&#x6b;&#117;&#x6e;&#116;&#x61;&#110;&#x67;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#109;">&#x6b;&#117;&#x6e;&#116;&#x61;&#110;&#x67;&#x40;&#x31;&#54;&#51...</a></em></p>
             
             <span class="read-more"><a href="/2017/08/06/JavascriptDataType/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="javascript:;"><b>「 </b>Article<b> 」</b></a>
-            
-            August 06, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/08/06/SoftwareTesting/" title="软件测试" class="posttitle">软件测试</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        6.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <h3><a href="#xing-ye-nei-de-zhu-yao-zhi-shi-dian" class="header-anchor"></a><span id="xing-ye-nei-de-zhu-yao-zhi-shi-dian">行业内的主要知识点</span></h3><h4><a href="#ruan-jian-wei-ji" class="header-anchor"></a><span id="ruan-jian-wei-ji">软件危机</span></h4><h4><a href="#ruan-jian-ce-shi-de-fen-lei" class="header-anchor"></a><span id="ruan-jian-ce-shi-de-fen-lei">软件测试的分类</span></h4><ul>
-<li>按测试阶段划分</li>
-</ul>
-<p>软件测试 &#x3D; 程序 + 文档 + 数据<br>程序主流方向 B&#x2F;S架构和手机app</p>
-<span id="more"></span>
-
-<h4><a href="#ruan-jian-xiang-mu-liu-cheng" class="header-anchor"></a><span id="ruan-jian-xiang-mu-liu-cheng">软件项目流程</span></h4><ul>
-<li>可行性分析</li>
-<li>立项</li>
-<li>需求</li>
-<li>原型设计</li>
-<li>概要设计</li>
-<li>详细设计</li>
-<li>开发</li>
-<li>验收</li>
-<li>维护</li>
-</ul>
-<h4><a href="#jie-kou-ce-shi" class="header-anchor"></a><span id="jie-kou-ce-shi">接口测试</span></h4><ul>
-<li>后台和前台的数据</li>
-<li>后台和前台可以交互</li>
-</ul>
-<h3><a href="#wen-dang" class="header-anchor"></a><span id="wen-dang">文档</span></h3><ul>
-<li>需求文档</li>
-<li>设计文档</li>
-<li>开发文档</li>
-<li>测试文档</li>
-<li>验收文档</li>
-<li>用户文档</li>
-</ul>
-<h3><a href="#ruan-jian-ce-shi" class="header-anchor"></a><span id="ruan-jian-ce-shi">软件测试</span></h3><ul>
-<li>测试计划</li>
-<li>测试用例</li>
-<li>测试方案</li>
-<li>测试报告</li>
-<li>测试方案</li>
-<li>测试报告（总结）</li>
-</ul>
-<h3><a href="#ruan-jian-ce-shi-jiu-shi-bao-zheng" class="header-anchor"></a><span id="ruan-jian-ce-shi-jiu-shi-bao-zheng">软件测试就是保证</span></h3><h3><a href="#ruan-jian-ce-shi-de-fen-lei" class="header-anchor"></a><span id="ruan-jian-ce-shi-de-fen-lei">软件测试的分类</span></h3><ul>
-<li>通用软件产品</li>
-<li>电信行业</li>
-...</ul>
-            
-            <span class="read-more"><a href="/2017/08/06/SoftwareTesting/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/JavaScript">
-                  <b>「 </b>JAVASCRIPT<b> 」</b>
-                </a>
-            
-            June 25, 2017
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2017/06/25/Javascript-data-structure/" title="Javascript 数据类型" class="posttitle">Javascript 数据类型</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>Words count</i>
-                        6.2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                        6 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>&amp;emsp;&amp;emsp;<em>本文摘录于Javascript高级程序设计（Professional JavaScript for Web Developers）并加上了自己的一些理解，如发现本文有什么错误之处，请麻烦通过以下方式联系我作修正，谢谢!</em><br>&amp;emsp;&amp;emsp;<em>微信号: kuntang9080</em><br>&amp;emsp;&amp;emsp;<em>邮箱：<a href="mailto:&#107;&#x75;&#x6e;&#x74;&#97;&#x6e;&#x67;&#64;&#49;&#54;&#x33;&#x2e;&#x63;&#x6f;&#x6d;">&#107;&#x75;&#x6e;&#x74;&#97;&#x6e;&#x67;&#64;&#49;&#54;&#x33;...</a></em></p>
-            
-            <span class="read-more"><a href="/2017/06/25/Javascript-data-structure/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
 </div>
@@ -727,7 +697,7 @@ auth = true
 </body>
 <footer>
     <p class="copyright" id="copyright">
-        &copy; 2022
+        &copy; 2023
         <span class="gradient-text">
             CubeSuger
         </span>.

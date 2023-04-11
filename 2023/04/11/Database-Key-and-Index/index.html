@@ -5,12 +5,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MongoDB Shell命令 - CubeSuger&#39;s blog</title>
+    <title>Database-Key-and-Index - CubeSuger&#39;s blog</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="开启MongoDB数据库服务&amp;amp;emsp;&amp;amp;emsp;mongo根目录/bin/mongod -f 配置文件目录&amp;#x2F;配置文件名例：./bin/mongod -f conf/mo,"> 
+    <meta name="description" content="
+在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：Database Design Course
+
+什么是键（Key）
+KE,"> 
     <meta name="author" content="CubeSuger"> 
     <link rel="alternative" href="atom.xml" title="CubeSuger&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -74,7 +78,7 @@
     <div class="navigation animated fadeIn fast delay-1s">
         <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://kunkuntang.github.io">
         <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">MongoDB Shell命令</h3>
+        <h3 class="subtitle">Database-Key-and-Index</h3>
         <div class="social">
             <!--        <div class="like-icon">-->
             <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -104,25 +108,25 @@
         <div class="else">
             <p class="animated fadeInDown">
                 
-                <a href="/categories/Mongodb"><b>「
-                    </b>MONGODB<b> 」</b></a>
+                <a href="/categories/Database"><b>「
+                    </b>DATABASE<b> 」</b></a>
                 
-                November 30, 2017
+                April 11, 2023
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2017/11/30/mongodb-command/" title="MongoDB Shell命令" class="">MongoDB Shell命令</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2023/04/11/Database-Key-and-Index/" title="Database-Key-and-Index" class="">Database-Key-and-Index</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    6.6k
+                    4.1k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    6 mins.
+                    4 mins.
                 </span>
                 
                 
@@ -135,7 +139,7 @@
             </p>
             
             
-            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%87%E5%BF%98%E7%BF%BB%E9%98%85/" rel="tag">备忘翻阅</a></li></ul>
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/" rel="tag">个人总结</a></li></ul>
             
         </div>
     </div>
@@ -156,135 +160,101 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h4><a href="#kai-qi-mongodb-shu-ju-ku-fu-wu" class="header-anchor"></a><span id="kai-qi-mongodb-shu-ju-ku-fu-wu">开启MongoDB数据库服务</span></h4><p>&amp;emsp;&amp;emsp;mongo根目录<code>/bin/mongod -f</code> 配置文件目录&#x2F;配置文件名<br>例：<code>./bin/mongod -f conf/mongod.conf</code></p>
-<p>Mongod.conf文件内容参考如下：</p>
-<pre><code>dbpath = /data/mongodb
-logpath = /data/mongodb/mongodb.log
-logappend = true
-port = 27017
-fork = true
-auth = true
-</code></pre>
-<p>Mongod命令各常用参数说明：</p>
+            <blockquote>
+<p>在 Youtube 上刷到了一个关于数据库设计的视频，看了一下感觉还不错，这几天应该都会看一点然后每天做一下记录。视频地址：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ztHopE5Wnpc&list=PLo47zzoJD98Jn5Z3e3003jzqTaATKuDnI">Database Design Course</a></p>
+</blockquote>
+<h2><a href="#shi-me-shi-jian-key" class="header-anchor"></a><span id="shi-me-shi-jian-key">什么是键（Key）</span></h2><blockquote>
+<p>KEY is something on the logical level, describes your table and database design (i.e. enforces referential integrity …)</p>
+</blockquote>
+<p>键（KEY）是数据库中常见的概念，通常用来描述数据库中表字段的性质和它们之间的关系，是逻辑层面的概念。比如有以下用户表：</p>
 <table>
 <thead>
 <tr>
-<th>参数</th>
-<th>说明</th>
+<th>user_id</th>
+<th>user_name</th>
+<th>age</th>
+<th>sex</th>
+<th>email</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>–quiet</td>
-<td>安静输出</td>
+<td>001</td>
+<td>John</td>
+<td>24</td>
+<td>man</td>
+<td><a href="mailto:&#97;&#98;&#99;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;">&#97;&#98;&#99;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;</a></td>
 </tr>
 <tr>
-<td>–port arg</td>
-<td>指定服务端口号，默认端口27017</td>
-</tr>
-<tr>
-<td>–bind_ip arg</td>
-<td>绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP</td>
-</tr>
-<tr>
-<td>–logpath arg</td>
-<td>指定MongoDB日志文件，注意是指定文件不是目录</td>
-</tr>
-<tr>
-<td>–logappend</td>
-<td>使用追加的方式写日志</td>
-</tr>
-<tr>
-<td>–journal</td>
-<td>启用日志选项，MongoDB的数据操作将会写入到journal文件夹的文件里</td>
-</tr>
-<tr>
-<td>–journalOptions arg</td>
-<td>启用日志诊断选项</td>
-</tr>
-<tr>
-<td>–fork</td>
-<td>以守护进程的方式运行MongoDB，创建服务器进程</td>
-</tr>
-<tr>
-<td>–maxConns arg</td>
-<td>最大同时连接数 默认2000</td>
-</tr>
-<tr>
-<td>–auth</td>
-<td>启用验证</td>
-</tr>
-<tr>
-<td>–noauth</td>
-<td>不启用验证</td>
-</tr>
-<tr>
-<td>–dbpath arg</td>
-<td>指定数据库路径</td>
-</tr>
-<tr>
-<td>–ipv6</td>
-<td>启用IPv6选项</td>
-</tr>
-<tr>
-<td>–pidfilepath arg</td>
-<td>PID File 的完整路径，如果没有设置，则没有PID文件</td>
+<td>002</td>
+<td>Mary</td>
+<td>22</td>
+<td>female</td>
+<td><a href="mailto:&#98;&#x63;&#x64;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#98;&#x63;&#x64;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a></td>
 </tr>
 </tbody></table>
-<span id="more"></span>
-
-<h4><a href="#qiang-xing-guan-bi-mongodb" class="header-anchor"></a><span id="qiang-xing-guan-bi-mongodb">强行关闭MongoDB</span></h4><p>&amp;emsp;&amp;emsp;先用命令 <code>ps -ef | grep mongod </code>查出mongod 的进程pid<br>然后<code>kill pid </code>即可</p>
-<h4><a href="#shu-ju-ku" class="header-anchor"></a><span id="shu-ju-ku">数据库</span></h4><h5><a href="#lian-jie-mongodb-shu-ju-ku" class="header-anchor"></a><span id="lian-jie-mongodb-shu-ju-ku">连接MongoDB数据库</span></h5><p>&amp;emsp;&amp;emsp;mongo根目录<code>/bin/mongo</code> 数据库地址:端口号&#x2F;库名称<br>例： <code>./bin/mongo 127.0.0.1:12345/test</code></p>
-<h5><a href="#guan-bi-mongodb-shu-ju-ku" class="header-anchor"></a><span id="guan-bi-mongodb-shu-ju-ku">关闭MongoDB数据库</span></h5><p>&amp;emsp;&amp;emsp;<code>db.shutdownServer()</code></p>
-<h5><a href="#xin-jian-he-qie-huan-shu-ju-ku" class="header-anchor"></a><span id="xin-jian-he-qie-huan-shu-ju-ku">新建和切换数据库</span></h5><p>&amp;emsp;&amp;emsp;MongoDB不用特别地去声明新建一个数据库，直接用<code>use 数据库名</code> 就可以了。</p>
-<h5><a href="#shan-chu-shu-ju-ku" class="header-anchor"></a><span id="shan-chu-shu-ju-ku">删除数据库</span></h5><p>&amp;emsp;&amp;emsp;先用<code>db.use</code>切换到要删除的数据库，然后使用<code>db.dropDatabase()</code>来删除数据库</p>
-<h4><a href="#shu-ju-cao-zuo" class="header-anchor"></a><span id="shu-ju-cao-zuo">数据操作</span></h4><h5><a href="#cha-ru-yi-tiao-shu-ju" class="header-anchor"></a><span id="cha-ru-yi-tiao-shu-ju">插入一条数据</span></h5><p><code>db.collection.insert(&#123;key: value&#125;)</code></p>
-<p>其中集名称可以自己起</p>
-<h5><a href="#cha-ru-duo-tiao-shu-ju" class="header-anchor"></a><span id="cha-ru-duo-tiao-shu-ju">插入多条数据</span></h5><p>&amp;emsp;&amp;emsp;可以使用for循环插入： <code>for(i＝3;i&lt;100;i++)db.collection.insert(&#123;key: value&#125;)</code></p>
-<h5><a href="#cha-xun-suo-you-shu-ju" class="header-anchor"></a><span id="cha-xun-suo-you-shu-ju">查询所有数据</span></h5><p><code>db.collection.find()</code></p>
-<h5><a href="#cha-xun-dan-tiao-shu-ju" class="header-anchor"></a><span id="cha-xun-dan-tiao-shu-ju">查询单条数据</span></h5><p><code>db.collection.find(&#123;key: value&#125;)</code></p>
-<h5><a href="#cha-xun-hou-you-tiao-jian-di-jin-xing-chu-li" class="header-anchor"></a><span id="cha-xun-hou-you-tiao-jian-di-jin-xing-chu-li">查询后有条件地进行处理</span></h5><p><code>db.collection.find(&#123;key: value&#125;).skip(3).limit(5).sort(&#123;key: value&#125;)</code></p>
-<p>上面查询语句后的限制分别是skip（跳过多少条数据）、limit（限制查多少条数据）、sort(将查询出来的结果集排序)</p>
-<h5><a href="#xian-shi-ku-zhong-de-suo-you-ji-ming-cheng" class="header-anchor"></a><span id="xian-shi-ku-zhong-de-suo-you-ji-ming-cheng">显示库中的所有集名称</span></h5><p><code>show collections</code></p>
-<h5><a href="#shan-chu-shu-ju-ku-zhong-de-ji-he" class="header-anchor"></a><span id="shan-chu-shu-ju-ku-zhong-de-ji-he">删除数据库中的集合</span></h5><p><code>db.collection.drop()</code></p>
-<h4><a href="#suo-yin" class="header-anchor"></a><span id="suo-yin">索引</span></h4><h5><a href="#cha-kan-suo-yin" class="header-anchor"></a><span id="cha-kan-suo-yin">查看索引</span></h5><p><code>db.imooc_2.getIndexes()</code></p>
-<h5><a href="#id-suo-yin" class="header-anchor"></a><span id="id-suo-yin">_id索引</span></h5><ul>
-<li>_id索引是绝大多数集合默认建立的索引。</li>
-<li>对于每个插入的数据，MongoDB都会自动生成一条唯一的_id字段。</li>
-</ul>
-<h5><a href="#chuang-jian-yi-ge-dan-jian-suo-yin" class="header-anchor"></a><span id="chuang-jian-yi-ge-dan-jian-suo-yin">创建一个单键索引</span></h5><ul>
-<li>单键索引是最普通的索引</li>
-<li>单键索引不会自动创建</li>
-</ul>
-<p>&amp;emsp;&amp;emsp;例如： 一条记录为<code>&#123;x: 1, y: 2, z: 3&#125;</code>，如果我们在x上建立了索引，就可以使用x为条件进行查寻。</p>
-<p><code>db.collection.ensureIndex(&#123;index: order&#125;)</code></p>
-<ul>
-<li>index: 索引</li>
-<li>order: 1表示升序， -1表示降序</li>
-</ul>
-<h5><a href="#chuang-jian-yi-ge-duo-jian-suo-yin" class="header-anchor"></a><span id="chuang-jian-yi-ge-duo-jian-suo-yin">创建一个多键索引</span></h5><p>多键索引与单键索引创建形式相同，区别在于字段的值。 </p>
-<ul>
-<li>单键索引：值为一个单一的值，如字符串，数字或日期。 </li>
-<li>多键索引：值具有多个记录，如数组。</li>
-</ul>
-<p><code>db.collection.insert(&#123;x:[1,2,3,4,5]&#125;) //插入一条数组数据</code></p>
-<p><code>db.collection.insert(&#123;x:new Date()&#125;) //插入一条数组数据</code></p>
-<h5><a href="#chuang-jian-yi-ge-fu-he-suo-yin" class="header-anchor"></a><span id="chuang-jian-yi-ge-fu-he-suo-yin">创建一个复合索引</span></h5><p>&amp;emsp;&amp;emsp;当我们的查询条件不止一个的时候，就需要建立复合索引</p>
-<p>&amp;emsp;&amp;emsp;例如{x:1,y:2,z:3}这样一条数据，要按照x与y的值进行查询，就需要创建复合索引<code>db.collection.ensureIndex(&#123;x:1, y:1&#125;)</code>，然后就可以使用<code>&#123;x: 1, y:1&#125;</code>作为条件进行查询</p>
-<p><code>db.collection.ensureIndex(&#123;x:1, y:1&#125;)</code></p>
-<h5><a href="#chuang-jian-yi-ge-guo-qi-suo-yin" class="header-anchor"></a><span id="chuang-jian-yi-ge-guo-qi-suo-yin">创建一个过期索引</span></h5><ul>
-<li>在一段时间后会过期的索引 </li>
-<li>在索引过期后，相应的数据会被删除 </li>
-<li>适合存储在一段时间之后会失效的数据，比如用户的登录信息、存储的日志等。</li>
-</ul>
-<p><code>db.imooc_2.ensureIndex(&#123;time:1&#125;,&#123;expireAfterSeconds: seconds&#125;)</code> 创建过期索引，time-字段，expireAfterSeconds在多少秒后过期，单位：秒</p>
-<p>&amp;emsp;&amp;emsp;过30秒后再find，刚才的数据就已经不存在了。</p>
-<p>&amp;emsp;&amp;emsp;过期索引的限制： </p>
+<p>如果想要从表中识别出每一条数据，那么必定会存在一个字段，它的每一行的值都不一样，就比如表中的 <code>user_id</code> 字段，而这个字段常常被称之为用户表的 主键（PRIMARY_KEY）。</p>
+<p>假如还有一个卡片表：</p>
+<table>
+<thead>
+<tr>
+<th>card_id</th>
+<th>card_name</th>
+<th>belong_user_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>GoldCard</td>
+<td>001</td>
+</tr>
+</tbody></table>
+<p>它的某个字段（belong_user_id）关联着其他表的主键（user_id），那么这个字段常常称之为表的 外键（FOREIGN_KEY）。</p>
+<p>在数据库设计与实践中，往往会遵循 键（Key）的三个特征：</p>
 <ol>
-<li>存储在过期索引字段的值必须是指定的时间类型，必须是ISODate或者ISODate数组，不能使用时间戳，否则不能自动删除。<br>例如 &gt;db.imooc_2.insert({time:1})，这种是不能被自动删除的 </li>
-<li>如果指定了ISODate数组，则按照最小的时间进行删除。 </li>
-<li>过期索引不能是复合索引。因为不能指定两个过期时间。 </li>
-<li>删除时间是不精确的。删除过程是由MongoDB的后台进程每60s跑一次的，而且删除也需要一定时间，所以存在误差</li>
+<li><p>唯一性（Unique）。</p>
+</li>
+<li><p>不可修改性（Nerver Changing）。</p>
+</li>
+<li><p>不能为空（Never Null）。</p>
+<p> <strong>唯一性（Unique）</strong>： 因为 <strong>键（KEY) 的作用是帮助我们可以在数据库中找出对应的数据</strong> ，所以如果想要从表中的海量数据找到对应的一条数据，那么 键（KEY)  必定是表中不能重复的字段，否则使用这个 键（KEY)  就不能找出对应的一条数据。</p>
+<p> <strong>不可修改性（Nerver Changing）</strong>：我们除了使用 键（KEY)  来查找表中对应的数据，也常常会使用 键（KEY) 来关联不同表中的数据。比如在上面的用户表外，还有一个 课程表 关联了这个学生表，还有 教师表 关联了 学生表等等，如果我们修改了学生表的 键（KEY) ，那么其他以这个键（KEY)  关联学生表的关联关系都要做改变，这些改变往往会容易引起程序错误，在迫不得已的时候，我们应该遵循 键（KEY)  的不可修改性。</p>
+<p> <strong>不能为空（Never Null）</strong>：这个很容易理解，如果 键（KEY)  为空，那么我们便从表中查找不出任何数据，也关联不上任务数据。</p>
+</li>
 </ol>
+<h2><a href="#shi-me-shi-suo-yin-index" class="header-anchor"></a><span id="shi-me-shi-suo-yin-index">什么是索引（Index）</span></h2><blockquote>
+<p>INDEX is something on the physical level, helps improve access time for table operations. Behind every PK there is (usually) unique index created (automatically).</p>
+</blockquote>
+<p>索引（INDEX) 也是数据库中另一种常见的概念，通常用来优化数据库的查询工作，是数据库物理层面上的概念，索引（INDEX) 通常记录在数据库的默认表中，由数据库程序自己维护。而刚刚我们提到的 键（KEY）其实是 索引（INDEX）的一种实现。</p>
+<p>我们可以使用表中的一个字段作为索引（INDEX) ，也可以使用多个字段的组合成为索引（INDEX) ，例如在下方的用户表中， 可以使用 <code>user_id（主键）</code> 作为索引（INDEX) ，也可以使用  <code>user_name</code> 和 <code>age</code>  的组合来作为表的 索引（INDEX) 。</p>
+<table>
+<thead>
+<tr>
+<th>user_id</th>
+<th>user_name</th>
+<th>age</th>
+<th>sex</th>
+<th>email</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>001</td>
+<td>John</td>
+<td>24</td>
+<td>man</td>
+<td><a href="mailto:&#x61;&#98;&#99;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x61;&#98;&#99;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a></td>
+</tr>
+<tr>
+<td>002</td>
+<td>Mary</td>
+<td>22</td>
+<td>female</td>
+<td><a href="mailto:&#98;&#99;&#x64;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#98;&#99;&#x64;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a></td>
+</tr>
+</tbody></table>
+<p>理论上我们可以随意挑选表中的字段作为 索引（INDEX），但是在实践中需要选择那些可以识别出每行数据的字段或字段组合作为 索引（INDEX) ，否则便失去了 索引（INDEX) 的意义。</p>
+<p>要想从数据库中的表查找出其中一行数据，常用 SELECT * FROM <code>table_name</code> WHERE <code>column</code> &#x3D; <code>condition</code> 。在 SELECT 语句中的 WHERE 条件就用到 <strong>索引（INDEX）</strong>。而使用 SELECT 语句查找数据最基本的方法就是从表的第一行找到表的最后一行。如果事先明确知道要查找用户的 <code>user_id（主键）</code> ，那么是可以通过查找一遍所有的表数据来找到想要的数据。但是如果假设我们只知道用户的叫 <code>Jonh</code> 且他的邮箱是 <code>adc@gmail.com</code>，那么就需要最多查找 m^2 次：第一遍找出符合用户名的人，第二遍找出符合邮箱的人，最后把两遍的结果组合起来。</p>
+<p>如果我们给用户表设置了以用户用户名和邮箱这两个字段组合而成的 索引（INDEX)，那么在数据库内部就已经存放着对应索引所代表的记录，当要查询时只需要查找一遍便可得到想要的结果。</p>
+<p>因此，在数据库的表中选用哪些字段作为 键（KEY），往往会影响整个表的查询效率。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -341,6 +311,13 @@ auth = true
             </div>
             
             
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">什么是键（Key）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">什么是索引（Index）</span></a></li></ol>
+                </div>
+            </div>
             
             
         </div>
